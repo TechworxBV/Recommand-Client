@@ -30,15 +30,29 @@ services.AddRecommandClient(o =>
 });
 ```
 
-Then inject `IRecommandClient` anywhere:
+Then inject `IRecommandClient` anywhere — or, if a service only needs one
+resource group, inject just that sub-client. Each sub-client interface is
+registered separately, so you can mock exactly the surface you depend on:
 
 ```csharp
+// Option 1: inject the root client.
 public sealed class InvoiceSender(IRecommandClient recommand)
 {
-    public Task SendAsync(string companyId, Body invoice, CancellationToken ct = default)
+    public Task SendAsync(string companyId, SendDocumentRequest invoice, CancellationToken ct = default)
         => recommand.Sending.SendDocumentAsync(companyId, invoice, ct);
 }
+
+// Option 2: inject only what you use — easier to mock in tests.
+public sealed class CompanyService(ICompaniesClient companies)
+{
+    public Task<GetCompanyResponse> GetAsync(string id, CancellationToken ct = default)
+        => companies.GetCompanyAsync(id, ct);
+}
 ```
+
+Within a single DI scope (one HTTP request in ASP.NET Core), every injected
+sub-client is backed by the same root `RecommandClient`, so the underlying
+`HttpClient` is shared.
 
 The returned `IHttpClientBuilder` lets you chain resilience, logging, or any
 other `DelegatingHandler`:
@@ -75,23 +89,33 @@ this client. If you need them, file an issue or supply your own
 
 ## Resource clients
 
-`IRecommandClient` exposes one typed sub-client per resource group:
+`IRecommandClient` exposes one typed sub-client per OpenAPI tag:
 
-| Property | What it covers |
-|---|---|
-| `Authentication` | Token verification |
-| `Companies` | Companies, identifiers, document types, notification email addresses |
-| `Customers` | Customers (recipients you have sent to) |
-| `Documents` | Listing, retrieval, download |
-| `Labels` | Tagging |
-| `Playgrounds` | Sandbox testing environments |
-| `Recipients` | Peppol recipient lookups |
-| `Sending` | Sending Peppol documents |
-| `Suppliers` | Suppliers (parties that send to your companies) |
-| `Webhooks` | Webhook subscriptions and delivery |
+| Property | Interface | What it covers |
+|---|---|---|
+| `Authentication` | `IAuthenticationClient` | Token verification |
+| `Companies` | `ICompaniesClient` | Companies — top-level resource for organisations registered with Peppol |
+| `CompanyDocumentTypes` | `ICompanyDocumentTypesClient` | Document types a company can send and receive |
+| `CompanyIdentifiers` | `ICompanyIdentifiersClient` | Peppol identifiers attached to a company |
+| `CompanyNotificationEmailAddresses` | `ICompanyNotificationEmailAddressesClient` | Email addresses notified about company-level events |
+| `Customers` | `ICustomersClient` | Customers (recipients you have sent to) |
+| `Documents` | `IDocumentsClient` | Listing, retrieval, download |
+| `Labels` | `ILabelsClient` | Tagging |
+| `Playgrounds` | `IPlaygroundsClient` | Sandbox testing environments |
+| `Recipients` | `IRecipientsClient` | Peppol recipient lookups |
+| `Sending` | `ISendingClient` | Sending Peppol documents |
+| `Suppliers` | `ISuppliersClient` | Suppliers (parties that send to your companies) |
+| `Webhooks` | `IWebhooksClient` | Webhook subscriptions and delivery |
 
-Each property returns a typed interface (`IDocumentsClient`, `ICompaniesClient`,
-…), so you can mock individual clients in tests.
+Each interface is registered as a scoped DI service, so any one of them can be
+replaced with a test double — register your fake before you call
+`AddRecommandClient`:
+
+```csharp
+services.AddSingleton<ICompaniesClient>(myFakeCompaniesClient);
+services.AddRecommandClient(o => { ... });
+// MyFakeCompaniesClient wins for ICompaniesClient; the rest still come from the real root client.
+```
 
 ## Configuration
 

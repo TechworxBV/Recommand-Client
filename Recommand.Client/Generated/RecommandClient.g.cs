@@ -37,7 +37,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully sent document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response> SendDocumentAsync(string companyId, Body? body);
+        System.Threading.Tasks.Task<SendDocumentResponse> SendDocumentAsync(string companyId, SendDocumentRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -48,7 +48,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully sent document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response> SendDocumentAsync(string companyId, Body? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<SendDocumentResponse> SendDocumentAsync(string companyId, SendDocumentRequest? body, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -108,7 +108,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully sent document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response> SendDocumentAsync(string companyId, Body? body)
+        public virtual System.Threading.Tasks.Task<SendDocumentResponse> SendDocumentAsync(string companyId, SendDocumentRequest? body)
         {
             return SendDocumentAsync(companyId, body, System.Threading.CancellationToken.None);
         }
@@ -122,7 +122,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully sent document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response> SendDocumentAsync(string companyId, Body? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<SendDocumentResponse> SendDocumentAsync(string companyId, SendDocumentRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -172,7 +172,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<SendDocumentResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -182,22 +182,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response>("Invalid document data provided", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 422)
+                        {
                             var objectResponse_ = await ReadObjectResponseAsync<Response2>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response2>("Invalid document data provided", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        if (status_ == 422)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response3>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response3>("Recipient could not be reached and no email fallback was configured or possible", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response2>("Recipient could not be reached and no email fallback was configured or possible", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -359,7 +359,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved companies</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response4> GetCompaniesAsync(string? enterpriseNumber, string? vatNumber);
+        System.Threading.Tasks.Task<GetCompaniesResponse> GetCompaniesAsync(string? enterpriseNumber, string? vatNumber);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -370,7 +370,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved companies</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response4> GetCompaniesAsync(string? enterpriseNumber, string? vatNumber, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetCompaniesResponse> GetCompaniesAsync(string? enterpriseNumber, string? vatNumber, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Create Company
@@ -380,7 +380,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response5> CreateCompanyAsync(Body2? body);
+        System.Threading.Tasks.Task<CreateCompanyResponse> CreateCompanyAsync(CreateCompanyRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -391,7 +391,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response5> CreateCompanyAsync(Body2? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<CreateCompanyResponse> CreateCompanyAsync(CreateCompanyRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Company
@@ -401,7 +401,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response6> GetCompanyAsync(string companyId);
+        System.Threading.Tasks.Task<GetCompanyResponse> GetCompanyAsync(string companyId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -412,7 +412,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response6> GetCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetCompanyResponse> GetCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Update Company
@@ -422,7 +422,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response7> UpdateCompanyAsync(string companyId, Body3? body);
+        System.Threading.Tasks.Task<UpdateCompanyResponse> UpdateCompanyAsync(string companyId, UpdateCompanyRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -433,7 +433,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response7> UpdateCompanyAsync(string companyId, Body3? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<UpdateCompanyResponse> UpdateCompanyAsync(string companyId, UpdateCompanyRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Delete Company
@@ -443,7 +443,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response8> DeleteCompanyAsync(string companyId);
+        System.Threading.Tasks.Task<DeleteCompanyResponse> DeleteCompanyAsync(string companyId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -454,7 +454,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response8> DeleteCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<DeleteCompanyResponse> DeleteCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Verify Company
@@ -464,7 +464,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created verification session</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response9> VerifyCompanyAsync(string companyId);
+        System.Threading.Tasks.Task<VerifyCompanyResponse> VerifyCompanyAsync(string companyId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -475,7 +475,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created verification session</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response9> VerifyCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<VerifyCompanyResponse> VerifyCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -535,7 +535,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved companies</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response4> GetCompaniesAsync(string? enterpriseNumber, string? vatNumber)
+        public virtual System.Threading.Tasks.Task<GetCompaniesResponse> GetCompaniesAsync(string? enterpriseNumber, string? vatNumber)
         {
             return GetCompaniesAsync(enterpriseNumber, vatNumber, System.Threading.CancellationToken.None);
         }
@@ -549,7 +549,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved companies</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response4> GetCompaniesAsync(string? enterpriseNumber, string? vatNumber, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetCompaniesResponse> GetCompaniesAsync(string? enterpriseNumber, string? vatNumber, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -600,7 +600,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response4>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCompaniesResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -610,12 +610,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response10>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response3>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response10>("Failed to fetch companies", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response3>("Failed to fetch companies", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -645,7 +645,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response5> CreateCompanyAsync(Body2? body)
+        public virtual System.Threading.Tasks.Task<CreateCompanyResponse> CreateCompanyAsync(CreateCompanyRequest? body)
         {
             return CreateCompanyAsync(body, System.Threading.CancellationToken.None);
         }
@@ -659,7 +659,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response5> CreateCompanyAsync(Body2? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<CreateCompanyResponse> CreateCompanyAsync(CreateCompanyRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -704,7 +704,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response5>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateCompanyResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -714,22 +714,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response11>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response4>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response11>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response4>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response12>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response5>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response12>("Failed to create company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response5>("Failed to create company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -759,7 +759,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response6> GetCompanyAsync(string companyId)
+        public virtual System.Threading.Tasks.Task<GetCompanyResponse> GetCompanyAsync(string companyId)
         {
             return GetCompanyAsync(companyId, System.Threading.CancellationToken.None);
         }
@@ -773,7 +773,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response6> GetCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetCompanyResponse> GetCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -818,7 +818,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response6>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCompanyResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -828,22 +828,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response13>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response6>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response13>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response6>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response14>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response7>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response14>("Failed to fetch company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response7>("Failed to fetch company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -873,7 +873,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response7> UpdateCompanyAsync(string companyId, Body3? body)
+        public virtual System.Threading.Tasks.Task<UpdateCompanyResponse> UpdateCompanyAsync(string companyId, UpdateCompanyRequest? body)
         {
             return UpdateCompanyAsync(companyId, body, System.Threading.CancellationToken.None);
         }
@@ -887,7 +887,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response7> UpdateCompanyAsync(string companyId, Body3? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<UpdateCompanyResponse> UpdateCompanyAsync(string companyId, UpdateCompanyRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -936,7 +936,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response7>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<UpdateCompanyResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -946,32 +946,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response15>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response8>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response15>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response8>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response16>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response9>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response16>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response9>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response17>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response10>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response17>("Failed to update company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response10>("Failed to update company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1001,7 +1001,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response8> DeleteCompanyAsync(string companyId)
+        public virtual System.Threading.Tasks.Task<DeleteCompanyResponse> DeleteCompanyAsync(string companyId)
         {
             return DeleteCompanyAsync(companyId, System.Threading.CancellationToken.None);
         }
@@ -1015,7 +1015,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response8> DeleteCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<DeleteCompanyResponse> DeleteCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -1060,7 +1060,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response8>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteCompanyResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1070,12 +1070,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response18>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response11>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response18>("Failed to delete company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response11>("Failed to delete company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1105,7 +1105,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created verification session</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response9> VerifyCompanyAsync(string companyId)
+        public virtual System.Threading.Tasks.Task<VerifyCompanyResponse> VerifyCompanyAsync(string companyId)
         {
             return VerifyCompanyAsync(companyId, System.Threading.CancellationToken.None);
         }
@@ -1119,7 +1119,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created verification session</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response9> VerifyCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<VerifyCompanyResponse> VerifyCompanyAsync(string companyId, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -1166,7 +1166,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response9>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<VerifyCompanyResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1176,32 +1176,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response19>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response12>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response19>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response12>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response20>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response13>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response20>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response13>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response21>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response14>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response21>("Failed to create verification session", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response14>("Failed to create verification session", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1353,7 +1353,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial interface ICompany_IdentifiersClient
+    public partial interface ICompanyIdentifiersClient
     {
         /// <summary>
         /// List Company Identifiers
@@ -1363,7 +1363,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company identifiers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response22> GetCompanyIdentifiersAsync(string companyId);
+        System.Threading.Tasks.Task<GetCompanyIdentifiersResponse> GetCompanyIdentifiersAsync(string companyId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1374,7 +1374,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company identifiers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response22> GetCompanyIdentifiersAsync(string companyId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetCompanyIdentifiersResponse> GetCompanyIdentifiersAsync(string companyId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Create Company Identifier
@@ -1384,7 +1384,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response23> CreateCompanyIdentifierAsync(string companyId, Body4? body);
+        System.Threading.Tasks.Task<CreateCompanyIdentifierResponse> CreateCompanyIdentifierAsync(string companyId, CreateCompanyIdentifierRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1395,7 +1395,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response23> CreateCompanyIdentifierAsync(string companyId, Body4? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<CreateCompanyIdentifierResponse> CreateCompanyIdentifierAsync(string companyId, CreateCompanyIdentifierRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Company Identifier
@@ -1405,7 +1405,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response24> GetCompanyIdentifierAsync(string identifierId, string companyId);
+        System.Threading.Tasks.Task<GetCompanyIdentifierResponse> GetCompanyIdentifierAsync(string identifierId, string companyId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1416,7 +1416,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response24> GetCompanyIdentifierAsync(string identifierId, string companyId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetCompanyIdentifierResponse> GetCompanyIdentifierAsync(string identifierId, string companyId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Update Company Identifier
@@ -1426,7 +1426,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response25> UpdateCompanyIdentifierAsync(string companyId, string identifierId, Body5? body);
+        System.Threading.Tasks.Task<UpdateCompanyIdentifierResponse> UpdateCompanyIdentifierAsync(string companyId, string identifierId, UpdateCompanyIdentifierRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1437,7 +1437,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response25> UpdateCompanyIdentifierAsync(string companyId, string identifierId, Body5? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<UpdateCompanyIdentifierResponse> UpdateCompanyIdentifierAsync(string companyId, string identifierId, UpdateCompanyIdentifierRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Delete Company Identifier
@@ -1447,7 +1447,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response26> DeleteCompanyIdentifierAsync(string companyId, string identifierId);
+        System.Threading.Tasks.Task<DeleteCompanyIdentifierResponse> DeleteCompanyIdentifierAsync(string companyId, string identifierId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1458,12 +1458,12 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response26> DeleteCompanyIdentifierAsync(string companyId, string identifierId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<DeleteCompanyIdentifierResponse> DeleteCompanyIdentifierAsync(string companyId, string identifierId, System.Threading.CancellationToken cancellationToken);
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Company_IdentifiersClient : ICompany_IdentifiersClient
+    public partial class CompanyIdentifiersClient : ICompanyIdentifiersClient
     {
         #pragma warning disable 8618
         private string _baseUrl;
@@ -1474,7 +1474,7 @@ namespace Recommand.Client
         private System.Text.Json.JsonSerializerOptions _instanceSettings;
 
     #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public Company_IdentifiersClient(System.Net.Http.HttpClient httpClient)
+        public CompanyIdentifiersClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             BaseUrl = "https://app.recommand.eu";
@@ -1518,7 +1518,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company identifiers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response22> GetCompanyIdentifiersAsync(string companyId)
+        public virtual System.Threading.Tasks.Task<GetCompanyIdentifiersResponse> GetCompanyIdentifiersAsync(string companyId)
         {
             return GetCompanyIdentifiersAsync(companyId, System.Threading.CancellationToken.None);
         }
@@ -1532,7 +1532,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company identifiers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response22> GetCompanyIdentifiersAsync(string companyId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetCompanyIdentifiersResponse> GetCompanyIdentifiersAsync(string companyId, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -1578,7 +1578,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response22>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCompanyIdentifiersResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1588,12 +1588,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response27>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response15>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response27>("Failed to fetch company identifiers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response15>("Failed to fetch company identifiers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1623,7 +1623,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response23> CreateCompanyIdentifierAsync(string companyId, Body4? body)
+        public virtual System.Threading.Tasks.Task<CreateCompanyIdentifierResponse> CreateCompanyIdentifierAsync(string companyId, CreateCompanyIdentifierRequest? body)
         {
             return CreateCompanyIdentifierAsync(companyId, body, System.Threading.CancellationToken.None);
         }
@@ -1637,7 +1637,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response23> CreateCompanyIdentifierAsync(string companyId, Body4? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<CreateCompanyIdentifierResponse> CreateCompanyIdentifierAsync(string companyId, CreateCompanyIdentifierRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -1687,7 +1687,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response23>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateCompanyIdentifierResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1697,22 +1697,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response28>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response16>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response28>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response16>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response29>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response17>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response29>("Failed to create company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response17>("Failed to create company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1742,7 +1742,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response24> GetCompanyIdentifierAsync(string identifierId, string companyId)
+        public virtual System.Threading.Tasks.Task<GetCompanyIdentifierResponse> GetCompanyIdentifierAsync(string identifierId, string companyId)
         {
             return GetCompanyIdentifierAsync(identifierId, companyId, System.Threading.CancellationToken.None);
         }
@@ -1756,7 +1756,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response24> GetCompanyIdentifierAsync(string identifierId, string companyId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetCompanyIdentifierResponse> GetCompanyIdentifierAsync(string identifierId, string companyId, System.Threading.CancellationToken cancellationToken)
         {
             if (identifierId == null)
                 throw new System.ArgumentNullException("identifierId");
@@ -1806,7 +1806,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response24>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCompanyIdentifierResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1816,22 +1816,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response30>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response18>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response30>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response18>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response31>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response19>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response31>("Failed to fetch company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response19>("Failed to fetch company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1861,7 +1861,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response25> UpdateCompanyIdentifierAsync(string companyId, string identifierId, Body5? body)
+        public virtual System.Threading.Tasks.Task<UpdateCompanyIdentifierResponse> UpdateCompanyIdentifierAsync(string companyId, string identifierId, UpdateCompanyIdentifierRequest? body)
         {
             return UpdateCompanyIdentifierAsync(companyId, identifierId, body, System.Threading.CancellationToken.None);
         }
@@ -1875,7 +1875,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company identifier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response25> UpdateCompanyIdentifierAsync(string companyId, string identifierId, Body5? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<UpdateCompanyIdentifierResponse> UpdateCompanyIdentifierAsync(string companyId, string identifierId, UpdateCompanyIdentifierRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -1929,7 +1929,1008 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
+                            var objectResponse_ = await ReadObjectResponseAsync<UpdateCompanyIdentifierResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 404)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response20>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response20>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 500)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response21>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response21>("Failed to update company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
+                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Delete Company Identifier
+        /// </summary>
+        /// <remarks>
+        /// Delete a company identifier
+        /// </remarks>
+        /// <returns>Successfully deleted company identifier</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<DeleteCompanyIdentifierResponse> DeleteCompanyIdentifierAsync(string companyId, string identifierId)
+        {
+            return DeleteCompanyIdentifierAsync(companyId, identifierId, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Delete Company Identifier
+        /// </summary>
+        /// <remarks>
+        /// Delete a company identifier
+        /// </remarks>
+        /// <returns>Successfully deleted company identifier</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<DeleteCompanyIdentifierResponse> DeleteCompanyIdentifierAsync(string companyId, string identifierId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (companyId == null)
+                throw new System.ArgumentNullException("companyId");
+
+            if (identifierId == null)
+                throw new System.ArgumentNullException("identifierId");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                    // Operation Path: "api/v1/companies/{companyId}/identifiers/{identifierId}"
+                    urlBuilder_.Append("api/v1/companies/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
+                    urlBuilder_.Append("/identifiers/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(identifierId, System.Globalization.CultureInfo.InvariantCulture)));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteCompanyIdentifierResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 404)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response22>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response22>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 500)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response23>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response23>("Failed to delete company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
+                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        protected struct ObjectResponseResult<T>
+        {
+            public ObjectResponseResult(T responseObject, string responseText)
+            {
+                this.Object = responseObject;
+                this.Text = responseText;
+            }
+
+            public T Object { get; }
+
+            public string Text { get; }
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        private static System.Threading.Tasks.Task<string> ReadAsStringAsync(System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken)
+        {
+    #if NET5_0_OR_GREATER
+            return content.ReadAsStringAsync(cancellationToken);
+    #else
+            return content.ReadAsStringAsync();
+    #endif
+        }
+
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        private static System.Threading.Tasks.Task<System.IO.Stream> ReadAsStreamAsync(System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken)
+        {
+    #if NET5_0_OR_GREATER
+            return content.ReadAsStreamAsync(cancellationToken);
+    #else
+            return content.ReadAsStreamAsync();
+    #endif
+        }
+
+        public bool ReadResponseAsString { get; set; }
+
+        protected virtual async System.Threading.Tasks.Task<ObjectResponseResult<T>> ReadObjectResponseAsync<T>(System.Net.Http.HttpResponseMessage response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Threading.CancellationToken cancellationToken)
+        {
+            if (response == null || response.Content == null)
+            {
+                return new ObjectResponseResult<T>(default(T)!, string.Empty);
+            }
+
+            if (ReadResponseAsString)
+            {
+                var responseText = await ReadAsStringAsync(response.Content, cancellationToken).ConfigureAwait(false);
+                try
+                {
+                    var typedBody = System.Text.Json.JsonSerializer.Deserialize<T>(responseText, JsonSerializerSettings);
+                    return new ObjectResponseResult<T>(typedBody!, responseText);
+                }
+                catch (System.Text.Json.JsonException exception)
+                {
+                    var message = "Could not deserialize the response body string as " + typeof(T).FullName + ".";
+                    throw new RecommandApiException(message, (int)response.StatusCode, responseText, headers, exception);
+                }
+            }
+            else
+            {
+                try
+                {
+                    using (var responseStream = await ReadAsStreamAsync(response.Content, cancellationToken).ConfigureAwait(false))
+                    {
+                        var typedBody = await System.Text.Json.JsonSerializer.DeserializeAsync<T>(responseStream, JsonSerializerSettings, cancellationToken).ConfigureAwait(false);
+                        return new ObjectResponseResult<T>(typedBody!, string.Empty);
+                    }
+                }
+                catch (System.Text.Json.JsonException exception)
+                {
+                    var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
+                    throw new RecommandApiException(message, (int)response.StatusCode, string.Empty, headers, exception);
+                }
+            }
+        }
+
+        private string ConvertToString(object? value, System.Globalization.CultureInfo cultureInfo)
+        {
+            if (value == null)
+            {
+                return "";
+            }
+
+            if (value is System.Enum)
+            {
+                var name = System.Enum.GetName(value.GetType(), value);
+                if (name != null)
+                {
+                    var field_ = System.Reflection.IntrospectionExtensions.GetTypeInfo(value.GetType()).GetDeclaredField(name);
+                    if (field_ != null)
+                    {
+                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field_, typeof(System.Runtime.Serialization.EnumMemberAttribute)) 
+                            as System.Runtime.Serialization.EnumMemberAttribute;
+                        if (attribute != null)
+                        {
+                            return attribute.Value != null ? attribute.Value : name;
+                        }
+                    }
+
+                    var converted = System.Convert.ToString(System.Convert.ChangeType(value, System.Enum.GetUnderlyingType(value.GetType()), cultureInfo));
+                    return converted == null ? string.Empty : converted;
+                }
+            }
+            else if (value is bool) 
+            {
+                return System.Convert.ToString((bool)value, cultureInfo).ToLowerInvariant();
+            }
+            else if (value is byte[])
+            {
+                return System.Convert.ToBase64String((byte[]) value);
+            }
+            else if (value is string[])
+            {
+                return string.Join(",", (string[])value);
+            }
+            else if (value.GetType().IsArray)
+            {
+                var valueArray = (System.Array)value;
+                var valueTextArray = new string[valueArray.Length];
+                for (var i = 0; i < valueArray.Length; i++)
+                {
+                    valueTextArray[i] = ConvertToString(valueArray.GetValue(i), cultureInfo);
+                }
+                return string.Join(",", valueTextArray);
+            }
+
+            var result = System.Convert.ToString(value, cultureInfo);
+            return result == null ? "" : result;
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial interface ICompanyDocumentTypesClient
+    {
+        /// <summary>
+        /// List Company Document Types
+        /// </summary>
+        /// <remarks>
+        /// Get a list of all document types for a specific company
+        /// </remarks>
+        /// <returns>Successfully retrieved company document types</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetCompanyDocumentTypesResponse> GetCompanyDocumentTypesAsync(string companyId);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// List Company Document Types
+        /// </summary>
+        /// <remarks>
+        /// Get a list of all document types for a specific company
+        /// </remarks>
+        /// <returns>Successfully retrieved company document types</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetCompanyDocumentTypesResponse> GetCompanyDocumentTypesAsync(string companyId, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Create Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Create a new company document type
+        /// </remarks>
+        /// <returns>Successfully created company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<CreateCompanyDocumentTypeResponse> CreateCompanyDocumentTypeAsync(string companyId, CreateCompanyDocumentTypeRequest? body);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Create Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Create a new company document type
+        /// </remarks>
+        /// <returns>Successfully created company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<CreateCompanyDocumentTypeResponse> CreateCompanyDocumentTypeAsync(string companyId, CreateCompanyDocumentTypeRequest? body, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Get Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Get a specific company document type by ID
+        /// </remarks>
+        /// <returns>Successfully retrieved company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetCompanyDocumentTypeResponse> GetCompanyDocumentTypeAsync(string companyId, string documentTypeId);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Get Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Get a specific company document type by ID
+        /// </remarks>
+        /// <returns>Successfully retrieved company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetCompanyDocumentTypeResponse> GetCompanyDocumentTypeAsync(string companyId, string documentTypeId, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Update Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Update an existing company document type
+        /// </remarks>
+        /// <returns>Successfully updated company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<UpdateCompanyDocumentTypeResponse> UpdateCompanyDocumentTypeAsync(string companyId, string documentTypeId, UpdateCompanyDocumentTypeRequest? body);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Update Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Update an existing company document type
+        /// </remarks>
+        /// <returns>Successfully updated company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<UpdateCompanyDocumentTypeResponse> UpdateCompanyDocumentTypeAsync(string companyId, string documentTypeId, UpdateCompanyDocumentTypeRequest? body, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Delete Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Delete a company document type
+        /// </remarks>
+        /// <returns>Successfully deleted company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<DeleteCompanyDocumentTypeResponse> DeleteCompanyDocumentTypeAsync(string companyId, string documentTypeId);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Delete Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Delete a company document type
+        /// </remarks>
+        /// <returns>Successfully deleted company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<DeleteCompanyDocumentTypeResponse> DeleteCompanyDocumentTypeAsync(string companyId, string documentTypeId, System.Threading.CancellationToken cancellationToken);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CompanyDocumentTypesClient : ICompanyDocumentTypesClient
+    {
+        #pragma warning disable 8618
+        private string _baseUrl;
+        #pragma warning restore 8618
+
+        private System.Net.Http.HttpClient _httpClient;
+        private static System.Lazy<System.Text.Json.JsonSerializerOptions> _settings = new System.Lazy<System.Text.Json.JsonSerializerOptions>(CreateSerializerSettings, true);
+        private System.Text.Json.JsonSerializerOptions _instanceSettings;
+
+    #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        public CompanyDocumentTypesClient(System.Net.Http.HttpClient httpClient)
+    #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        {
+            BaseUrl = "https://app.recommand.eu";
+            _httpClient = httpClient;
+            Initialize();
+        }
+
+        private static System.Text.Json.JsonSerializerOptions CreateSerializerSettings()
+        {
+            var settings = new System.Text.Json.JsonSerializerOptions();
+            UpdateJsonSerializerSettings(settings);
+            return settings;
+        }
+
+        public string BaseUrl
+        {
+            get { return _baseUrl; }
+            set
+            {
+                _baseUrl = value;
+                if (!string.IsNullOrEmpty(_baseUrl) && !_baseUrl.EndsWith("/"))
+                    _baseUrl += '/';
+            }
+        }
+
+        protected System.Text.Json.JsonSerializerOptions JsonSerializerSettings { get { return _instanceSettings ?? _settings.Value; } }
+
+        static partial void UpdateJsonSerializerSettings(System.Text.Json.JsonSerializerOptions settings);
+
+        partial void Initialize();
+
+        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url);
+        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
+        partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
+
+        /// <summary>
+        /// List Company Document Types
+        /// </summary>
+        /// <remarks>
+        /// Get a list of all document types for a specific company
+        /// </remarks>
+        /// <returns>Successfully retrieved company document types</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<GetCompanyDocumentTypesResponse> GetCompanyDocumentTypesAsync(string companyId)
+        {
+            return GetCompanyDocumentTypesAsync(companyId, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// List Company Document Types
+        /// </summary>
+        /// <remarks>
+        /// Get a list of all document types for a specific company
+        /// </remarks>
+        /// <returns>Successfully retrieved company document types</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<GetCompanyDocumentTypesResponse> GetCompanyDocumentTypesAsync(string companyId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (companyId == null)
+                throw new System.ArgumentNullException("companyId");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                    // Operation Path: "api/v1/companies/{companyId}/document-types"
+                    urlBuilder_.Append("api/v1/companies/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
+                    urlBuilder_.Append("/document-types");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCompanyDocumentTypesResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 500)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response24>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response24>("Failed to fetch company document types", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
+                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Create Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Create a new company document type
+        /// </remarks>
+        /// <returns>Successfully created company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<CreateCompanyDocumentTypeResponse> CreateCompanyDocumentTypeAsync(string companyId, CreateCompanyDocumentTypeRequest? body)
+        {
+            return CreateCompanyDocumentTypeAsync(companyId, body, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Create Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Create a new company document type
+        /// </remarks>
+        /// <returns>Successfully created company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<CreateCompanyDocumentTypeResponse> CreateCompanyDocumentTypeAsync(string companyId, CreateCompanyDocumentTypeRequest? body, System.Threading.CancellationToken cancellationToken)
+        {
+            if (companyId == null)
+                throw new System.ArgumentNullException("companyId");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var json_ = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(body, JsonSerializerSettings);
+                    var content_ = new System.Net.Http.ByteArrayContent(json_);
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                    // Operation Path: "api/v1/companies/{companyId}/document-types"
+                    urlBuilder_.Append("api/v1/companies/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
+                    urlBuilder_.Append("/document-types");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateCompanyDocumentTypeResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 400)
+                        {
                             var objectResponse_ = await ReadObjectResponseAsync<Response25>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response25>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 500)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response26>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response26>("Failed to create company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
+                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Get Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Get a specific company document type by ID
+        /// </remarks>
+        /// <returns>Successfully retrieved company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<GetCompanyDocumentTypeResponse> GetCompanyDocumentTypeAsync(string companyId, string documentTypeId)
+        {
+            return GetCompanyDocumentTypeAsync(companyId, documentTypeId, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Get Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Get a specific company document type by ID
+        /// </remarks>
+        /// <returns>Successfully retrieved company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<GetCompanyDocumentTypeResponse> GetCompanyDocumentTypeAsync(string companyId, string documentTypeId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (companyId == null)
+                throw new System.ArgumentNullException("companyId");
+
+            if (documentTypeId == null)
+                throw new System.ArgumentNullException("documentTypeId");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                    // Operation Path: "api/v1/companies/{companyId}/document-types/{documentTypeId}"
+                    urlBuilder_.Append("api/v1/companies/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
+                    urlBuilder_.Append("/document-types/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(documentTypeId, System.Globalization.CultureInfo.InvariantCulture)));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCompanyDocumentTypeResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 404)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response27>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response27>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 500)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response28>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response28>("Failed to fetch company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
+                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Update Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Update an existing company document type
+        /// </remarks>
+        /// <returns>Successfully updated company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<UpdateCompanyDocumentTypeResponse> UpdateCompanyDocumentTypeAsync(string companyId, string documentTypeId, UpdateCompanyDocumentTypeRequest? body)
+        {
+            return UpdateCompanyDocumentTypeAsync(companyId, documentTypeId, body, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Update Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Update an existing company document type
+        /// </remarks>
+        /// <returns>Successfully updated company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<UpdateCompanyDocumentTypeResponse> UpdateCompanyDocumentTypeAsync(string companyId, string documentTypeId, UpdateCompanyDocumentTypeRequest? body, System.Threading.CancellationToken cancellationToken)
+        {
+            if (companyId == null)
+                throw new System.ArgumentNullException("companyId");
+
+            if (documentTypeId == null)
+                throw new System.ArgumentNullException("documentTypeId");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var json_ = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(body, JsonSerializerSettings);
+                    var content_ = new System.Net.Http.ByteArrayContent(json_);
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                    // Operation Path: "api/v1/companies/{companyId}/document-types/{documentTypeId}"
+                    urlBuilder_.Append("api/v1/companies/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
+                    urlBuilder_.Append("/document-types/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(documentTypeId, System.Globalization.CultureInfo.InvariantCulture)));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<UpdateCompanyDocumentTypeResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response29>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response29>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 404)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response30>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response30>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 500)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<Response31>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new RecommandApiException<Response31>("Failed to update company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
+                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Delete Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Delete a company document type
+        /// </remarks>
+        /// <returns>Successfully deleted company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<DeleteCompanyDocumentTypeResponse> DeleteCompanyDocumentTypeAsync(string companyId, string documentTypeId)
+        {
+            return DeleteCompanyDocumentTypeAsync(companyId, documentTypeId, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Delete Company Document Type
+        /// </summary>
+        /// <remarks>
+        /// Delete a company document type
+        /// </remarks>
+        /// <returns>Successfully deleted company document type</returns>
+        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<DeleteCompanyDocumentTypeResponse> DeleteCompanyDocumentTypeAsync(string companyId, string documentTypeId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (companyId == null)
+                throw new System.ArgumentNullException("companyId");
+
+            if (documentTypeId == null)
+                throw new System.ArgumentNullException("documentTypeId");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                    // Operation Path: "api/v1/companies/{companyId}/document-types/{documentTypeId}"
+                    urlBuilder_.Append("api/v1/companies/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
+                    urlBuilder_.Append("/document-types/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(documentTypeId, System.Globalization.CultureInfo.InvariantCulture)));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteCompanyDocumentTypeResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1944,7 +2945,7 @@ namespace Recommand.Client
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response32>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response32>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
@@ -1954,126 +2955,7 @@ namespace Recommand.Client
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response33>("Failed to update company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
-                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Delete Company Identifier
-        /// </summary>
-        /// <remarks>
-        /// Delete a company identifier
-        /// </remarks>
-        /// <returns>Successfully deleted company identifier</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response26> DeleteCompanyIdentifierAsync(string companyId, string identifierId)
-        {
-            return DeleteCompanyIdentifierAsync(companyId, identifierId, System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete Company Identifier
-        /// </summary>
-        /// <remarks>
-        /// Delete a company identifier
-        /// </remarks>
-        /// <returns>Successfully deleted company identifier</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response26> DeleteCompanyIdentifierAsync(string companyId, string identifierId, System.Threading.CancellationToken cancellationToken)
-        {
-            if (companyId == null)
-                throw new System.ArgumentNullException("companyId");
-
-            if (identifierId == null)
-                throw new System.ArgumentNullException("identifierId");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "api/v1/companies/{companyId}/identifiers/{identifierId}"
-                    urlBuilder_.Append("api/v1/companies/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
-                    urlBuilder_.Append("/identifiers/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(identifierId, System.Globalization.CultureInfo.InvariantCulture)));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response26>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        if (status_ == 404)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response34>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response34>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        if (status_ == 500)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response35>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response35>("Failed to delete company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response33>("Failed to delete company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2225,889 +3107,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial interface ICompany_Document_TypesClient
-    {
-        /// <summary>
-        /// List Company Document Types
-        /// </summary>
-        /// <remarks>
-        /// Get a list of all document types for a specific company
-        /// </remarks>
-        /// <returns>Successfully retrieved company document types</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response36> GetCompanyDocumentTypesAsync(string companyId);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// List Company Document Types
-        /// </summary>
-        /// <remarks>
-        /// Get a list of all document types for a specific company
-        /// </remarks>
-        /// <returns>Successfully retrieved company document types</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response36> GetCompanyDocumentTypesAsync(string companyId, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Create Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Create a new company document type
-        /// </remarks>
-        /// <returns>Successfully created company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response37> CreateCompanyDocumentTypeAsync(string companyId, Body6? body);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Create a new company document type
-        /// </remarks>
-        /// <returns>Successfully created company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response37> CreateCompanyDocumentTypeAsync(string companyId, Body6? body, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Get Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Get a specific company document type by ID
-        /// </remarks>
-        /// <returns>Successfully retrieved company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response38> GetCompanyDocumentTypeAsync(string companyId, string documentTypeId);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Get a specific company document type by ID
-        /// </remarks>
-        /// <returns>Successfully retrieved company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response38> GetCompanyDocumentTypeAsync(string companyId, string documentTypeId, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Update Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Update an existing company document type
-        /// </remarks>
-        /// <returns>Successfully updated company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response39> UpdateCompanyDocumentTypeAsync(string companyId, string documentTypeId, Body7? body);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Update an existing company document type
-        /// </remarks>
-        /// <returns>Successfully updated company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response39> UpdateCompanyDocumentTypeAsync(string companyId, string documentTypeId, Body7? body, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Delete Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Delete a company document type
-        /// </remarks>
-        /// <returns>Successfully deleted company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response40> DeleteCompanyDocumentTypeAsync(string companyId, string documentTypeId);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Delete a company document type
-        /// </remarks>
-        /// <returns>Successfully deleted company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response40> DeleteCompanyDocumentTypeAsync(string companyId, string documentTypeId, System.Threading.CancellationToken cancellationToken);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Company_Document_TypesClient : ICompany_Document_TypesClient
-    {
-        #pragma warning disable 8618
-        private string _baseUrl;
-        #pragma warning restore 8618
-
-        private System.Net.Http.HttpClient _httpClient;
-        private static System.Lazy<System.Text.Json.JsonSerializerOptions> _settings = new System.Lazy<System.Text.Json.JsonSerializerOptions>(CreateSerializerSettings, true);
-        private System.Text.Json.JsonSerializerOptions _instanceSettings;
-
-    #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public Company_Document_TypesClient(System.Net.Http.HttpClient httpClient)
-    #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        {
-            BaseUrl = "https://app.recommand.eu";
-            _httpClient = httpClient;
-            Initialize();
-        }
-
-        private static System.Text.Json.JsonSerializerOptions CreateSerializerSettings()
-        {
-            var settings = new System.Text.Json.JsonSerializerOptions();
-            UpdateJsonSerializerSettings(settings);
-            return settings;
-        }
-
-        public string BaseUrl
-        {
-            get { return _baseUrl; }
-            set
-            {
-                _baseUrl = value;
-                if (!string.IsNullOrEmpty(_baseUrl) && !_baseUrl.EndsWith("/"))
-                    _baseUrl += '/';
-            }
-        }
-
-        protected System.Text.Json.JsonSerializerOptions JsonSerializerSettings { get { return _instanceSettings ?? _settings.Value; } }
-
-        static partial void UpdateJsonSerializerSettings(System.Text.Json.JsonSerializerOptions settings);
-
-        partial void Initialize();
-
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url);
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
-        partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
-
-        /// <summary>
-        /// List Company Document Types
-        /// </summary>
-        /// <remarks>
-        /// Get a list of all document types for a specific company
-        /// </remarks>
-        /// <returns>Successfully retrieved company document types</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response36> GetCompanyDocumentTypesAsync(string companyId)
-        {
-            return GetCompanyDocumentTypesAsync(companyId, System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// List Company Document Types
-        /// </summary>
-        /// <remarks>
-        /// Get a list of all document types for a specific company
-        /// </remarks>
-        /// <returns>Successfully retrieved company document types</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response36> GetCompanyDocumentTypesAsync(string companyId, System.Threading.CancellationToken cancellationToken)
-        {
-            if (companyId == null)
-                throw new System.ArgumentNullException("companyId");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "api/v1/companies/{companyId}/document-types"
-                    urlBuilder_.Append("api/v1/companies/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
-                    urlBuilder_.Append("/document-types");
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response36>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        if (status_ == 500)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response41>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response41>("Failed to fetch company document types", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
-                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Create Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Create a new company document type
-        /// </remarks>
-        /// <returns>Successfully created company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response37> CreateCompanyDocumentTypeAsync(string companyId, Body6? body)
-        {
-            return CreateCompanyDocumentTypeAsync(companyId, body, System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Create a new company document type
-        /// </remarks>
-        /// <returns>Successfully created company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response37> CreateCompanyDocumentTypeAsync(string companyId, Body6? body, System.Threading.CancellationToken cancellationToken)
-        {
-            if (companyId == null)
-                throw new System.ArgumentNullException("companyId");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var json_ = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(body, JsonSerializerSettings);
-                    var content_ = new System.Net.Http.ByteArrayContent(json_);
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "api/v1/companies/{companyId}/document-types"
-                    urlBuilder_.Append("api/v1/companies/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
-                    urlBuilder_.Append("/document-types");
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response37>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        if (status_ == 400)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response42>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response42>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        if (status_ == 500)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response43>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response43>("Failed to create company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
-                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Get Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Get a specific company document type by ID
-        /// </remarks>
-        /// <returns>Successfully retrieved company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response38> GetCompanyDocumentTypeAsync(string companyId, string documentTypeId)
-        {
-            return GetCompanyDocumentTypeAsync(companyId, documentTypeId, System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Get a specific company document type by ID
-        /// </remarks>
-        /// <returns>Successfully retrieved company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response38> GetCompanyDocumentTypeAsync(string companyId, string documentTypeId, System.Threading.CancellationToken cancellationToken)
-        {
-            if (companyId == null)
-                throw new System.ArgumentNullException("companyId");
-
-            if (documentTypeId == null)
-                throw new System.ArgumentNullException("documentTypeId");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "api/v1/companies/{companyId}/document-types/{documentTypeId}"
-                    urlBuilder_.Append("api/v1/companies/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
-                    urlBuilder_.Append("/document-types/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(documentTypeId, System.Globalization.CultureInfo.InvariantCulture)));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response38>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        if (status_ == 404)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response44>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response44>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        if (status_ == 500)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response45>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response45>("Failed to fetch company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
-                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Update Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Update an existing company document type
-        /// </remarks>
-        /// <returns>Successfully updated company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response39> UpdateCompanyDocumentTypeAsync(string companyId, string documentTypeId, Body7? body)
-        {
-            return UpdateCompanyDocumentTypeAsync(companyId, documentTypeId, body, System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Update an existing company document type
-        /// </remarks>
-        /// <returns>Successfully updated company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response39> UpdateCompanyDocumentTypeAsync(string companyId, string documentTypeId, Body7? body, System.Threading.CancellationToken cancellationToken)
-        {
-            if (companyId == null)
-                throw new System.ArgumentNullException("companyId");
-
-            if (documentTypeId == null)
-                throw new System.ArgumentNullException("documentTypeId");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var json_ = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(body, JsonSerializerSettings);
-                    var content_ = new System.Net.Http.ByteArrayContent(json_);
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("PUT");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "api/v1/companies/{companyId}/document-types/{documentTypeId}"
-                    urlBuilder_.Append("api/v1/companies/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
-                    urlBuilder_.Append("/document-types/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(documentTypeId, System.Globalization.CultureInfo.InvariantCulture)));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response39>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        if (status_ == 400)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response46>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response46>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        if (status_ == 404)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response47>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response47>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        if (status_ == 500)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response48>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response48>("Failed to update company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
-                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Delete Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Delete a company document type
-        /// </remarks>
-        /// <returns>Successfully deleted company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response40> DeleteCompanyDocumentTypeAsync(string companyId, string documentTypeId)
-        {
-            return DeleteCompanyDocumentTypeAsync(companyId, documentTypeId, System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Delete Company Document Type
-        /// </summary>
-        /// <remarks>
-        /// Delete a company document type
-        /// </remarks>
-        /// <returns>Successfully deleted company document type</returns>
-        /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response40> DeleteCompanyDocumentTypeAsync(string companyId, string documentTypeId, System.Threading.CancellationToken cancellationToken)
-        {
-            if (companyId == null)
-                throw new System.ArgumentNullException("companyId");
-
-            if (documentTypeId == null)
-                throw new System.ArgumentNullException("documentTypeId");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "api/v1/companies/{companyId}/document-types/{documentTypeId}"
-                    urlBuilder_.Append("api/v1/companies/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(companyId, System.Globalization.CultureInfo.InvariantCulture)));
-                    urlBuilder_.Append("/document-types/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(documentTypeId, System.Globalization.CultureInfo.InvariantCulture)));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response40>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        if (status_ == 404)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response49>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response49>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        if (status_ == 500)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response50>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new RecommandApiException<Response50>("Failed to delete company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await ReadAsStringAsync(response_.Content, cancellationToken).ConfigureAwait(false);
-                            throw new RecommandApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        protected struct ObjectResponseResult<T>
-        {
-            public ObjectResponseResult(T responseObject, string responseText)
-            {
-                this.Object = responseObject;
-                this.Text = responseText;
-            }
-
-            public T Object { get; }
-
-            public string Text { get; }
-        }
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        private static System.Threading.Tasks.Task<string> ReadAsStringAsync(System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken)
-        {
-    #if NET5_0_OR_GREATER
-            return content.ReadAsStringAsync(cancellationToken);
-    #else
-            return content.ReadAsStringAsync();
-    #endif
-        }
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        private static System.Threading.Tasks.Task<System.IO.Stream> ReadAsStreamAsync(System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken)
-        {
-    #if NET5_0_OR_GREATER
-            return content.ReadAsStreamAsync(cancellationToken);
-    #else
-            return content.ReadAsStreamAsync();
-    #endif
-        }
-
-        public bool ReadResponseAsString { get; set; }
-
-        protected virtual async System.Threading.Tasks.Task<ObjectResponseResult<T>> ReadObjectResponseAsync<T>(System.Net.Http.HttpResponseMessage response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Threading.CancellationToken cancellationToken)
-        {
-            if (response == null || response.Content == null)
-            {
-                return new ObjectResponseResult<T>(default(T)!, string.Empty);
-            }
-
-            if (ReadResponseAsString)
-            {
-                var responseText = await ReadAsStringAsync(response.Content, cancellationToken).ConfigureAwait(false);
-                try
-                {
-                    var typedBody = System.Text.Json.JsonSerializer.Deserialize<T>(responseText, JsonSerializerSettings);
-                    return new ObjectResponseResult<T>(typedBody!, responseText);
-                }
-                catch (System.Text.Json.JsonException exception)
-                {
-                    var message = "Could not deserialize the response body string as " + typeof(T).FullName + ".";
-                    throw new RecommandApiException(message, (int)response.StatusCode, responseText, headers, exception);
-                }
-            }
-            else
-            {
-                try
-                {
-                    using (var responseStream = await ReadAsStreamAsync(response.Content, cancellationToken).ConfigureAwait(false))
-                    {
-                        var typedBody = await System.Text.Json.JsonSerializer.DeserializeAsync<T>(responseStream, JsonSerializerSettings, cancellationToken).ConfigureAwait(false);
-                        return new ObjectResponseResult<T>(typedBody!, string.Empty);
-                    }
-                }
-                catch (System.Text.Json.JsonException exception)
-                {
-                    var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
-                    throw new RecommandApiException(message, (int)response.StatusCode, string.Empty, headers, exception);
-                }
-            }
-        }
-
-        private string ConvertToString(object? value, System.Globalization.CultureInfo cultureInfo)
-        {
-            if (value == null)
-            {
-                return "";
-            }
-
-            if (value is System.Enum)
-            {
-                var name = System.Enum.GetName(value.GetType(), value);
-                if (name != null)
-                {
-                    var field_ = System.Reflection.IntrospectionExtensions.GetTypeInfo(value.GetType()).GetDeclaredField(name);
-                    if (field_ != null)
-                    {
-                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field_, typeof(System.Runtime.Serialization.EnumMemberAttribute)) 
-                            as System.Runtime.Serialization.EnumMemberAttribute;
-                        if (attribute != null)
-                        {
-                            return attribute.Value != null ? attribute.Value : name;
-                        }
-                    }
-
-                    var converted = System.Convert.ToString(System.Convert.ChangeType(value, System.Enum.GetUnderlyingType(value.GetType()), cultureInfo));
-                    return converted == null ? string.Empty : converted;
-                }
-            }
-            else if (value is bool) 
-            {
-                return System.Convert.ToString((bool)value, cultureInfo).ToLowerInvariant();
-            }
-            else if (value is byte[])
-            {
-                return System.Convert.ToBase64String((byte[]) value);
-            }
-            else if (value is string[])
-            {
-                return string.Join(",", (string[])value);
-            }
-            else if (value.GetType().IsArray)
-            {
-                var valueArray = (System.Array)value;
-                var valueTextArray = new string[valueArray.Length];
-                for (var i = 0; i < valueArray.Length; i++)
-                {
-                    valueTextArray[i] = ConvertToString(valueArray.GetValue(i), cultureInfo);
-                }
-                return string.Join(",", valueTextArray);
-            }
-
-            var result = System.Convert.ToString(value, cultureInfo);
-            return result == null ? "" : result;
-        }
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial interface ICompany_Notification_Email_AddressesClient
+    public partial interface ICompanyNotificationEmailAddressesClient
     {
         /// <summary>
         /// List Company Notification Email Addresses
@@ -3117,7 +3117,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company notification email addresses</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response51> GetCompanyNotificationEmailAddressesAsync(string companyId);
+        System.Threading.Tasks.Task<GetCompanyNotificationEmailAddressesResponse> GetCompanyNotificationEmailAddressesAsync(string companyId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3128,7 +3128,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company notification email addresses</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response51> GetCompanyNotificationEmailAddressesAsync(string companyId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetCompanyNotificationEmailAddressesResponse> GetCompanyNotificationEmailAddressesAsync(string companyId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Create Company Notification Email Address
@@ -3138,7 +3138,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response52> CreateCompanyNotificationEmailAddressAsync(string companyId, Body8? body);
+        System.Threading.Tasks.Task<CreateCompanyNotificationEmailAddressResponse> CreateCompanyNotificationEmailAddressAsync(string companyId, CreateCompanyNotificationEmailAddressRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3149,7 +3149,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response52> CreateCompanyNotificationEmailAddressAsync(string companyId, Body8? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<CreateCompanyNotificationEmailAddressResponse> CreateCompanyNotificationEmailAddressAsync(string companyId, CreateCompanyNotificationEmailAddressRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Company Notification Email Address
@@ -3159,7 +3159,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response53> GetCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId);
+        System.Threading.Tasks.Task<GetCompanyNotificationEmailAddressResponse> GetCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3170,7 +3170,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response53> GetCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetCompanyNotificationEmailAddressResponse> GetCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Update Company Notification Email Address
@@ -3180,7 +3180,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response54> UpdateCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, Body9? body);
+        System.Threading.Tasks.Task<UpdateCompanyNotificationEmailAddressResponse> UpdateCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, UpdateCompanyNotificationEmailAddressRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3191,7 +3191,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response54> UpdateCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, Body9? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<UpdateCompanyNotificationEmailAddressResponse> UpdateCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, UpdateCompanyNotificationEmailAddressRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Delete Company Notification Email Address
@@ -3201,7 +3201,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response55> DeleteCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId);
+        System.Threading.Tasks.Task<DeleteCompanyNotificationEmailAddressResponse> DeleteCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3212,12 +3212,12 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response55> DeleteCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<DeleteCompanyNotificationEmailAddressResponse> DeleteCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, System.Threading.CancellationToken cancellationToken);
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Company_Notification_Email_AddressesClient : ICompany_Notification_Email_AddressesClient
+    public partial class CompanyNotificationEmailAddressesClient : ICompanyNotificationEmailAddressesClient
     {
         #pragma warning disable 8618
         private string _baseUrl;
@@ -3228,7 +3228,7 @@ namespace Recommand.Client
         private System.Text.Json.JsonSerializerOptions _instanceSettings;
 
     #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public Company_Notification_Email_AddressesClient(System.Net.Http.HttpClient httpClient)
+        public CompanyNotificationEmailAddressesClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             BaseUrl = "https://app.recommand.eu";
@@ -3272,7 +3272,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company notification email addresses</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response51> GetCompanyNotificationEmailAddressesAsync(string companyId)
+        public virtual System.Threading.Tasks.Task<GetCompanyNotificationEmailAddressesResponse> GetCompanyNotificationEmailAddressesAsync(string companyId)
         {
             return GetCompanyNotificationEmailAddressesAsync(companyId, System.Threading.CancellationToken.None);
         }
@@ -3286,7 +3286,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company notification email addresses</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response51> GetCompanyNotificationEmailAddressesAsync(string companyId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetCompanyNotificationEmailAddressesResponse> GetCompanyNotificationEmailAddressesAsync(string companyId, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -3332,7 +3332,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response51>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCompanyNotificationEmailAddressesResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -3342,12 +3342,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response56>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response34>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response56>("Failed to fetch company notification email addresses", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response34>("Failed to fetch company notification email addresses", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3377,7 +3377,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response52> CreateCompanyNotificationEmailAddressAsync(string companyId, Body8? body)
+        public virtual System.Threading.Tasks.Task<CreateCompanyNotificationEmailAddressResponse> CreateCompanyNotificationEmailAddressAsync(string companyId, CreateCompanyNotificationEmailAddressRequest? body)
         {
             return CreateCompanyNotificationEmailAddressAsync(companyId, body, System.Threading.CancellationToken.None);
         }
@@ -3391,7 +3391,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response52> CreateCompanyNotificationEmailAddressAsync(string companyId, Body8? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<CreateCompanyNotificationEmailAddressResponse> CreateCompanyNotificationEmailAddressAsync(string companyId, CreateCompanyNotificationEmailAddressRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -3441,7 +3441,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response52>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateCompanyNotificationEmailAddressResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -3451,32 +3451,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response57>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response35>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response57>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response35>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response58>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response36>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response58>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response36>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response59>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response37>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response59>("Failed to create company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response37>("Failed to create company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3506,7 +3506,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response53> GetCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId)
+        public virtual System.Threading.Tasks.Task<GetCompanyNotificationEmailAddressResponse> GetCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId)
         {
             return GetCompanyNotificationEmailAddressAsync(companyId, notificationEmailAddressId, System.Threading.CancellationToken.None);
         }
@@ -3520,7 +3520,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response53> GetCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetCompanyNotificationEmailAddressResponse> GetCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -3570,7 +3570,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response53>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCompanyNotificationEmailAddressResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -3580,22 +3580,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response60>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response38>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response60>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response38>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response61>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response39>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response61>("Failed to fetch company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response39>("Failed to fetch company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3625,7 +3625,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response54> UpdateCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, Body9? body)
+        public virtual System.Threading.Tasks.Task<UpdateCompanyNotificationEmailAddressResponse> UpdateCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, UpdateCompanyNotificationEmailAddressRequest? body)
         {
             return UpdateCompanyNotificationEmailAddressAsync(companyId, notificationEmailAddressId, body, System.Threading.CancellationToken.None);
         }
@@ -3639,7 +3639,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response54> UpdateCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, Body9? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<UpdateCompanyNotificationEmailAddressResponse> UpdateCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, UpdateCompanyNotificationEmailAddressRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -3693,7 +3693,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response54>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<UpdateCompanyNotificationEmailAddressResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -3703,32 +3703,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response62>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response40>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response62>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response40>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response63>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response41>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response63>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response41>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response64>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response42>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response64>("Failed to update company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response42>("Failed to update company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3758,7 +3758,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response55> DeleteCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId)
+        public virtual System.Threading.Tasks.Task<DeleteCompanyNotificationEmailAddressResponse> DeleteCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId)
         {
             return DeleteCompanyNotificationEmailAddressAsync(companyId, notificationEmailAddressId, System.Threading.CancellationToken.None);
         }
@@ -3772,7 +3772,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted company notification email address</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response55> DeleteCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<DeleteCompanyNotificationEmailAddressResponse> DeleteCompanyNotificationEmailAddressAsync(string companyId, string notificationEmailAddressId, System.Threading.CancellationToken cancellationToken)
         {
             if (companyId == null)
                 throw new System.ArgumentNullException("companyId");
@@ -3822,7 +3822,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response55>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteCompanyNotificationEmailAddressResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -3832,22 +3832,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response65>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response43>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response65>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response43>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response66>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response44>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response66>("Failed to delete company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response44>("Failed to delete company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4009,7 +4009,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved transmitted documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response67> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments);
+        System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4020,7 +4020,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved transmitted documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response67> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Document
@@ -4030,7 +4030,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response68> GetDocumentAsync(string documentId);
+        System.Threading.Tasks.Task<GetDocumentResponse> GetDocumentAsync(string documentId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4041,7 +4041,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response68> GetDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetDocumentResponse> GetDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Delete Document
@@ -4051,7 +4051,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response69> DeleteDocumentAsync(string documentId);
+        System.Threading.Tasks.Task<DeleteDocumentResponse> DeleteDocumentAsync(string documentId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4062,7 +4062,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response69> DeleteDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<DeleteDocumentResponse> DeleteDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Inbox
@@ -4072,7 +4072,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved inbox documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response70> GetInboxAsync(string? companyId);
+        System.Threading.Tasks.Task<GetInboxResponse> GetInboxAsync(string? companyId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4083,7 +4083,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved inbox documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response70> GetInboxAsync(string? companyId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetInboxResponse> GetInboxAsync(string? companyId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Mark Document as Read
@@ -4093,7 +4093,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated document read status</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response71> MarkAsReadAsync(string documentId, Body10? body);
+        System.Threading.Tasks.Task<MarkAsReadResponse> MarkAsReadAsync(string documentId, MarkAsReadRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4104,7 +4104,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated document read status</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response71> MarkAsReadAsync(string documentId, Body10? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<MarkAsReadResponse> MarkAsReadAsync(string documentId, MarkAsReadRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Download Document Package
@@ -4135,7 +4135,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully assigned label to document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response72> AssignLabelToDocumentAsync(string documentId, string labelId);
+        System.Threading.Tasks.Task<AssignLabelToDocumentResponse> AssignLabelToDocumentAsync(string documentId, string labelId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4146,7 +4146,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully assigned label to document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response72> AssignLabelToDocumentAsync(string documentId, string labelId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<AssignLabelToDocumentResponse> AssignLabelToDocumentAsync(string documentId, string labelId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Unassign Label from Document
@@ -4156,7 +4156,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully unassigned label from document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response73> UnassignLabelFromDocumentAsync(string documentId, string labelId);
+        System.Threading.Tasks.Task<UnassignLabelFromDocumentResponse> UnassignLabelFromDocumentAsync(string documentId, string labelId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4167,7 +4167,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully unassigned label from document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response73> UnassignLabelFromDocumentAsync(string documentId, string labelId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<UnassignLabelFromDocumentResponse> UnassignLabelFromDocumentAsync(string documentId, string labelId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Render Document Preview
@@ -4248,7 +4248,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved transmitted documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response67> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments)
+        public virtual System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments)
         {
             return GetDocumentsAsync(page, limit, companyId, labelId, direction, search, type, from, to, isUnread, envelopeId, excludeAttachments, System.Threading.CancellationToken.None);
         }
@@ -4262,7 +4262,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved transmitted documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response67> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -4353,7 +4353,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response67>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetDocumentsResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -4363,12 +4363,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response74>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response45>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response74>("Failed to fetch transmitted documents", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response45>("Failed to fetch transmitted documents", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4398,7 +4398,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response68> GetDocumentAsync(string documentId)
+        public virtual System.Threading.Tasks.Task<GetDocumentResponse> GetDocumentAsync(string documentId)
         {
             return GetDocumentAsync(documentId, System.Threading.CancellationToken.None);
         }
@@ -4412,7 +4412,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response68> GetDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetDocumentResponse> GetDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken)
         {
             if (documentId == null)
                 throw new System.ArgumentNullException("documentId");
@@ -4457,7 +4457,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response68>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetDocumentResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -4467,22 +4467,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response75>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response46>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response75>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response46>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response76>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response47>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response76>("Failed to fetch document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response47>("Failed to fetch document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4512,7 +4512,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response69> DeleteDocumentAsync(string documentId)
+        public virtual System.Threading.Tasks.Task<DeleteDocumentResponse> DeleteDocumentAsync(string documentId)
         {
             return DeleteDocumentAsync(documentId, System.Threading.CancellationToken.None);
         }
@@ -4526,7 +4526,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response69> DeleteDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<DeleteDocumentResponse> DeleteDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken)
         {
             if (documentId == null)
                 throw new System.ArgumentNullException("documentId");
@@ -4571,7 +4571,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response69>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteDocumentResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -4581,22 +4581,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response77>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response48>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response77>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response48>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response78>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response49>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response78>("Failed to delete document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response49>("Failed to delete document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4626,7 +4626,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved inbox documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response70> GetInboxAsync(string? companyId)
+        public virtual System.Threading.Tasks.Task<GetInboxResponse> GetInboxAsync(string? companyId)
         {
             return GetInboxAsync(companyId, System.Threading.CancellationToken.None);
         }
@@ -4640,7 +4640,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved inbox documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response70> GetInboxAsync(string? companyId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetInboxResponse> GetInboxAsync(string? companyId, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -4687,7 +4687,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response70>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetInboxResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -4697,12 +4697,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response79>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response50>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response79>("Failed to fetch inbox documents", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response50>("Failed to fetch inbox documents", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4732,7 +4732,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated document read status</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response71> MarkAsReadAsync(string documentId, Body10? body)
+        public virtual System.Threading.Tasks.Task<MarkAsReadResponse> MarkAsReadAsync(string documentId, MarkAsReadRequest? body)
         {
             return MarkAsReadAsync(documentId, body, System.Threading.CancellationToken.None);
         }
@@ -4746,7 +4746,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated document read status</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response71> MarkAsReadAsync(string documentId, Body10? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<MarkAsReadResponse> MarkAsReadAsync(string documentId, MarkAsReadRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             if (documentId == null)
                 throw new System.ArgumentNullException("documentId");
@@ -4796,7 +4796,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response71>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<MarkAsReadResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -4806,22 +4806,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response80>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response51>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response80>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response51>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response81>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response52>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response81>("Failed to update document read status", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response52>("Failed to update document read status", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4925,22 +4925,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response82>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response53>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response82>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response53>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response83>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response54>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response83>("Failed to download document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response54>("Failed to download document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4970,7 +4970,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully assigned label to document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response72> AssignLabelToDocumentAsync(string documentId, string labelId)
+        public virtual System.Threading.Tasks.Task<AssignLabelToDocumentResponse> AssignLabelToDocumentAsync(string documentId, string labelId)
         {
             return AssignLabelToDocumentAsync(documentId, labelId, System.Threading.CancellationToken.None);
         }
@@ -4984,7 +4984,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully assigned label to document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response72> AssignLabelToDocumentAsync(string documentId, string labelId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<AssignLabelToDocumentResponse> AssignLabelToDocumentAsync(string documentId, string labelId, System.Threading.CancellationToken cancellationToken)
         {
             if (documentId == null)
                 throw new System.ArgumentNullException("documentId");
@@ -5035,7 +5035,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response72>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<AssignLabelToDocumentResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -5045,32 +5045,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response84>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response55>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response84>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response55>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response85>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response56>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response85>("Document or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response56>("Document or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response86>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response57>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response86>("Failed to assign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response57>("Failed to assign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -5100,7 +5100,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully unassigned label from document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response73> UnassignLabelFromDocumentAsync(string documentId, string labelId)
+        public virtual System.Threading.Tasks.Task<UnassignLabelFromDocumentResponse> UnassignLabelFromDocumentAsync(string documentId, string labelId)
         {
             return UnassignLabelFromDocumentAsync(documentId, labelId, System.Threading.CancellationToken.None);
         }
@@ -5114,7 +5114,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully unassigned label from document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response73> UnassignLabelFromDocumentAsync(string documentId, string labelId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<UnassignLabelFromDocumentResponse> UnassignLabelFromDocumentAsync(string documentId, string labelId, System.Threading.CancellationToken cancellationToken)
         {
             if (documentId == null)
                 throw new System.ArgumentNullException("documentId");
@@ -5164,7 +5164,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response73>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<UnassignLabelFromDocumentResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -5174,22 +5174,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response87>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response58>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response87>("Document or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response58>("Document or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response88>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response59>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response88>("Failed to unassign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response59>("Failed to unassign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -5293,22 +5293,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response89>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response60>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response89>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response60>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response90>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response61>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response90>("Failed to render document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response61>("Failed to render document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -5470,7 +5470,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully verified recipient</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response91> VerifyRecipientAsync(Body11? body);
+        System.Threading.Tasks.Task<VerifyRecipientResponse> VerifyRecipientAsync(VerifyRecipientRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -5481,7 +5481,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully verified recipient</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response91> VerifyRecipientAsync(Body11? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<VerifyRecipientResponse> VerifyRecipientAsync(VerifyRecipientRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Verify Document Support
@@ -5491,7 +5491,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully verified document support</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response92> VerifyDocumentSupportAsync(Body12? body);
+        System.Threading.Tasks.Task<VerifyDocumentSupportResponse> VerifyDocumentSupportAsync(VerifyDocumentSupportRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -5502,7 +5502,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully verified document support</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response92> VerifyDocumentSupportAsync(Body12? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<VerifyDocumentSupportResponse> VerifyDocumentSupportAsync(VerifyDocumentSupportRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Search Directory
@@ -5512,7 +5512,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully searched directory</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response93> SearchDirectoryAsync(Body13? body);
+        System.Threading.Tasks.Task<SearchDirectoryResponse> SearchDirectoryAsync(SearchDirectoryRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -5523,7 +5523,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully searched directory</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response93> SearchDirectoryAsync(Body13? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<SearchDirectoryResponse> SearchDirectoryAsync(SearchDirectoryRequest? body, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -5583,7 +5583,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully verified recipient</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response91> VerifyRecipientAsync(Body11? body)
+        public virtual System.Threading.Tasks.Task<VerifyRecipientResponse> VerifyRecipientAsync(VerifyRecipientRequest? body)
         {
             return VerifyRecipientAsync(body, System.Threading.CancellationToken.None);
         }
@@ -5597,7 +5597,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully verified recipient</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response91> VerifyRecipientAsync(Body11? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<VerifyRecipientResponse> VerifyRecipientAsync(VerifyRecipientRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -5642,7 +5642,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response91>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<VerifyRecipientResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -5677,7 +5677,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully verified document support</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response92> VerifyDocumentSupportAsync(Body12? body)
+        public virtual System.Threading.Tasks.Task<VerifyDocumentSupportResponse> VerifyDocumentSupportAsync(VerifyDocumentSupportRequest? body)
         {
             return VerifyDocumentSupportAsync(body, System.Threading.CancellationToken.None);
         }
@@ -5691,7 +5691,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully verified document support</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response92> VerifyDocumentSupportAsync(Body12? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<VerifyDocumentSupportResponse> VerifyDocumentSupportAsync(VerifyDocumentSupportRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -5736,7 +5736,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response92>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<VerifyDocumentSupportResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -5771,7 +5771,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully searched directory</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response93> SearchDirectoryAsync(Body13? body)
+        public virtual System.Threading.Tasks.Task<SearchDirectoryResponse> SearchDirectoryAsync(SearchDirectoryRequest? body)
         {
             return SearchDirectoryAsync(body, System.Threading.CancellationToken.None);
         }
@@ -5785,7 +5785,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully searched directory</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response93> SearchDirectoryAsync(Body13? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<SearchDirectoryResponse> SearchDirectoryAsync(SearchDirectoryRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -5830,7 +5830,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response93>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<SearchDirectoryResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -5840,12 +5840,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 503)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response94>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response62>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response94>("Peppol directory is currently unavailable", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response62>("Peppol directory is currently unavailable", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6007,7 +6007,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved webhooks</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response95> GetWebhooksAsync(string? companyId);
+        System.Threading.Tasks.Task<GetWebhooksResponse> GetWebhooksAsync(string? companyId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -6018,7 +6018,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved webhooks</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response95> GetWebhooksAsync(string? companyId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetWebhooksResponse> GetWebhooksAsync(string? companyId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Create Webhook
@@ -6028,7 +6028,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response96> CreateWebhookAsync(Body14? body);
+        System.Threading.Tasks.Task<CreateWebhookResponse> CreateWebhookAsync(CreateWebhookRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -6039,7 +6039,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response96> CreateWebhookAsync(Body14? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<CreateWebhookResponse> CreateWebhookAsync(CreateWebhookRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Webhook
@@ -6049,7 +6049,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response97> GetWebhookAsync(string webhookId);
+        System.Threading.Tasks.Task<GetWebhookResponse> GetWebhookAsync(string webhookId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -6060,7 +6060,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response97> GetWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetWebhookResponse> GetWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Update Webhook
@@ -6070,7 +6070,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response98> UpdateWebhookAsync(string webhookId, Body15? body);
+        System.Threading.Tasks.Task<UpdateWebhookResponse> UpdateWebhookAsync(string webhookId, UpdateWebhookRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -6081,7 +6081,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response98> UpdateWebhookAsync(string webhookId, Body15? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<UpdateWebhookResponse> UpdateWebhookAsync(string webhookId, UpdateWebhookRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Delete Webhook
@@ -6091,7 +6091,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response99> DeleteWebhookAsync(string webhookId);
+        System.Threading.Tasks.Task<DeleteWebhookResponse> DeleteWebhookAsync(string webhookId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -6102,7 +6102,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response99> DeleteWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<DeleteWebhookResponse> DeleteWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -6162,7 +6162,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved webhooks</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response95> GetWebhooksAsync(string? companyId)
+        public virtual System.Threading.Tasks.Task<GetWebhooksResponse> GetWebhooksAsync(string? companyId)
         {
             return GetWebhooksAsync(companyId, System.Threading.CancellationToken.None);
         }
@@ -6176,7 +6176,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved webhooks</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response95> GetWebhooksAsync(string? companyId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetWebhooksResponse> GetWebhooksAsync(string? companyId, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -6223,7 +6223,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response95>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetWebhooksResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -6233,12 +6233,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response100>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response63>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response100>("Failed to fetch webhooks", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response63>("Failed to fetch webhooks", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6268,7 +6268,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response96> CreateWebhookAsync(Body14? body)
+        public virtual System.Threading.Tasks.Task<CreateWebhookResponse> CreateWebhookAsync(CreateWebhookRequest? body)
         {
             return CreateWebhookAsync(body, System.Threading.CancellationToken.None);
         }
@@ -6282,7 +6282,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response96> CreateWebhookAsync(Body14? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<CreateWebhookResponse> CreateWebhookAsync(CreateWebhookRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -6327,7 +6327,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response96>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateWebhookResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -6337,22 +6337,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response101>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response64>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response101>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response64>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response102>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response65>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response102>("Failed to create webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response65>("Failed to create webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6382,7 +6382,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response97> GetWebhookAsync(string webhookId)
+        public virtual System.Threading.Tasks.Task<GetWebhookResponse> GetWebhookAsync(string webhookId)
         {
             return GetWebhookAsync(webhookId, System.Threading.CancellationToken.None);
         }
@@ -6396,7 +6396,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response97> GetWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetWebhookResponse> GetWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken)
         {
             if (webhookId == null)
                 throw new System.ArgumentNullException("webhookId");
@@ -6441,7 +6441,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response97>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetWebhookResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -6451,22 +6451,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response103>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response66>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response103>("Webhook not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response66>("Webhook not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response104>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response67>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response104>("Failed to fetch webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response67>("Failed to fetch webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6496,7 +6496,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response98> UpdateWebhookAsync(string webhookId, Body15? body)
+        public virtual System.Threading.Tasks.Task<UpdateWebhookResponse> UpdateWebhookAsync(string webhookId, UpdateWebhookRequest? body)
         {
             return UpdateWebhookAsync(webhookId, body, System.Threading.CancellationToken.None);
         }
@@ -6510,7 +6510,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response98> UpdateWebhookAsync(string webhookId, Body15? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<UpdateWebhookResponse> UpdateWebhookAsync(string webhookId, UpdateWebhookRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             if (webhookId == null)
                 throw new System.ArgumentNullException("webhookId");
@@ -6559,7 +6559,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response98>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<UpdateWebhookResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -6569,32 +6569,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response105>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response68>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response105>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response68>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response106>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response69>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response106>("Webhook not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response69>("Webhook not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response107>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response70>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response107>("Failed to update webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response70>("Failed to update webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6624,7 +6624,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response99> DeleteWebhookAsync(string webhookId)
+        public virtual System.Threading.Tasks.Task<DeleteWebhookResponse> DeleteWebhookAsync(string webhookId)
         {
             return DeleteWebhookAsync(webhookId, System.Threading.CancellationToken.None);
         }
@@ -6638,7 +6638,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted webhook</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response99> DeleteWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<DeleteWebhookResponse> DeleteWebhookAsync(string webhookId, System.Threading.CancellationToken cancellationToken)
         {
             if (webhookId == null)
                 throw new System.ArgumentNullException("webhookId");
@@ -6683,7 +6683,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response99>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteWebhookResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -6693,12 +6693,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response108>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response71>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response108>("Failed to delete webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response71>("Failed to delete webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6860,7 +6860,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved playground</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response109> GetPlaygroundAsync();
+        System.Threading.Tasks.Task<GetPlaygroundResponse> GetPlaygroundAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -6871,7 +6871,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved playground</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response109> GetPlaygroundAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetPlaygroundResponse> GetPlaygroundAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Create Playground
@@ -6881,7 +6881,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created playground</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response110> CreatePlaygroundAsync(Body16? body);
+        System.Threading.Tasks.Task<CreatePlaygroundResponse> CreatePlaygroundAsync(CreatePlaygroundRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -6892,7 +6892,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created playground</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response110> CreatePlaygroundAsync(Body16? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<CreatePlaygroundResponse> CreatePlaygroundAsync(CreatePlaygroundRequest? body, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -6952,7 +6952,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved playground</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response109> GetPlaygroundAsync()
+        public virtual System.Threading.Tasks.Task<GetPlaygroundResponse> GetPlaygroundAsync()
         {
             return GetPlaygroundAsync(System.Threading.CancellationToken.None);
         }
@@ -6966,7 +6966,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved playground</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response109> GetPlaygroundAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetPlaygroundResponse> GetPlaygroundAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7007,7 +7007,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response109>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetPlaygroundResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -7017,22 +7017,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response111>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response72>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response111>("Playground not found for this team", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response72>("Playground not found for this team", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response112>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response73>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response112>("Failed to fetch playground", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response73>("Failed to fetch playground", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7062,7 +7062,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created playground</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response110> CreatePlaygroundAsync(Body16? body)
+        public virtual System.Threading.Tasks.Task<CreatePlaygroundResponse> CreatePlaygroundAsync(CreatePlaygroundRequest? body)
         {
             return CreatePlaygroundAsync(body, System.Threading.CancellationToken.None);
         }
@@ -7076,7 +7076,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created playground</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response110> CreatePlaygroundAsync(Body16? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<CreatePlaygroundResponse> CreatePlaygroundAsync(CreatePlaygroundRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7121,7 +7121,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response110>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CreatePlaygroundResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -7131,32 +7131,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response113>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response74>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response113>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response74>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 401)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response114>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response75>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response114>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response75>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response115>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response76>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response115>("Failed to create playground", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response76>("Failed to create playground", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7318,7 +7318,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved suppliers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response116> GetSuppliersAsync(double? page, double? limit, string? search);
+        System.Threading.Tasks.Task<GetSuppliersResponse> GetSuppliersAsync(double? page, double? limit, string? search);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -7329,7 +7329,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved suppliers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response116> GetSuppliersAsync(double? page, double? limit, string? search, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetSuppliersResponse> GetSuppliersAsync(double? page, double? limit, string? search, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Upsert Supplier
@@ -7339,7 +7339,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully upserted supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response117> UpsertSupplierAsync(Body17? body);
+        System.Threading.Tasks.Task<UpsertSupplierResponse> UpsertSupplierAsync(UpsertSupplierRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -7350,7 +7350,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully upserted supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response117> UpsertSupplierAsync(Body17? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<UpsertSupplierResponse> UpsertSupplierAsync(UpsertSupplierRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Supplier
@@ -7360,7 +7360,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response118> GetSupplierAsync(string supplierId);
+        System.Threading.Tasks.Task<GetSupplierResponse> GetSupplierAsync(string supplierId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -7371,7 +7371,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response118> GetSupplierAsync(string supplierId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetSupplierResponse> GetSupplierAsync(string supplierId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Delete Supplier
@@ -7381,7 +7381,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response119> DeleteSupplierAsync(string supplierId);
+        System.Threading.Tasks.Task<DeleteSupplierResponse> DeleteSupplierAsync(string supplierId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -7392,7 +7392,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response119> DeleteSupplierAsync(string supplierId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<DeleteSupplierResponse> DeleteSupplierAsync(string supplierId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Assign Label to Supplier
@@ -7402,7 +7402,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully assigned label to supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response120> AssignLabelToSupplierAsync(string supplierId, string labelId);
+        System.Threading.Tasks.Task<AssignLabelToSupplierResponse> AssignLabelToSupplierAsync(string supplierId, string labelId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -7413,7 +7413,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully assigned label to supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response120> AssignLabelToSupplierAsync(string supplierId, string labelId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<AssignLabelToSupplierResponse> AssignLabelToSupplierAsync(string supplierId, string labelId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Unassign Label from Supplier
@@ -7423,7 +7423,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully unassigned label from supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response121> UnassignLabelFromSupplierAsync(string supplierId, string labelId);
+        System.Threading.Tasks.Task<UnassignLabelFromSupplierResponse> UnassignLabelFromSupplierAsync(string supplierId, string labelId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -7434,7 +7434,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully unassigned label from supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response121> UnassignLabelFromSupplierAsync(string supplierId, string labelId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<UnassignLabelFromSupplierResponse> UnassignLabelFromSupplierAsync(string supplierId, string labelId, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -7494,7 +7494,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved suppliers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response116> GetSuppliersAsync(double? page, double? limit, string? search)
+        public virtual System.Threading.Tasks.Task<GetSuppliersResponse> GetSuppliersAsync(double? page, double? limit, string? search)
         {
             return GetSuppliersAsync(page, limit, search, System.Threading.CancellationToken.None);
         }
@@ -7508,7 +7508,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved suppliers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response116> GetSuppliersAsync(double? page, double? limit, string? search, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetSuppliersResponse> GetSuppliersAsync(double? page, double? limit, string? search, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7563,7 +7563,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response116>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetSuppliersResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -7573,12 +7573,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response122>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response77>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response122>("Failed to fetch suppliers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response77>("Failed to fetch suppliers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7608,7 +7608,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully upserted supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response117> UpsertSupplierAsync(Body17? body)
+        public virtual System.Threading.Tasks.Task<UpsertSupplierResponse> UpsertSupplierAsync(UpsertSupplierRequest? body)
         {
             return UpsertSupplierAsync(body, System.Threading.CancellationToken.None);
         }
@@ -7622,7 +7622,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully upserted supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response117> UpsertSupplierAsync(Body17? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<UpsertSupplierResponse> UpsertSupplierAsync(UpsertSupplierRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7667,7 +7667,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response117>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<UpsertSupplierResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -7677,22 +7677,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response123>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response78>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response123>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response78>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response124>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response79>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response124>("Failed to upsert supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response79>("Failed to upsert supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7722,7 +7722,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response118> GetSupplierAsync(string supplierId)
+        public virtual System.Threading.Tasks.Task<GetSupplierResponse> GetSupplierAsync(string supplierId)
         {
             return GetSupplierAsync(supplierId, System.Threading.CancellationToken.None);
         }
@@ -7736,7 +7736,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response118> GetSupplierAsync(string supplierId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetSupplierResponse> GetSupplierAsync(string supplierId, System.Threading.CancellationToken cancellationToken)
         {
             if (supplierId == null)
                 throw new System.ArgumentNullException("supplierId");
@@ -7781,7 +7781,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response118>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetSupplierResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -7791,22 +7791,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response125>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response80>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response125>("Supplier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response80>("Supplier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response126>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response81>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response126>("Failed to fetch supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response81>("Failed to fetch supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7836,7 +7836,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response119> DeleteSupplierAsync(string supplierId)
+        public virtual System.Threading.Tasks.Task<DeleteSupplierResponse> DeleteSupplierAsync(string supplierId)
         {
             return DeleteSupplierAsync(supplierId, System.Threading.CancellationToken.None);
         }
@@ -7850,7 +7850,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response119> DeleteSupplierAsync(string supplierId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<DeleteSupplierResponse> DeleteSupplierAsync(string supplierId, System.Threading.CancellationToken cancellationToken)
         {
             if (supplierId == null)
                 throw new System.ArgumentNullException("supplierId");
@@ -7895,7 +7895,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response119>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteSupplierResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -7905,22 +7905,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response127>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response82>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response127>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response82>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response128>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response83>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response128>("Failed to delete supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response83>("Failed to delete supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7950,7 +7950,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully assigned label to supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response120> AssignLabelToSupplierAsync(string supplierId, string labelId)
+        public virtual System.Threading.Tasks.Task<AssignLabelToSupplierResponse> AssignLabelToSupplierAsync(string supplierId, string labelId)
         {
             return AssignLabelToSupplierAsync(supplierId, labelId, System.Threading.CancellationToken.None);
         }
@@ -7964,7 +7964,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully assigned label to supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response120> AssignLabelToSupplierAsync(string supplierId, string labelId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<AssignLabelToSupplierResponse> AssignLabelToSupplierAsync(string supplierId, string labelId, System.Threading.CancellationToken cancellationToken)
         {
             if (supplierId == null)
                 throw new System.ArgumentNullException("supplierId");
@@ -8015,7 +8015,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response120>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<AssignLabelToSupplierResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8025,32 +8025,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response129>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response84>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response129>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response84>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response130>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response85>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response130>("Supplier or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response85>("Supplier or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response131>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response86>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response131>("Failed to assign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response86>("Failed to assign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8080,7 +8080,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully unassigned label from supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response121> UnassignLabelFromSupplierAsync(string supplierId, string labelId)
+        public virtual System.Threading.Tasks.Task<UnassignLabelFromSupplierResponse> UnassignLabelFromSupplierAsync(string supplierId, string labelId)
         {
             return UnassignLabelFromSupplierAsync(supplierId, labelId, System.Threading.CancellationToken.None);
         }
@@ -8094,7 +8094,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully unassigned label from supplier</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response121> UnassignLabelFromSupplierAsync(string supplierId, string labelId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<UnassignLabelFromSupplierResponse> UnassignLabelFromSupplierAsync(string supplierId, string labelId, System.Threading.CancellationToken cancellationToken)
         {
             if (supplierId == null)
                 throw new System.ArgumentNullException("supplierId");
@@ -8144,7 +8144,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response121>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<UnassignLabelFromSupplierResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8154,22 +8154,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response132>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response87>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response132>("Supplier or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response87>("Supplier or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response133>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response88>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response133>("Failed to unassign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response88>("Failed to unassign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8331,7 +8331,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved customers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response134> GetCustomersAsync(double? page, double? limit, string? search);
+        System.Threading.Tasks.Task<GetCustomersResponse> GetCustomersAsync(double? page, double? limit, string? search);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -8342,7 +8342,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved customers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response134> GetCustomersAsync(double? page, double? limit, string? search, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetCustomersResponse> GetCustomersAsync(double? page, double? limit, string? search, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Upsert Customer
@@ -8352,7 +8352,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully upserted customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response135> UpsertCustomerAsync(Body18? body);
+        System.Threading.Tasks.Task<UpsertCustomerResponse> UpsertCustomerAsync(UpsertCustomerRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -8363,7 +8363,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully upserted customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response135> UpsertCustomerAsync(Body18? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<UpsertCustomerResponse> UpsertCustomerAsync(UpsertCustomerRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Customer
@@ -8373,7 +8373,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response136> GetCustomerAsync(string customerId);
+        System.Threading.Tasks.Task<GetCustomerResponse> GetCustomerAsync(string customerId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -8384,7 +8384,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response136> GetCustomerAsync(string customerId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetCustomerResponse> GetCustomerAsync(string customerId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Delete Customer
@@ -8394,7 +8394,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response137> DeleteCustomerAsync(string customerId);
+        System.Threading.Tasks.Task<DeleteCustomerResponse> DeleteCustomerAsync(string customerId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -8405,7 +8405,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response137> DeleteCustomerAsync(string customerId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<DeleteCustomerResponse> DeleteCustomerAsync(string customerId, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -8465,7 +8465,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved customers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response134> GetCustomersAsync(double? page, double? limit, string? search)
+        public virtual System.Threading.Tasks.Task<GetCustomersResponse> GetCustomersAsync(double? page, double? limit, string? search)
         {
             return GetCustomersAsync(page, limit, search, System.Threading.CancellationToken.None);
         }
@@ -8479,7 +8479,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved customers</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response134> GetCustomersAsync(double? page, double? limit, string? search, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetCustomersResponse> GetCustomersAsync(double? page, double? limit, string? search, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -8534,7 +8534,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response134>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCustomersResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8544,12 +8544,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response138>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response89>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response138>("Failed to fetch customers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response89>("Failed to fetch customers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8579,7 +8579,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully upserted customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response135> UpsertCustomerAsync(Body18? body)
+        public virtual System.Threading.Tasks.Task<UpsertCustomerResponse> UpsertCustomerAsync(UpsertCustomerRequest? body)
         {
             return UpsertCustomerAsync(body, System.Threading.CancellationToken.None);
         }
@@ -8593,7 +8593,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully upserted customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response135> UpsertCustomerAsync(Body18? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<UpsertCustomerResponse> UpsertCustomerAsync(UpsertCustomerRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -8638,7 +8638,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response135>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<UpsertCustomerResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8648,22 +8648,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response139>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response90>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response139>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response90>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response140>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response91>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response140>("Failed to upsert customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response91>("Failed to upsert customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8693,7 +8693,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response136> GetCustomerAsync(string customerId)
+        public virtual System.Threading.Tasks.Task<GetCustomerResponse> GetCustomerAsync(string customerId)
         {
             return GetCustomerAsync(customerId, System.Threading.CancellationToken.None);
         }
@@ -8707,7 +8707,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response136> GetCustomerAsync(string customerId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetCustomerResponse> GetCustomerAsync(string customerId, System.Threading.CancellationToken cancellationToken)
         {
             if (customerId == null)
                 throw new System.ArgumentNullException("customerId");
@@ -8752,7 +8752,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response136>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCustomerResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8762,22 +8762,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response141>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response92>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response141>("Customer not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response92>("Customer not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response142>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response93>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response142>("Failed to fetch customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response93>("Failed to fetch customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8807,7 +8807,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response137> DeleteCustomerAsync(string customerId)
+        public virtual System.Threading.Tasks.Task<DeleteCustomerResponse> DeleteCustomerAsync(string customerId)
         {
             return DeleteCustomerAsync(customerId, System.Threading.CancellationToken.None);
         }
@@ -8821,7 +8821,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted customer</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response137> DeleteCustomerAsync(string customerId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<DeleteCustomerResponse> DeleteCustomerAsync(string customerId, System.Threading.CancellationToken cancellationToken)
         {
             if (customerId == null)
                 throw new System.ArgumentNullException("customerId");
@@ -8866,7 +8866,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response137>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteCustomerResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8876,22 +8876,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response143>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response94>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response143>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response94>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response144>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response95>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response144>("Failed to delete customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response95>("Failed to delete customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9053,7 +9053,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved labels</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response145> GetLabelsAsync();
+        System.Threading.Tasks.Task<GetLabelsResponse> GetLabelsAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -9064,7 +9064,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved labels</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response145> GetLabelsAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetLabelsResponse> GetLabelsAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Create Label
@@ -9074,7 +9074,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response146> CreateLabelAsync(Body19? body);
+        System.Threading.Tasks.Task<CreateLabelResponse> CreateLabelAsync(CreateLabelRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -9085,7 +9085,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response146> CreateLabelAsync(Body19? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<CreateLabelResponse> CreateLabelAsync(CreateLabelRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Label
@@ -9095,7 +9095,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response147> GetLabelAsync(string labelId);
+        System.Threading.Tasks.Task<GetLabelResponse> GetLabelAsync(string labelId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -9106,7 +9106,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response147> GetLabelAsync(string labelId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetLabelResponse> GetLabelAsync(string labelId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Update Label
@@ -9116,7 +9116,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response148> UpdateLabelAsync(string labelId, Body20? body);
+        System.Threading.Tasks.Task<UpdateLabelResponse> UpdateLabelAsync(string labelId, UpdateLabelRequest? body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -9127,7 +9127,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response148> UpdateLabelAsync(string labelId, Body20? body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<UpdateLabelResponse> UpdateLabelAsync(string labelId, UpdateLabelRequest? body, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Delete Label
@@ -9137,7 +9137,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response149> DeleteLabelAsync(string labelId);
+        System.Threading.Tasks.Task<DeleteLabelResponse> DeleteLabelAsync(string labelId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -9148,7 +9148,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response149> DeleteLabelAsync(string labelId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<DeleteLabelResponse> DeleteLabelAsync(string labelId, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -9208,7 +9208,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved labels</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response145> GetLabelsAsync()
+        public virtual System.Threading.Tasks.Task<GetLabelsResponse> GetLabelsAsync()
         {
             return GetLabelsAsync(System.Threading.CancellationToken.None);
         }
@@ -9222,7 +9222,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved labels</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response145> GetLabelsAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetLabelsResponse> GetLabelsAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -9263,7 +9263,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response145>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetLabelsResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -9273,12 +9273,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response150>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response96>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response150>("Failed to fetch labels", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response96>("Failed to fetch labels", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9308,7 +9308,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response146> CreateLabelAsync(Body19? body)
+        public virtual System.Threading.Tasks.Task<CreateLabelResponse> CreateLabelAsync(CreateLabelRequest? body)
         {
             return CreateLabelAsync(body, System.Threading.CancellationToken.None);
         }
@@ -9322,7 +9322,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully created label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response146> CreateLabelAsync(Body19? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<CreateLabelResponse> CreateLabelAsync(CreateLabelRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -9367,7 +9367,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response146>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateLabelResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -9377,22 +9377,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response151>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response97>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response151>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response97>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response152>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response98>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response152>("Failed to create label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response98>("Failed to create label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9422,7 +9422,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response147> GetLabelAsync(string labelId)
+        public virtual System.Threading.Tasks.Task<GetLabelResponse> GetLabelAsync(string labelId)
         {
             return GetLabelAsync(labelId, System.Threading.CancellationToken.None);
         }
@@ -9436,7 +9436,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response147> GetLabelAsync(string labelId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetLabelResponse> GetLabelAsync(string labelId, System.Threading.CancellationToken cancellationToken)
         {
             if (labelId == null)
                 throw new System.ArgumentNullException("labelId");
@@ -9481,7 +9481,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response147>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetLabelResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -9491,22 +9491,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response153>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response99>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response153>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response99>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response154>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response100>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response154>("Failed to fetch label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response100>("Failed to fetch label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9536,7 +9536,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response148> UpdateLabelAsync(string labelId, Body20? body)
+        public virtual System.Threading.Tasks.Task<UpdateLabelResponse> UpdateLabelAsync(string labelId, UpdateLabelRequest? body)
         {
             return UpdateLabelAsync(labelId, body, System.Threading.CancellationToken.None);
         }
@@ -9550,7 +9550,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully updated label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response148> UpdateLabelAsync(string labelId, Body20? body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<UpdateLabelResponse> UpdateLabelAsync(string labelId, UpdateLabelRequest? body, System.Threading.CancellationToken cancellationToken)
         {
             if (labelId == null)
                 throw new System.ArgumentNullException("labelId");
@@ -9599,7 +9599,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response148>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<UpdateLabelResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -9609,32 +9609,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response155>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response101>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response155>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response101>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response156>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response102>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response156>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response102>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response157>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response103>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response157>("Failed to update label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response103>("Failed to update label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9664,7 +9664,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response149> DeleteLabelAsync(string labelId)
+        public virtual System.Threading.Tasks.Task<DeleteLabelResponse> DeleteLabelAsync(string labelId)
         {
             return DeleteLabelAsync(labelId, System.Threading.CancellationToken.None);
         }
@@ -9678,7 +9678,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully deleted label</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response149> DeleteLabelAsync(string labelId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<DeleteLabelResponse> DeleteLabelAsync(string labelId, System.Threading.CancellationToken cancellationToken)
         {
             if (labelId == null)
                 throw new System.ArgumentNullException("labelId");
@@ -9723,7 +9723,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response149>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteLabelResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -9733,22 +9733,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response158>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response104>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response158>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response104>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response159>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response105>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response159>("Failed to delete label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response105>("Failed to delete label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9910,7 +9910,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>User is authenticated</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response160> VerifyAuthAsync();
+        System.Threading.Tasks.Task<VerifyAuthResponse> VerifyAuthAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -9921,7 +9921,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>User is authenticated</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Response160> VerifyAuthAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<VerifyAuthResponse> VerifyAuthAsync(System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -9981,7 +9981,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>User is authenticated</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Response160> VerifyAuthAsync()
+        public virtual System.Threading.Tasks.Task<VerifyAuthResponse> VerifyAuthAsync()
         {
             return VerifyAuthAsync(System.Threading.CancellationToken.None);
         }
@@ -9995,7 +9995,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>User is authenticated</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response160> VerifyAuthAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<VerifyAuthResponse> VerifyAuthAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -10036,7 +10036,7 @@ namespace Recommand.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response160>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<VerifyAuthResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -10046,22 +10046,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 401)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response161>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response106>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response161>("User is not authenticated", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response106>("User is not authenticated", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response162>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<Response107>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response162>("Internal server error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<Response107>("Internal server error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -12049,7 +12049,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body
+    public partial class SendDocumentRequest
     {
 
         /// <summary>
@@ -12069,8 +12069,8 @@ namespace Recommand.Client
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("documentType")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<BodyDocumentType>))]
-        public BodyDocumentType DocumentType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SendDocumentRequestDocumentType>))]
+        public SendDocumentRequestDocumentType DocumentType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("document")]
         public Document Document { get; set; } = default!;
@@ -12099,7 +12099,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body2
+    public partial class CreateCompanyRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -12120,12 +12120,12 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("country")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Body2Country>))]
-        public Body2Country Country { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CreateCompanyRequestCountry>))]
+        public CreateCompanyRequestCountry Country { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Body2EnterpriseNumberScheme>))]
-        public Body2EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CreateCompanyRequestEnterpriseNumberScheme>))]
+        public CreateCompanyRequestEnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
 
         /// <summary>
         /// The enterprise number of the company. Can only contain alphanumeric characters. For Belgian businesses it will be inferred from the VAT number if not provided.
@@ -12163,7 +12163,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body3
+    public partial class UpdateCompanyRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -12179,12 +12179,12 @@ namespace Recommand.Client
         public string City { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Body3Country>))]
-        public Body3Country Country { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<UpdateCompanyRequestCountry>))]
+        public UpdateCompanyRequestCountry Country { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Body3EnterpriseNumberScheme>))]
-        public Body3EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<UpdateCompanyRequestEnterpriseNumberScheme>))]
+        public UpdateCompanyRequestEnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
         public string? EnterpriseNumber { get; set; } = default!;
@@ -12213,7 +12213,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body4
+    public partial class CreateCompanyIdentifierRequest
     {
 
         /// <summary>
@@ -12242,7 +12242,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body5
+    public partial class UpdateCompanyIdentifierRequest
     {
 
         /// <summary>
@@ -12271,7 +12271,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body6
+    public partial class CreateCompanyDocumentTypeRequest
     {
 
         /// <summary>
@@ -12300,7 +12300,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body7
+    public partial class UpdateCompanyDocumentTypeRequest
     {
 
         /// <summary>
@@ -12329,7 +12329,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body8
+    public partial class CreateCompanyNotificationEmailAddressRequest
     {
 
         /// <summary>
@@ -12387,7 +12387,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body9
+    public partial class UpdateCompanyNotificationEmailAddressRequest
     {
 
         /// <summary>
@@ -12538,7 +12538,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body10
+    public partial class MarkAsReadRequest
     {
 
         /// <summary>
@@ -12592,7 +12592,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body11
+    public partial class VerifyRecipientRequest
     {
 
         /// <summary>
@@ -12626,7 +12626,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body12
+    public partial class VerifyDocumentSupportRequest
     {
 
         /// <summary>
@@ -12655,7 +12655,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body13
+    public partial class SearchDirectoryRequest
     {
 
         /// <summary>
@@ -12677,7 +12677,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body14
+    public partial class CreateWebhookRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("url")]
@@ -12699,7 +12699,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body15
+    public partial class UpdateWebhookRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("url")]
@@ -12721,7 +12721,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body16
+    public partial class CreatePlaygroundRequest
     {
 
         /// <summary>
@@ -12749,7 +12749,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body17
+    public partial class UpsertSupplierRequest
     {
 
         /// <summary>
@@ -12795,7 +12795,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body18
+    public partial class UpsertCustomerRequest
     {
 
         /// <summary>
@@ -12887,7 +12887,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body19
+    public partial class CreateLabelRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -12914,7 +12914,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Body20
+    public partial class UpdateLabelRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -12940,7 +12940,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response
+    public partial class SendDocumentResponse
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("success")]
@@ -12986,6 +12986,27 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class Response
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Response2
     {
 
@@ -12994,6 +13015,138 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("errors")]
         public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompaniesResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("companies")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Companies> Companies { get; set; } = new System.Collections.ObjectModel.Collection<Companies>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Company Company { get; set; } = new Company();
+
+        [System.Text.Json.Serialization.JsonPropertyName("verificationUrl")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string VerificationUrl { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Company2 Company { get; set; } = new Company2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Company3 Company { get; set; } = new Company3();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCompanyResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyCompanyResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("verificationUrl")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string VerificationUrl { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13034,9 +13187,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("companies")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Companies> Companies { get; set; } = new System.Collections.ObjectModel.Collection<Companies>();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13056,13 +13208,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("company")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Company Company { get; set; } = new Company();
-
-        [System.Text.Json.Serialization.JsonPropertyName("verificationUrl")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string VerificationUrl { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13082,9 +13229,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("company")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Company2 Company { get; set; } = new Company2();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13104,9 +13250,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("company")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Company3 Company { get; set; } = new Company3();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13126,6 +13271,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
         [System.Text.Json.Serialization.JsonExtensionData]
@@ -13144,9 +13292,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("verificationUrl")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string VerificationUrl { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13252,6 +13399,112 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("errors")]
         public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyIdentifiersResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifiers")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Identifiers> Identifiers { get; set; } = new System.Collections.ObjectModel.Collection<Identifiers>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyIdentifierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Identifier Identifier { get; set; } = new Identifier();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyIdentifierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Identifier2 Identifier { get; set; } = new Identifier2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyIdentifierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Identifier3 Identifier { get; set; } = new Identifier3();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCompanyIdentifierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13418,9 +13671,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("identifiers")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Identifiers> Identifiers { get; set; } = new System.Collections.ObjectModel.Collection<Identifiers>();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13440,9 +13692,114 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyDocumentTypesResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documentTypes")]
         [System.ComponentModel.DataAnnotations.Required]
-        public Identifier Identifier { get; set; } = new Identifier();
+        public System.Collections.Generic.ICollection<DocumentTypes> DocumentTypes { get; set; } = new System.Collections.ObjectModel.Collection<DocumentTypes>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyDocumentTypeResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public DocumentType DocumentType { get; set; } = new DocumentType();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyDocumentTypeResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public DocumentType2 DocumentType { get; set; } = new DocumentType2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyDocumentTypeResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public DocumentType3 DocumentType { get; set; } = new DocumentType3();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCompanyDocumentTypeResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13462,9 +13819,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Identifier2 Identifier { get; set; } = new Identifier2();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13484,9 +13840,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Identifier3 Identifier { get; set; } = new Identifier3();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13505,6 +13860,9 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13665,6 +14023,112 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyNotificationEmailAddressesResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddresses")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<NotificationEmailAddresses> NotificationEmailAddresses { get; set; } = new System.Collections.ObjectModel.Collection<NotificationEmailAddresses>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyNotificationEmailAddressResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public NotificationEmailAddress NotificationEmailAddress { get; set; } = new NotificationEmailAddress();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyNotificationEmailAddressResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public NotificationEmailAddress2 NotificationEmailAddress { get; set; } = new NotificationEmailAddress2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyNotificationEmailAddressResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public NotificationEmailAddress3 NotificationEmailAddress { get; set; } = new NotificationEmailAddress3();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCompanyNotificationEmailAddressResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Response34
     {
 
@@ -13713,9 +14177,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("documentTypes")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<DocumentTypes> DocumentTypes { get; set; } = new System.Collections.ObjectModel.Collection<DocumentTypes>();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13735,9 +14198,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public DocumentType DocumentType { get; set; } = new DocumentType();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13757,9 +14219,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public DocumentType2 DocumentType { get; set; } = new DocumentType2();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13779,9 +14240,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public DocumentType3 DocumentType { get; set; } = new DocumentType3();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13800,6 +14260,9 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -13884,6 +14347,148 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("errors")]
         public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentsResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documents")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Documents> Documents { get; set; } = new System.Collections.ObjectModel.Collection<Documents>();
+
+        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Pagination Pagination { get; set; } = new Pagination();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Document2 Document { get; set; } = new Document2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteDocumentResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetInboxResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documents")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Documents2> Documents { get; set; } = new System.Collections.ObjectModel.Collection<Documents2>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class MarkAsReadResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class AssignLabelToDocumentResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UnassignLabelFromDocumentResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14029,9 +14634,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddresses")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<NotificationEmailAddresses> NotificationEmailAddresses { get; set; } = new System.Collections.ObjectModel.Collection<NotificationEmailAddresses>();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14051,9 +14655,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NotificationEmailAddress NotificationEmailAddress { get; set; } = new NotificationEmailAddress();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14073,9 +14676,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NotificationEmailAddress2 NotificationEmailAddress { get; set; } = new NotificationEmailAddress2();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14095,9 +14697,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NotificationEmailAddress3 NotificationEmailAddress { get; set; } = new NotificationEmailAddress3();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14116,6 +14717,9 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14255,6 +14859,147 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyRecipientResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the recipient is registered in the Peppol network.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("isValid")]
+        public bool IsValid { get; set; } = default!;
+
+        /// <summary>
+        /// The SMP URL of the recipient.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("smpUrl")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string SmpUrl { get; set; } = default!;
+
+        /// <summary>
+        /// The service metadata references of the recipient.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("serviceMetadataReferences")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<string> ServiceMetadataReferences { get; set; } = new System.Collections.ObjectModel.Collection<string>();
+
+        /// <summary>
+        /// The SMP hostnames of the recipient.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("smpHostnames")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<string> SmpHostnames { get; set; } = new System.Collections.ObjectModel.Collection<string>();
+
+        /// <summary>
+        /// Document types supported by this participant. Includes endpoint details when includeEndpointDetails is true.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("supportedDocuments")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<SupportedDocuments> SupportedDocuments { get; set; } = new System.Collections.ObjectModel.Collection<SupportedDocuments>();
+
+        /// <summary>
+        /// Company name from SMP business card.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("companyName")]
+        public string? CompanyName { get; set; } = default!;
+
+        /// <summary>
+        /// Country code from SMP business card.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("countryCode")]
+        public string? CountryCode { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyDocumentSupportResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the recipient supports the document type.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("isValid")]
+        public bool IsValid { get; set; } = default!;
+
+        /// <summary>
+        /// The SMP URL of the recipient.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("smpUrl")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string SmpUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Service description from the endpoint metadata.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("serviceProvider")]
+        public string? ServiceProvider { get; set; } = default!;
+
+        /// <summary>
+        /// The endpoint URL.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("serviceEndpoint")]
+        public string? ServiceEndpoint { get; set; } = default!;
+
+        /// <summary>
+        /// Technical contact URL.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("technicalContact")]
+        public string? TechnicalContact { get; set; } = default!;
+
+        /// <summary>
+        /// Certificate expiry date (ISO 8601).
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("certificateExpiry")]
+        public string? CertificateExpiry { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SearchDirectoryResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("results")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Results> Results { get; set; } = new System.Collections.ObjectModel.Collection<Results>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Response62
     {
 
@@ -14263,6 +15008,112 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("errors")]
         public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetWebhooksResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhooks")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Webhooks> Webhooks { get; set; } = new System.Collections.ObjectModel.Collection<Webhooks>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateWebhookResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Webhook Webhook { get; set; } = new Webhook();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetWebhookResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Webhook2 Webhook { get; set; } = new Webhook2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateWebhookResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Webhook3 Webhook { get; set; } = new Webhook3();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteWebhookResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14366,13 +15217,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("documents")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Documents> Documents { get; set; } = new System.Collections.ObjectModel.Collection<Documents>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Pagination Pagination { get; set; } = new Pagination();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14392,9 +15238,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("document")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Document2 Document { get; set; } = new Document2();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14414,6 +15259,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
         [System.Text.Json.Serialization.JsonExtensionData]
@@ -14432,9 +15280,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("documents")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Documents2> Documents { get; set; } = new System.Collections.ObjectModel.Collection<Documents2>();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14454,6 +15301,51 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetPlaygroundResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("playground")]
+        public Playground Playground { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreatePlaygroundResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("playground")]
+        public Playground2 Playground { get; set; } = default!;
+
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
         [System.Text.Json.Serialization.JsonExtensionData]
@@ -14472,6 +15364,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
         [System.Text.Json.Serialization.JsonExtensionData]
@@ -14489,6 +15384,9 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14552,6 +15450,130 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("errors")]
         public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetSuppliersResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("suppliers")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Suppliers> Suppliers { get; set; } = new System.Collections.ObjectModel.Collection<Suppliers>();
+
+        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Pagination2 Pagination { get; set; } = new Pagination2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpsertSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("supplier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Supplier Supplier { get; set; } = new Supplier();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("supplier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Supplier2 Supplier { get; set; } = new Supplier2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class AssignLabelToSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UnassignLabelFromSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14817,6 +15839,94 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCustomersResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customers")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Customers> Customers { get; set; } = new System.Collections.ObjectModel.Collection<Customers>();
+
+        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Pagination3 Pagination { get; set; } = new Pagination3();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpsertCustomerResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Customer Customer { get; set; } = new Customer();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCustomerResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Customer2 Customer { get; set; } = new Customer2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCustomerResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Response89
     {
 
@@ -14865,51 +15975,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the recipient is registered in the Peppol network.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("isValid")]
-        public bool IsValid { get; set; } = default!;
-
-        /// <summary>
-        /// The SMP URL of the recipient.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("smpUrl")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string SmpUrl { get; set; } = default!;
-
-        /// <summary>
-        /// The service metadata references of the recipient.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("serviceMetadataReferences")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> ServiceMetadataReferences { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        /// <summary>
-        /// The SMP hostnames of the recipient.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("smpHostnames")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> SmpHostnames { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        /// <summary>
-        /// Document types supported by this participant. Includes endpoint details when includeEndpointDetails is true.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("supportedDocuments")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<SupportedDocuments> SupportedDocuments { get; set; } = new System.Collections.ObjectModel.Collection<SupportedDocuments>();
-
-        /// <summary>
-        /// Company name from SMP business card.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("companyName")]
-        public string? CompanyName { get; set; } = default!;
-
-        /// <summary>
-        /// Country code from SMP business card.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("countryCode")]
-        public string? CountryCode { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14929,42 +15996,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the recipient supports the document type.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("isValid")]
-        public bool IsValid { get; set; } = default!;
-
-        /// <summary>
-        /// The SMP URL of the recipient.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("smpUrl")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string SmpUrl { get; set; } = default!;
-
-        /// <summary>
-        /// Service description from the endpoint metadata.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("serviceProvider")]
-        public string? ServiceProvider { get; set; } = default!;
-
-        /// <summary>
-        /// The endpoint URL.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("serviceEndpoint")]
-        public string? ServiceEndpoint { get; set; } = default!;
-
-        /// <summary>
-        /// Technical contact URL.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("technicalContact")]
-        public string? TechnicalContact { get; set; } = default!;
-
-        /// <summary>
-        /// Certificate expiry date (ISO 8601).
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("certificateExpiry")]
-        public string? CertificateExpiry { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14984,9 +16017,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("results")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Results> Results { get; set; } = new System.Collections.ObjectModel.Collection<Results>();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -15027,9 +16059,114 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("webhooks")]
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetLabelsResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("labels")]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Webhooks> Webhooks { get; set; } = new System.Collections.ObjectModel.Collection<Webhooks>();
+        public System.Collections.Generic.ICollection<Labels> Labels { get; set; } = new System.Collections.ObjectModel.Collection<Labels>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateLabelResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("label")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Label Label { get; set; } = new Label();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetLabelResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("label")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Label2 Label { get; set; } = new Label2();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateLabelResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("label")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public Label3 Label { get; set; } = new Label3();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteLabelResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -15049,9 +16186,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Webhook Webhook { get; set; } = new Webhook();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -15071,9 +16207,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Webhook2 Webhook { get; set; } = new Webhook2();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -15093,9 +16228,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Webhook3 Webhook { get; set; } = new Webhook3();
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -15114,6 +16248,9 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("success")]
         public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -15253,6 +16390,24 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyAuthResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Response106
     {
 
@@ -15275,1161 +16430,6 @@ namespace Recommand.Client
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Response107
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response108
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response109
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("playground")]
-        public Playground Playground { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response110
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("playground")]
-        public Playground2 Playground { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response111
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response112
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response113
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response114
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response115
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response116
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("suppliers")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Suppliers> Suppliers { get; set; } = new System.Collections.ObjectModel.Collection<Suppliers>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Pagination2 Pagination { get; set; } = new Pagination2();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response117
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("supplier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Supplier Supplier { get; set; } = new Supplier();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response118
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("supplier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Supplier2 Supplier { get; set; } = new Supplier2();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response119
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response120
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response121
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response122
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response123
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response124
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response125
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response126
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response127
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response128
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response129
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response130
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response131
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response132
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response133
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response134
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("customers")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Customers> Customers { get; set; } = new System.Collections.ObjectModel.Collection<Customers>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Pagination3 Pagination { get; set; } = new Pagination3();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response135
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Customer Customer { get; set; } = new Customer();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response136
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Customer2 Customer { get; set; } = new Customer2();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response137
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response138
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response139
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response140
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response141
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response142
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response143
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response144
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response145
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("labels")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Labels> Labels { get; set; } = new System.Collections.ObjectModel.Collection<Labels>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response146
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("label")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Label Label { get; set; } = new Label();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response147
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("label")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Label2 Label { get; set; } = new Label2();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response148
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("label")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Label3 Label { get; set; } = new Label3();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response149
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response150
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response151
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response152
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response153
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response154
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response155
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response156
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response157
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response158
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response159
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response160
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response161
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response162
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("success")]
@@ -22595,7 +22595,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum BodyDocumentType
+    public enum SendDocumentRequestDocumentType
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"invoice")]
@@ -22634,7 +22634,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Body2Country
+    public enum CreateCompanyRequestCountry
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"AU")]
@@ -22727,7 +22727,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Body2EnterpriseNumberScheme
+    public enum CreateCompanyRequestEnterpriseNumberScheme
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"0002")]
@@ -23453,7 +23453,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Body3Country
+    public enum UpdateCompanyRequestCountry
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"AU")]
@@ -23546,7 +23546,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Body3EnterpriseNumberScheme
+    public enum UpdateCompanyRequestEnterpriseNumberScheme
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"0002")]

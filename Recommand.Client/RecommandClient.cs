@@ -20,6 +20,9 @@ public sealed class RecommandClient : IRecommandClient, IDisposable
 {
     private readonly AuthenticationClient _authentication;
     private readonly CompaniesClient _companies;
+    private readonly CompanyDocumentTypesClient _companyDocumentTypes;
+    private readonly CompanyIdentifiersClient _companyIdentifiers;
+    private readonly CompanyNotificationEmailAddressesClient _companyNotificationEmailAddresses;
     private readonly CustomersClient _customers;
     private readonly DocumentsClient _documents;
     private readonly LabelsClient _labels;
@@ -63,16 +66,19 @@ public sealed class RecommandClient : IRecommandClient, IDisposable
         if (httpClient is null) throw new ArgumentNullException(nameof(httpClient));
         _ownedHttpClient = ownsHttpClient ? httpClient : null;
 
-        _authentication = new AuthenticationClient(httpClient);
-        _companies      = new CompaniesClient(httpClient);
-        _customers      = new CustomersClient(httpClient);
-        _documents      = new DocumentsClient(httpClient);
-        _labels         = new LabelsClient(httpClient);
-        _playgrounds    = new PlaygroundsClient(httpClient);
-        _recipients     = new RecipientsClient(httpClient);
-        _sending        = new SendingClient(httpClient);
-        _suppliers      = new SuppliersClient(httpClient);
-        _webhooks       = new WebhooksClient(httpClient);
+        _authentication                    = new AuthenticationClient(httpClient);
+        _companies                         = new CompaniesClient(httpClient);
+        _companyDocumentTypes              = new CompanyDocumentTypesClient(httpClient);
+        _companyIdentifiers                = new CompanyIdentifiersClient(httpClient);
+        _companyNotificationEmailAddresses = new CompanyNotificationEmailAddressesClient(httpClient);
+        _customers                         = new CustomersClient(httpClient);
+        _documents                         = new DocumentsClient(httpClient);
+        _labels                            = new LabelsClient(httpClient);
+        _playgrounds                       = new PlaygroundsClient(httpClient);
+        _recipients                        = new RecipientsClient(httpClient);
+        _sending                           = new SendingClient(httpClient);
+        _suppliers                         = new SuppliersClient(httpClient);
+        _webhooks                          = new WebhooksClient(httpClient);
 
         // The NSwag-generated typed clients each carry their own BaseUrl
         // string and ignore HttpClient.BaseAddress. If the caller has set
@@ -85,29 +91,35 @@ public sealed class RecommandClient : IRecommandClient, IDisposable
         if (httpClient.BaseAddress is { } baseAddress)
         {
             var baseUrl = baseAddress.ToString();
-            _authentication.BaseUrl = baseUrl;
-            _companies.BaseUrl      = baseUrl;
-            _customers.BaseUrl      = baseUrl;
-            _documents.BaseUrl      = baseUrl;
-            _labels.BaseUrl         = baseUrl;
-            _playgrounds.BaseUrl    = baseUrl;
-            _recipients.BaseUrl     = baseUrl;
-            _sending.BaseUrl        = baseUrl;
-            _suppliers.BaseUrl      = baseUrl;
-            _webhooks.BaseUrl       = baseUrl;
+            _authentication.BaseUrl                    = baseUrl;
+            _companies.BaseUrl                         = baseUrl;
+            _companyDocumentTypes.BaseUrl              = baseUrl;
+            _companyIdentifiers.BaseUrl                = baseUrl;
+            _companyNotificationEmailAddresses.BaseUrl = baseUrl;
+            _customers.BaseUrl                         = baseUrl;
+            _documents.BaseUrl                         = baseUrl;
+            _labels.BaseUrl                            = baseUrl;
+            _playgrounds.BaseUrl                       = baseUrl;
+            _recipients.BaseUrl                        = baseUrl;
+            _sending.BaseUrl                           = baseUrl;
+            _suppliers.BaseUrl                         = baseUrl;
+            _webhooks.BaseUrl                          = baseUrl;
         }
     }
 
-    public IAuthenticationClient Authentication => _authentication;
-    public ICompaniesClient Companies     => _companies;
-    public ICustomersClient Customers     => _customers;
-    public IDocumentsClient Documents     => _documents;
-    public ILabelsClient Labels           => _labels;
-    public IPlaygroundsClient Playgrounds => _playgrounds;
-    public IRecipientsClient Recipients   => _recipients;
-    public ISendingClient Sending         => _sending;
-    public ISuppliersClient Suppliers     => _suppliers;
-    public IWebhooksClient Webhooks       => _webhooks;
+    public IAuthenticationClient Authentication                                       => _authentication;
+    public ICompaniesClient Companies                                                 => _companies;
+    public ICompanyDocumentTypesClient CompanyDocumentTypes                           => _companyDocumentTypes;
+    public ICompanyIdentifiersClient CompanyIdentifiers                               => _companyIdentifiers;
+    public ICompanyNotificationEmailAddressesClient CompanyNotificationEmailAddresses => _companyNotificationEmailAddresses;
+    public ICustomersClient Customers                                                 => _customers;
+    public IDocumentsClient Documents                                                 => _documents;
+    public ILabelsClient Labels                                                       => _labels;
+    public IPlaygroundsClient Playgrounds                                             => _playgrounds;
+    public IRecipientsClient Recipients                                               => _recipients;
+    public ISendingClient Sending                                                     => _sending;
+    public ISuppliersClient Suppliers                                                 => _suppliers;
+    public IWebhooksClient Webhooks                                                   => _webhooks;
 
     public void Dispose() => _ownedHttpClient?.Dispose();
 

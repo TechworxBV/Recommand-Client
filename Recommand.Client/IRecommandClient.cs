@@ -9,13 +9,22 @@ public interface IRecommandClient
     /// <summary>Authentication endpoints (token verification).</summary>
     IAuthenticationClient Authentication { get; }
 
-    /// <summary>Companies, plus their identifiers, document types, and notification email addresses.</summary>
+    /// <summary>Companies — top-level resource for organisations registered with Peppol.</summary>
     ICompaniesClient Companies { get; }
+
+    /// <summary>Document types a company can send and receive.</summary>
+    ICompanyDocumentTypesClient CompanyDocumentTypes { get; }
+
+    /// <summary>Peppol identifiers attached to a company.</summary>
+    ICompanyIdentifiersClient CompanyIdentifiers { get; }
+
+    /// <summary>Email addresses notified about company-level events.</summary>
+    ICompanyNotificationEmailAddressesClient CompanyNotificationEmailAddresses { get; }
 
     /// <summary>Customers (recipients you have sent to).</summary>
     ICustomersClient Customers { get; }
 
-    /// <summary>Documents — list, retrieve, download, and inspect.</summary>
+    /// <summary>Documents — listing, retrieval, download.</summary>
     IDocumentsClient Documents { get; }
 
     /// <summary>Labels for tagging documents and other resources.</summary>

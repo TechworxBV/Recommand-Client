@@ -11,6 +11,9 @@ public class RecommandClientFacadeTests
 
         Assert.NotNull(client.Authentication);
         Assert.NotNull(client.Companies);
+        Assert.NotNull(client.CompanyDocumentTypes);
+        Assert.NotNull(client.CompanyIdentifiers);
+        Assert.NotNull(client.CompanyNotificationEmailAddresses);
         Assert.NotNull(client.Customers);
         Assert.NotNull(client.Documents);
         Assert.NotNull(client.Labels);
@@ -35,6 +38,7 @@ public class RecommandClientFacadeTests
         Assert.Equal(expected, ((CompaniesClient)client.Companies).BaseUrl);
         Assert.Equal(expected, ((DocumentsClient)client.Documents).BaseUrl);
         Assert.Equal(expected, ((WebhooksClient)client.Webhooks).BaseUrl);
+        Assert.Equal(expected, ((CompanyIdentifiersClient)client.CompanyIdentifiers).BaseUrl);
     }
 
     [Fact]
