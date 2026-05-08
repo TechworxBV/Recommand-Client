@@ -1,0 +1,64 @@
+name: Regenerate client from spec
+
+# Polls the upstream OpenAPI spec at https://peppol.recommand.eu/openapi
+# once a day and opens (or updates) a pull request when it has changed.
+# Manual `workflow_dispatch` is also supported for ad-hoc regeneration.
+on:
+  schedule:
+    - cron: '0 6 * * *'   # daily at 06:00 UTC
+  workflow_dispatch:
+
+# Default GITHUB_TOKEN scopes are read-only; widen them so the action can
+# push a branch and open a pull request.
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          # Generator targets net10.0; package targets netstandard2.1, which
+          # the same SDK can build.
+          dotnet-version: 10.0.x
+
+      - name: Regenerate client + spec snapshot
+        run: dotnet run --project Recommand.Generator --configuration Release
+
+      # Make a broken regen visible at the action level rather than
+      # opening a PR that won't compile.
+      - name: Verify regenerated client compiles
+        run: dotnet build Recommand.Client/Recommand.Client.csproj --configuration Release
+
+      - name: Open pull request if anything changed
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/regen-spec
+          delete-branch: true
+          commit-message: "chore(spec): regenerate client from updated OpenAPI spec"
+          title: "chore(spec): regenerate client from updated OpenAPI spec"
+          labels: |
+            spec-update
+            automated
+          body: |
+            Automated PR triggered by a change to the upstream OpenAPI spec at
+            <https://peppol.recommand.eu/openapi>.
+
+            ## What changed
+
+            - `spec/openapi.json` — the spec-level diff (read this first to understand intent).
+            - `Recommand.Client/Generated/RecommandClient.g.cs` — the resulting client diff.
+
+            ## Reviewer checklist
+
+            - [ ] Spec changes look intentional (not e.g. an upstream deploy bug or transient field churn).
+            - [ ] Generated code compiles. The workflow itself ran `dotnet build` against `Recommand.Client.csproj` before opening this PR.
+            - [ ] Public surface assessed for breaking changes — if so, decide on the next version manually before merging.
+
+            ---
+
+            🤖 Opened by [`.github/workflows/regenerate-on-spec-change.yml`](.github/workflows/regenerate-on-spec-change.yml).

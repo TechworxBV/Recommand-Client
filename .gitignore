@@ -1,0 +1,40 @@
+# Build output
+bin/
+obj/
+
+# Pack output
+*.nupkg
+*.snupkg
+
+# IDE / editor
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local secrets / tooling caches
+*.local
+.env
+.env.local
+*.pfx
+*.snk
+secrets.json
+appsettings.*.local.json
+
+# NuGet
+.nuget/
+packages/
+
+# Test results / coverage
+TestResults/
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
