@@ -78,9 +78,13 @@ public sealed class RecommandClient : IRecommandClient, IDisposable
         // string and ignore HttpClient.BaseAddress. If the caller has set
         // BaseAddress (e.g. via IHttpClientFactory configuration), propagate
         // it so all clients agree on the target environment.
+        //
+        // NSwag's generated BaseUrl setter normalises by appending a trailing
+        // slash when missing (so `BaseUrl + "/api/..."` concatenation works);
+        // we just pass the URI string through and let the setter handle that.
         if (httpClient.BaseAddress is { } baseAddress)
         {
-            var baseUrl = baseAddress.ToString().TrimEnd('/');
+            var baseUrl = baseAddress.ToString();
             _authentication.BaseUrl = baseUrl;
             _companies.BaseUrl      = baseUrl;
             _customers.BaseUrl      = baseUrl;

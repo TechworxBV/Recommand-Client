@@ -47,6 +47,11 @@
     </ItemGroup>
 
     <ItemGroup>
+        <!-- Test project access to internal types (BasicAuthenticationHandler etc.). -->
+        <InternalsVisibleTo Include="Recommand.Client.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
         <!-- Runtime deps used by NSwag's STJ-based generated code. -->
         <PackageReference Include="System.Text.Json" Version="8.0.5" />
         <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
