@@ -1,0 +1,34 @@
+name: CI
+
+# Build and test on every push to main and every pull request.
+# Designed to be the gate before merging to main.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          # Generator targets net10.0; package targets netstandard2.1, which
+          # the same SDK can build. Tests target net8.0 — the SDK pulls in the
+          # .NET 8 runtime as needed.
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore recommand-client.sln
+
+      - name: Build
+        run: dotnet build recommand-client.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test recommand-client.sln --configuration Release --no-build --verbosity normal
