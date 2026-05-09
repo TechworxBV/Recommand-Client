@@ -35,7 +35,6 @@ await File.WriteAllTextAsync(specPath, pretty);
 Console.WriteLine($"Saved spec snapshot to {specPath} ({pretty.Length:N0} chars)");
 
 ApplySendDocumentPolymorphismShim(specRoot);
-ApplyVatPolymorphismShim(specRoot);
 HoistInlineNestedObjects(specRoot);
 
 var processedJson = specRoot.ToJsonString();
@@ -77,6 +76,8 @@ foreach (var pathItem in document.Paths.Values)
 }
 Console.WriteLine($"Assigned titles to {renamedTitles} inline schemas");
 
+NormalizeVatProperties(document);
+
 var settings = new CSharpClientGeneratorSettings
 {
     ClassName = "{controller}Client",
@@ -99,6 +100,35 @@ var code = generator.GenerateFile();
 Directory.CreateDirectory(generatedDir);
 await File.WriteAllTextAsync(generatedPath, code);
 Console.WriteLine($"Wrote {code.Length:N0} chars to {generatedPath}");
+
+static void NormalizeVatProperties(OpenApiDocument document)
+{
+    string[] documentSchemas =
+    [
+        "Invoice", "CreditNote", "SelfBillingInvoice", "SelfBillingCreditNote",
+        "SendInvoice", "SendCreditNote", "SendSelfBillingInvoice", "SendSelfBillingCreditNote",
+    ];
+
+    if (!document.Definitions.TryGetValue("VatTotals", out var vatTotals)) return;
+
+    var rewrites = 0;
+    foreach (var name in documentSchemas)
+    {
+        if (!document.Definitions.TryGetValue(name, out var schema)) continue;
+        if (!schema.ActualProperties.TryGetValue("vat", out var vatProp)) continue;
+
+        var union = vatProp.AnyOf.Concat(vatProp.OneOf).ToList();
+        if (union.Count == 0) continue;
+        if (!union.Any(s => s.HasReference && s.Reference == vatTotals)) continue;
+
+        vatProp.AnyOf.Clear();
+        vatProp.OneOf.Clear();
+        vatProp.Reference = vatTotals;
+        rewrites++;
+    }
+
+    Console.WriteLine($"Vat normalizer: rewrote {rewrites} vat properties to plain $ref to VatTotals.");
+}
 
 static void ApplySendDocumentPolymorphismShim(JsonObject spec)
 {
@@ -218,92 +248,6 @@ static void ApplySendDocumentPolymorphismShim(JsonObject spec)
     {
         ["$ref"] = "#/components/schemas/SendDocumentRequest",
     };
-}
-
-static void ApplyVatPolymorphismShim(JsonObject spec)
-{
-    var schemas = (spec["components"] as JsonObject)?["schemas"] as JsonObject;
-    if (schemas is null) return;
-
-    if (schemas.ContainsKey("Vat"))
-    {
-        Console.WriteLine("Vat shim: Vat schema already present, skipping.");
-        return;
-    }
-
-    string[] readShapes = ["Invoice", "CreditNote", "SelfBillingInvoice", "SelfBillingCreditNote"];
-    string[] sendShapes = ["SendInvoice", "SendCreditNote", "SendSelfBillingInvoice", "SendSelfBillingCreditNote"];
-
-    var readRewrites = RewriteReadVatShapes(schemas, readShapes);
-    var sendRewrites = RewriteSendVatShapes(schemas, sendShapes);
-
-    if (sendRewrites > 0)
-    {
-        schemas["Vat"] = new JsonObject
-        {
-            ["type"] = "object",
-            ["title"] = "Vat",
-            ["description"] = "Either VatTotals (explicit amounts) or VatTotalsAutoCalculation. Discriminated by property presence at runtime by VatJsonConverter.",
-        };
-    }
-
-    Console.WriteLine($"Vat shim: rewrote {readRewrites} read shapes (→ VatTotals) and {sendRewrites} send shapes (→ Vat polymorphic base).");
-}
-
-static int RewriteReadVatShapes(JsonObject schemas, IEnumerable<string> documentNames)
-{
-    var rewrites = 0;
-    foreach (var docName in documentNames)
-    {
-        if (schemas[docName] is not JsonObject docSchema) continue;
-        if (docSchema["properties"] is not JsonObject props) continue;
-        if (props["vat"] is not JsonObject vatSchema) continue;
-
-        var variants = vatSchema["oneOf"] as JsonArray ?? vatSchema["anyOf"] as JsonArray;
-        if (variants is null) continue;
-
-        var refs = variants.OfType<JsonObject>()
-            .Select(o => o["$ref"]?.GetValue<string>()?.Split('/').Last())
-            .Where(s => s is not null)
-            .ToHashSet();
-
-        if (!refs.Contains("VatTotals") || refs.Contains("VatTotalsAutoCalculation")) continue;
-
-        props["vat"] = new JsonObject
-        {
-            ["$ref"] = "#/components/schemas/VatTotals",
-        };
-        rewrites++;
-    }
-    return rewrites;
-}
-
-static int RewriteSendVatShapes(JsonObject schemas, IEnumerable<string> documentNames)
-{
-    var rewrites = 0;
-    foreach (var docName in documentNames)
-    {
-        if (schemas[docName] is not JsonObject docSchema) continue;
-        if (docSchema["properties"] is not JsonObject props) continue;
-        if (props["vat"] is not JsonObject vatSchema) continue;
-
-        var variants = vatSchema["anyOf"] as JsonArray ?? vatSchema["oneOf"] as JsonArray;
-        if (variants is null) continue;
-
-        var refs = variants.OfType<JsonObject>()
-            .Select(o => o["$ref"]?.GetValue<string>()?.Split('/').Last())
-            .Where(s => s is not null)
-            .ToHashSet();
-
-        if (!refs.Contains("VatTotals") || !refs.Contains("VatTotalsAutoCalculation")) continue;
-
-        props["vat"] = new JsonObject
-        {
-            ["$ref"] = "#/components/schemas/Vat",
-        };
-        rewrites++;
-    }
-    return rewrites;
 }
 
 static void HoistInlineNestedObjects(JsonObject spec)

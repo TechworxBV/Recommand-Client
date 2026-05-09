@@ -11170,8 +11170,11 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
         public Totals? Totals { get; set; } = default!;
 
+        /// <summary>
+        /// If not provided, the VAT totals will be calculated from the document lines.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public Vat Vat { get; set; } = default!;
+        public VatTotals Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the invoice
@@ -11427,8 +11430,11 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
         public Totals? Totals { get; set; } = default!;
 
+        /// <summary>
+        /// If not provided, the VAT totals will be calculated from the document lines.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public Vat Vat { get; set; } = default!;
+        public VatTotals Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the credit note
@@ -11558,8 +11564,11 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
         public Totals? Totals { get; set; } = default!;
 
+        /// <summary>
+        /// If not provided, the VAT totals will be calculated from the document lines.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public Vat Vat { get; set; } = default!;
+        public VatTotals Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the invoice
@@ -11678,8 +11687,11 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
         public Totals? Totals { get; set; } = default!;
 
+        /// <summary>
+        /// If not provided, the VAT totals will be calculated from the document lines.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public Vat Vat { get; set; } = default!;
+        public VatTotals Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the credit note
@@ -12133,24 +12145,6 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("document")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Document { get; set; } = default!;
-
-    }
-
-    /// <summary>
-    /// Either VatTotals (explicit amounts) or VatTotalsAutoCalculation. Discriminated by property presence at runtime by VatJsonConverter.
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Vat
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
 
     }
 
