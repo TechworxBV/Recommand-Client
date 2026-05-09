@@ -5,7 +5,7 @@ using Recommand.Client.Authentication;
 namespace Recommand.Client;
 
 /// <summary>
-/// Default <see cref="IRecommandClient"/> implementation. Holds an
+/// Default <see cref="IRecommandClient"/> implementation. Holds a single
 /// <see cref="HttpClient"/> shared across all typed resource clients.
 /// </summary>
 /// <remarks>
@@ -32,7 +32,6 @@ public sealed class RecommandClient : IRecommandClient, IDisposable
     private readonly SuppliersClient _suppliers;
     private readonly WebhooksClient _webhooks;
 
-    /// <summary>If non-null, the HttpClient was created internally and will be disposed with this instance.</summary>
     private readonly HttpClient? _ownedHttpClient;
 
     /// <summary>
@@ -53,8 +52,8 @@ public sealed class RecommandClient : IRecommandClient, IDisposable
     /// <summary>
     /// Creates a client wrapping an existing <see cref="HttpClient"/>. The
     /// caller is responsible for the HttpClient's lifetime, including auth.
-    /// Used internally by the DI registration; consumers can use this
-    /// directly when integrating with <see cref="IHttpClientFactory"/>.
+    /// Used by the DI registration; consumers can use this directly when
+    /// integrating with <see cref="System.Net.Http.IHttpClientFactory"/>.
     /// </summary>
     public RecommandClient(HttpClient httpClient)
         : this(httpClient, ownsHttpClient: false)
@@ -80,14 +79,6 @@ public sealed class RecommandClient : IRecommandClient, IDisposable
         _suppliers                         = new SuppliersClient(httpClient);
         _webhooks                          = new WebhooksClient(httpClient);
 
-        // The NSwag-generated typed clients each carry their own BaseUrl
-        // string and ignore HttpClient.BaseAddress. If the caller has set
-        // BaseAddress (e.g. via IHttpClientFactory configuration), propagate
-        // it so all clients agree on the target environment.
-        //
-        // NSwag's generated BaseUrl setter normalises by appending a trailing
-        // slash when missing (so `BaseUrl + "/api/..."` concatenation works);
-        // we just pass the URI string through and let the setter handle that.
         if (httpClient.BaseAddress is { } baseAddress)
         {
             var baseUrl = baseAddress.ToString();
@@ -107,20 +98,38 @@ public sealed class RecommandClient : IRecommandClient, IDisposable
         }
     }
 
+    /// <inheritdoc />
     public IAuthenticationClient Authentication                                       => _authentication;
+    /// <inheritdoc />
     public ICompaniesClient Companies                                                 => _companies;
+    /// <inheritdoc />
     public ICompanyDocumentTypesClient CompanyDocumentTypes                           => _companyDocumentTypes;
+    /// <inheritdoc />
     public ICompanyIdentifiersClient CompanyIdentifiers                               => _companyIdentifiers;
+    /// <inheritdoc />
     public ICompanyNotificationEmailAddressesClient CompanyNotificationEmailAddresses => _companyNotificationEmailAddresses;
+    /// <inheritdoc />
     public ICustomersClient Customers                                                 => _customers;
+    /// <inheritdoc />
     public IDocumentsClient Documents                                                 => _documents;
+    /// <inheritdoc />
     public ILabelsClient Labels                                                       => _labels;
+    /// <inheritdoc />
     public IPlaygroundsClient Playgrounds                                             => _playgrounds;
+    /// <inheritdoc />
     public IRecipientsClient Recipients                                               => _recipients;
+    /// <inheritdoc />
     public ISendingClient Sending                                                     => _sending;
+    /// <inheritdoc />
     public ISuppliersClient Suppliers                                                 => _suppliers;
+    /// <inheritdoc />
     public IWebhooksClient Webhooks                                                   => _webhooks;
 
+    /// <summary>
+    /// Disposes the internally-owned <see cref="HttpClient"/> if one was created.
+    /// When the instance was constructed with an externally-provided HttpClient,
+    /// the caller retains responsibility for its lifetime and Dispose is a no-op.
+    /// </summary>
     public void Dispose() => _ownedHttpClient?.Dispose();
 
     private static HttpClient BuildOwnedHttpClient(string apiKey, string apiSecret, string? baseUrl)

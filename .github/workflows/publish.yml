@@ -1,18 +1,5 @@
 name: Publish to NuGet
 
-# Triggered when a tag matching `v*` is pushed (e.g. `v0.1.0`, `v1.0.0-rc.1`).
-# The tag's version (with the leading "v" stripped) becomes the package
-# version, overriding whatever <Version> currently lives in the csproj.
-#
-# Usage:
-#   git tag v0.1.0
-#   git push origin v0.1.0
-#
-# Prerequisites (one-time):
-#   1. Create a NuGet API key at https://www.nuget.org/account/apikeys
-#      (scope: "Push new packages and package versions" for `Recommand.*`)
-#   2. Add it as a repo secret named NUGET_API_KEY
-#      (Settings → Secrets and variables → Actions → New repository secret)
 on:
   push:
     tags:
@@ -27,8 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Source Link embeds commit SHA + repo URL into the symbols. Shallow
-          # clones can confuse it; a full fetch keeps the metadata accurate.
           fetch-depth: 0
 
       - uses: actions/setup-dotnet@v4
@@ -37,14 +22,11 @@ jobs:
 
       - name: Derive package version from tag
         id: version
-        # GITHUB_REF_NAME is the tag (e.g. "v0.1.0"); strip the "v" prefix.
         run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
 
       - name: Restore
         run: dotnet restore recommand-client.sln
 
-      # Build everything once with the version + CI flags so pack can reuse
-      # the artefacts (--no-build below).
       - name: Build
         run: |
           dotnet build recommand-client.sln \
@@ -76,10 +58,6 @@ jobs:
       - name: Push to nuget.org
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        # `dotnet nuget push` automatically pushes a matching .snupkg sitting
-        # next to the .nupkg, so the symbol package goes up too.
-        # --skip-duplicate makes re-runs safe if a previous attempt published
-        # part-way.
         run: |
           dotnet nuget push "${{ runner.temp }}/packages/*.nupkg" \
             --api-key "$NUGET_API_KEY" \

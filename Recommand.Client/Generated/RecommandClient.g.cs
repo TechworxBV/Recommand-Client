@@ -10348,7 +10348,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms? PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -10371,7 +10371,7 @@ namespace Recommand.Client
         public Totals? Totals { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public VatTotals? Vat { get; set; } = default!;
+        public VatTotals Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the invoice
@@ -11154,7 +11154,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms2? PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11176,9 +11176,6 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
         public Totals? Totals { get; set; } = default!;
 
-        /// <summary>
-        /// If not provided, the VAT totals will be calculated from the document lines.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
         public Vat Vat { get; set; } = default!;
 
@@ -11297,7 +11294,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms3? PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11320,7 +11317,7 @@ namespace Recommand.Client
         public Totals? Totals { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public VatTotals? Vat { get; set; } = default!;
+        public VatTotals Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the credit note
@@ -11414,7 +11411,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms4? PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11436,11 +11433,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
         public Totals? Totals { get; set; } = default!;
 
-        /// <summary>
-        /// If not provided, the VAT totals will be calculated from the document lines.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public Vat2 Vat { get; set; } = default!;
+        public Vat Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the credit note
@@ -11548,7 +11542,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms5? PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11570,11 +11564,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
         public Totals? Totals { get; set; } = default!;
 
-        /// <summary>
-        /// If not provided, the VAT totals will be calculated from the document lines.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public Vat3 Vat { get; set; } = default!;
+        public Vat Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the invoice
@@ -11671,7 +11662,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms6? PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11693,11 +11684,8 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
         public Totals? Totals { get; set; } = default!;
 
-        /// <summary>
-        /// If not provided, the VAT totals will be calculated from the document lines.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public Vat4 Vat { get; set; } = default!;
+        public Vat Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the credit note
@@ -11883,7 +11871,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms7? PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11906,7 +11894,7 @@ namespace Recommand.Client
         public Totals? Totals { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public VatTotals? Vat { get; set; } = default!;
+        public VatTotals Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the invoice
@@ -11998,7 +11986,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms8? PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -12021,7 +12009,7 @@ namespace Recommand.Client
         public Totals? Totals { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public VatTotals? Vat { get; set; } = default!;
+        public VatTotals Vat { get; set; } = default!;
 
         /// <summary>
         /// Optional attachments to the credit note
@@ -12048,6 +12036,13 @@ namespace Recommand.Client
 
     }
 
+    [JsonInheritanceConverter(typeof(SendDocumentRequest), "documentType")]
+    [JsonInheritanceAttribute("invoice", typeof(SendInvoiceRequest))]
+    [JsonInheritanceAttribute("creditNote", typeof(SendCreditNoteRequest))]
+    [JsonInheritanceAttribute("selfBillingInvoice", typeof(SendSelfBillingInvoiceRequest))]
+    [JsonInheritanceAttribute("selfBillingCreditNote", typeof(SendSelfBillingCreditNoteRequest))]
+    [JsonInheritanceAttribute("messageLevelResponse", typeof(SendMessageLevelResponseRequest))]
+    [JsonInheritanceAttribute("xml", typeof(SendXmlRequest))]
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class SendDocumentRequest
     {
@@ -12065,17 +12060,6 @@ namespace Recommand.Client
         public PDFGeneration PdfGeneration { get; set; } = default!;
 
         /// <summary>
-        /// The type of document.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SendDocumentRequestDocumentType>))]
-        public SendDocumentRequestDocumentType DocumentType { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("document")]
-        public Document Document { get; set; } = default!;
-
-        /// <summary>
         /// The document type identifier. Not required, only used when documentType is "xml". For supported document types, the doctypeId can be detected automatically from your XML document, if that's not the case you can provide it manually.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("doctypeId")]
@@ -12086,6 +12070,103 @@ namespace Recommand.Client
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("processId")]
         public string ProcessId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendInvoiceRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendInvoice Document { get; set; } = new SendInvoice();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendCreditNoteRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendCreditNote Document { get; set; } = new SendCreditNote();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendSelfBillingInvoiceRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendSelfBillingInvoice Document { get; set; } = new SendSelfBillingInvoice();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendSelfBillingCreditNoteRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendSelfBillingCreditNote Document { get; set; } = new SendSelfBillingCreditNote();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendMessageLevelResponseRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendMessageLevelResponse Document { get; set; } = new SendMessageLevelResponse();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendXmlRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Document { get; set; } = default!;
+
+    }
+
+    /// <summary>
+    /// Either VatTotals (explicit amounts) or VatTotalsAutoCalculation. Discriminated by property presence at runtime by VatJsonConverter.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class Vat
+    {
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class PaymentTerms
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Note { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14394,7 +14475,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("document")]
         [System.ComponentModel.DataAnnotations.Required]
-        public Document2 Document { get; set; } = new Document2();
+        public Document Document { get; set; } = new Document();
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -16462,25 +16543,6 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PaymentTerms
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum InvoiceCurrency
     {
 
@@ -18476,40 +18538,6 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PaymentTerms2
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Vat
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum SendInvoiceCurrency
     {
 
@@ -19066,25 +19094,6 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("issueDate")]
         [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
         public System.DateTimeOffset? IssueDate { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PaymentTerms3
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -19667,40 +19676,6 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PaymentTerms4
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Vat2
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum SendCreditNoteCurrency
     {
 
@@ -20237,40 +20212,6 @@ namespace Recommand.Client
 
         [System.Runtime.Serialization.EnumMember(Value = @"PLN")]
         PLN = 177,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PaymentTerms5
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Vat3
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -20831,40 +20772,6 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("issueDate")]
         [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
         public System.DateTimeOffset? IssueDate { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PaymentTerms6
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Vat4
-    {
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -21448,25 +21355,6 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PaymentTerms7
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum SelfBillingInvoiceCurrency
     {
 
@@ -22036,25 +21924,6 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PaymentTerms8
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum SelfBillingCreditNoteCurrency
     {
 
@@ -22591,45 +22460,6 @@ namespace Recommand.Client
 
         [System.Runtime.Serialization.EnumMember(Value = @"PLN")]
         PLN = 177,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum SendDocumentRequestDocumentType
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"invoice")]
-        Invoice = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"creditNote")]
-        CreditNote = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingInvoice")]
-        SelfBillingInvoice = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingCreditNote")]
-        SelfBillingCreditNote = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"messageLevelResponse")]
-        MessageLevelResponse = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"xml")]
-        Xml = 5,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Document
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -25224,7 +25054,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Document2
+    public partial class Document
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -25241,8 +25071,8 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("direction")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Document2Direction>))]
-        public Document2Direction Direction { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<DocumentDirection>))]
+        public DocumentDirection Direction { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("senderId")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
@@ -25268,8 +25098,8 @@ namespace Recommand.Client
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("type")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Document2Type>))]
-        public Document2Type Type { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<DocumentType4>))]
+        public DocumentType4 Type { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("readAt")]
         public string? ReadAt { get; set; } = default!;
@@ -26440,7 +26270,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Document2Direction
+    public enum DocumentDirection
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"incoming")]
@@ -26452,7 +26282,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Document2Type
+    public enum DocumentType4
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"invoice")]
@@ -26824,6 +26654,147 @@ namespace Recommand.Client
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string FieldName { get; set; } = default!;
 
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    [System.AttributeUsage(System.AttributeTargets.Class | System.AttributeTargets.Interface, AllowMultiple = true)]
+    internal class JsonInheritanceAttribute : System.Attribute
+    {
+        public JsonInheritanceAttribute(string key, System.Type type)
+        {
+            Key = key;
+            Type = type;
+        }
+
+        public string Key { get; }
+
+        public System.Type Type { get; }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    internal class JsonInheritanceConverterAttribute : System.Text.Json.Serialization.JsonConverterAttribute
+    {
+        public string DiscriminatorName { get; }
+
+        public JsonInheritanceConverterAttribute(System.Type baseType, string discriminatorName = "discriminator")
+            : base(typeof(JsonInheritanceConverter<>).MakeGenericType(baseType))
+        {
+            DiscriminatorName = discriminatorName;
+        }
+    }
+
+    public class JsonInheritanceConverter<TBase> : System.Text.Json.Serialization.JsonConverter<TBase>
+    {
+        private readonly string _discriminatorName;
+
+        public JsonInheritanceConverter()
+        {
+            var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute<JsonInheritanceConverterAttribute>(typeof(TBase));
+            _discriminatorName = attribute?.DiscriminatorName ?? "discriminator";
+        }
+
+        public JsonInheritanceConverter(string discriminatorName)
+        {
+            _discriminatorName = discriminatorName;
+        }
+
+        public string DiscriminatorName { get { return _discriminatorName; } }
+
+        public override TBase Read(ref System.Text.Json.Utf8JsonReader reader, System.Type typeToConvert, System.Text.Json.JsonSerializerOptions options)
+        {
+            var document = System.Text.Json.JsonDocument.ParseValue(ref reader);
+            var hasDiscriminator = document.RootElement.TryGetProperty(_discriminatorName, out var discriminator);
+            var subtype = GetDiscriminatorType(document.RootElement, typeToConvert, hasDiscriminator ? discriminator.GetString() : null);
+
+            var bufferWriter = new System.IO.MemoryStream();
+            using (var writer = new System.Text.Json.Utf8JsonWriter(bufferWriter))
+            {
+                document.RootElement.WriteTo(writer);
+            }
+
+            return (TBase)System.Text.Json.JsonSerializer.Deserialize(bufferWriter.ToArray(), subtype, options);
+        }
+
+        public override void Write(System.Text.Json.Utf8JsonWriter writer, TBase value, System.Text.Json.JsonSerializerOptions options)
+        {
+            if (value != null)
+            {
+                writer.WriteStartObject();
+                writer.WriteString(_discriminatorName, GetDiscriminatorValue(value.GetType()));
+
+                var bytes = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes((object)value, options);
+                var document = System.Text.Json.JsonDocument.Parse(bytes);
+                foreach (var property in document.RootElement.EnumerateObject())
+                {
+                    property.WriteTo(writer);
+                }
+
+                writer.WriteEndObject();
+            }
+            else
+            {
+                writer.WriteNullValue();
+            }
+        }
+
+        public string GetDiscriminatorValue(System.Type type)
+        {
+            var jsonInheritanceAttributeDiscriminator = GetSubtypeDiscriminator(type);
+            if (jsonInheritanceAttributeDiscriminator != null)
+            {
+                return jsonInheritanceAttributeDiscriminator;
+            }
+
+            return type.Name;
+        }
+
+        protected System.Type GetDiscriminatorType(System.Text.Json.JsonElement jObject, System.Type objectType, string discriminatorValue)
+        {
+            if (discriminatorValue != null)
+            {
+                var jsonInheritanceAttributeSubtype = GetObjectSubtype(objectType, discriminatorValue);
+                if (jsonInheritanceAttributeSubtype != null)
+                {
+                    return jsonInheritanceAttributeSubtype;
+                }
+
+                if (objectType.Name == discriminatorValue)
+                {
+                    return objectType;
+                }
+
+                var typeName = objectType.Namespace + "." + discriminatorValue;
+                var subtype = System.Reflection.IntrospectionExtensions.GetTypeInfo(objectType).Assembly.GetType(typeName);
+                if (subtype != null)
+                {
+                    return subtype;
+                }
+            }
+
+            throw new System.InvalidOperationException("Could not find subtype of '" + objectType.Name + "' with discriminator '" + discriminatorValue + "'.");
+        }
+
+        private System.Type GetObjectSubtype(System.Type baseType, string discriminatorValue)
+        {
+            foreach (var attribute in System.Reflection.CustomAttributeExtensions.GetCustomAttributes<JsonInheritanceAttribute>(System.Reflection.IntrospectionExtensions.GetTypeInfo(baseType), true))
+            {
+                if (attribute.Key == discriminatorValue)
+                    return attribute.Type;
+            }
+
+            return null;
+        }
+
+        private string GetSubtypeDiscriminator(System.Type objectType)
+        {
+            foreach (var attribute in System.Reflection.CustomAttributeExtensions.GetCustomAttributes<JsonInheritanceAttribute>(System.Reflection.IntrospectionExtensions.GetTypeInfo(objectType), true))
+            {
+                if (attribute.Type == objectType)
+                    return attribute.Key;
+            }
+
+            return null;
+        }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]

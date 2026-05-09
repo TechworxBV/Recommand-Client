@@ -27,9 +27,6 @@ public class RecommandClientFacadeTests
     [Fact]
     public void Ctor_WithCustomBaseUrl_PropagatesToAllTypedClients()
     {
-        // NSwag's BaseUrl setter normalises to always end with "/" so that
-        // BaseUrl + "/api/..." concatenation works. The facade hands the
-        // value straight to the setter; we expect the normalised form on read.
         const string expected = "https://staging.recommand.eu/";
 
         using var http = new HttpClient { BaseAddress = new Uri("https://staging.recommand.eu") };

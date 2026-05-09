@@ -5,18 +5,16 @@ using Microsoft.Extensions.Options;
 using Recommand.Client;
 using Recommand.Client.Authentication;
 
-// Land the extension in Microsoft.Extensions.DependencyInjection so consumers
-// who already have `using Microsoft.Extensions.DependencyInjection;` (which is
-// the case for every ASP.NET Core app) don't need an extra `using Recommand.Client;`
-// in Program.cs / Startup.cs to call AddRecommandClient.
 namespace Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
 /// <see cref="IServiceCollection"/> extensions for registering
-/// <see cref="IRecommandClient"/>.
+/// <see cref="IRecommandClient"/> and its typed sub-clients.
 /// </summary>
 public static class RecommandServiceCollectionExtensions
 {
+    private const string HttpClientName = "Recommand";
+
     /// <summary>
     /// Registers <see cref="IRecommandClient"/> with HTTP Basic authentication,
     /// plus each typed sub-client (<see cref="ICompaniesClient"/>,
@@ -27,8 +25,8 @@ public static class RecommandServiceCollectionExtensions
     /// Registering each sub-client individually means consumers can inject
     /// just the resource client they need — e.g. <c>ctor(ICompaniesClient companies)</c>
     /// — and tests can mock that one interface without faking the whole root.
-    /// The underlying <see cref="System.Net.Http.HttpClient"/> is managed by
-    /// <see cref="System.Net.Http.IHttpClientFactory"/>; chain on the returned
+    /// The underlying <see cref="HttpClient"/> is managed by
+    /// <see cref="IHttpClientFactory"/>; chain on the returned
     /// <see cref="IHttpClientBuilder"/> to add resilience, logging, or other
     /// message handlers.
     /// </remarks>
@@ -46,9 +44,6 @@ public static class RecommandServiceCollectionExtensions
     /// public class MyService(ICompaniesClient companies) { ... }
     /// </code>
     /// </example>
-    /// <summary>The named-HttpClient registration key used internally.</summary>
-    private const string HttpClientName = "Recommand";
-
     public static IHttpClientBuilder AddRecommandClient(
         this IServiceCollection services,
         Action<RecommandClientOptions> configure)
@@ -63,12 +58,6 @@ public static class RecommandServiceCollectionExtensions
 
         services.AddTransient<BasicAuthenticationHandler>();
 
-        // A NAMED HttpClient (not typed). The typed variant
-        // (AddHttpClient<TInterface, TImpl>) registers TInterface as transient,
-        // which would mean every IRecommandClient / ICompaniesClient / …
-        // resolution creates its own RecommandClient — defeating the point of
-        // injecting individual sub-clients, and producing surprising behaviour
-        // where two injected sub-clients are backed by different roots.
         var builder = services
             .AddHttpClient(HttpClientName, (sp, http) =>
             {
@@ -81,19 +70,12 @@ public static class RecommandServiceCollectionExtensions
             })
             .AddHttpMessageHandler<BasicAuthenticationHandler>();
 
-        // Scoped IRecommandClient → one root per DI scope (= one per HTTP
-        // request in ASP.NET Core). The HttpClient itself is still pooled by
-        // IHttpClientFactory; only the thin wrapper is per-scope.
         services.TryAddScoped<IRecommandClient>(sp =>
         {
             var factory = sp.GetRequiredService<IHttpClientFactory>();
             return new RecommandClient(factory.CreateClient(HttpClientName));
         });
 
-        // Each sub-client resolves to the corresponding property of the
-        // (cached) scoped root, so all 13 share one HttpClient. TryAdd lets
-        // consumers override any one with a test double by registering it
-        // first, before they call AddRecommandClient.
         services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Authentication);
         services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Companies);
         services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().CompanyDocumentTypes);

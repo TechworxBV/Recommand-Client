@@ -37,7 +37,6 @@ public class BasicAuthenticationHandlerTests
         await http.GetAsync("/foo");
         var first = captured.LastRequest!.Headers.Authorization!.Parameter;
 
-        // Rotate credentials at runtime; the handler should pick them up on the next call.
         options.SetValue(new RecommandClientOptions { ApiKey = "key_v2", ApiSecret = "secret_v2" });
 
         await http.GetAsync("/foo");

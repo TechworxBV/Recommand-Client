@@ -5,12 +5,9 @@
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <!-- Suppress missing-XML-doc warnings in the generated client; NSwag
-             output is documented at the operation level by NSwag itself. -->
         <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
 
-    <!-- NuGet package metadata -->
     <PropertyGroup>
         <PackageId>Recommand.Client</PackageId>
         <Version>0.1.0</Version>
@@ -26,45 +23,31 @@
         <PackageProjectUrl>https://github.com/TechworxBV/recommand-client</PackageProjectUrl>
         <RepositoryType>git</RepositoryType>
 
-        <!-- Build symbols package alongside the main package so consumers
-             can step into our sources when debugging. -->
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-        <!-- Source Link: embed source-control metadata in the PDB so consumers
-             can step into our sources from their debugger. -->
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
 
-        <!-- Reproducible builds. ContinuousIntegrationBuild is overridden to
-             true by CI so the deterministic flag is set only there. -->
         <Deterministic>true</Deterministic>
     </PropertyGroup>
 
     <ItemGroup>
-        <!-- README is shipped inside the .nupkg and shown on nuget.org. -->
         <None Include="..\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
     <ItemGroup>
-        <!-- Test project access to internal types (BasicAuthenticationHandler etc.). -->
         <InternalsVisibleTo Include="Recommand.Client.Tests" />
     </ItemGroup>
 
     <ItemGroup>
-        <!-- Runtime deps used by NSwag's STJ-based generated code. -->
         <PackageReference Include="System.Text.Json" Version="8.0.5" />
         <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 
-        <!-- DI extension dependencies. Microsoft.Extensions.Http transitively
-             pulls in DependencyInjection.Abstractions and Options, but we
-             reference them directly so the surface is explicit. -->
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
 
-        <!-- Source Link generator. PrivateAssets="All" so consumers don't
-             pick this up transitively. -->
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     </ItemGroup>
 
