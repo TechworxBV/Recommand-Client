@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using NJsonSchema;
 using NJsonSchema.CodeGeneration.CSharp;
 using NSwag;
 using NSwag.CodeGeneration.CSharp;
@@ -35,7 +36,7 @@ Console.WriteLine($"Saved spec snapshot to {specPath} ({pretty.Length:N0} chars)
 
 ApplySendDocumentPolymorphismShim(specRoot);
 ApplyVatPolymorphismShim(specRoot);
-AssignContextualTitlesToInlineProperties(specRoot);
+HoistInlineNestedObjects(specRoot);
 
 var processedJson = specRoot.ToJsonString();
 var document = await OpenApiDocument.FromJsonAsync(processedJson);
@@ -305,119 +306,106 @@ static int RewriteSendVatShapes(JsonObject schemas, IEnumerable<string> document
     return rewrites;
 }
 
-static void DeduplicateIdenticalInlineObjectProperties(JsonObject spec)
+static void HoistInlineNestedObjects(JsonObject spec)
 {
-    if (spec["components"] is not JsonObject components) return;
-    if (components["schemas"] is not JsonObject schemas)
+    var components = spec["components"] as JsonObject ?? throw new InvalidOperationException("components missing");
+    var schemas = components["schemas"] as JsonObject ?? throw new InvalidOperationException("components.schemas missing");
+
+    var hoisted = 0;
+
+    var seedNames = schemas.Select(kv => kv.Key).ToList();
+    foreach (var schemaName in seedNames)
     {
-        schemas = new JsonObject();
-        components["schemas"] = schemas;
+        if (schemas[schemaName] is JsonObject schemaNode)
+            HoistContainer(schemaNode, schemaName, schemas, ref hoisted);
     }
 
-    var occurrencesAll = new List<(JsonObject Container, string PropName)>();
-    CollectInlineObjectProperties(spec, occurrencesAll);
-
-    var groups = new Dictionary<(string PropertyName, string Hash), List<(JsonObject Container, string PropName)>>();
-    foreach (var (container, propName) in occurrencesAll)
+    if (spec["paths"] is JsonObject paths)
     {
-        if (container[propName] is not JsonObject prop) continue;
-        var hash = CanonicalHash(prop);
-        var key = (propName, hash);
-        if (!groups.TryGetValue(key, out var sites))
+        foreach (var (_, pathNode) in paths)
         {
-            sites = new List<(JsonObject, string)>();
-            groups[key] = sites;
+            if (pathNode is not JsonObject pathItem) continue;
+            foreach (var (_, opNode) in pathItem)
+            {
+                if (opNode is not JsonObject op) continue;
+                var operationId = op["operationId"]?.GetValue<string>();
+                if (string.IsNullOrEmpty(operationId)) continue;
+                var pascalOpId = char.ToUpperInvariant(operationId[0]) + operationId.Substring(1);
+
+                if (op["requestBody"]?["content"]?["application/json"]?["schema"] is JsonObject reqSchema)
+                    HoistContainer(reqSchema, $"{pascalOpId}Request", schemas, ref hoisted);
+
+                if (op["responses"] is JsonObject responses)
+                {
+                    foreach (var (status, respNode) in responses)
+                    {
+                        if (respNode is not JsonObject resp) continue;
+                        if (resp["content"]?["application/json"]?["schema"] is JsonObject respSchema)
+                        {
+                            var ctx = (status.Length == 3 && status[0] == '2')
+                                ? $"{pascalOpId}Response"
+                                : $"{pascalOpId}Response{status}";
+                            HoistContainer(respSchema, ctx, schemas, ref hoisted);
+                        }
+                    }
+                }
+            }
         }
-        sites.Add((container, propName));
     }
 
-    var extractions = 0;
-    foreach (var ((propName, _), occurrences) in groups)
+    Console.WriteLine($"Hoist shim: extracted {hoisted} nested inline objects to components.schemas with contextual names.");
+
+    static void HoistContainer(JsonObject containerSchema, string contextName, JsonObject schemas, ref int counter)
     {
-        if (occurrences.Count < 2) continue;
+        var props = containerSchema["properties"] as JsonObject;
+        if (props is null) return;
 
-        var typeName = char.ToUpperInvariant(propName[0]) + propName.Substring(1);
-        var uniqueName = ChooseUniqueSchemaName(schemas, typeName);
-        var canonical = (JsonObject)occurrences[0].Container[occurrences[0].PropName]!.DeepClone()!;
-
-        if (canonical["type"] is JsonArray typeArr)
+        foreach (var propName in props.Select(kv => kv.Key).ToList())
         {
-            var nonNull = typeArr.OfType<JsonValue>()
-                .Where(v => v.GetValue<string>() != "null")
-                .Select(v => v.GetValue<string>())
-                .FirstOrDefault();
-            canonical["type"] = nonNull ?? "object";
-        }
+            if (props[propName] is not JsonObject prop) continue;
+            if (prop.ContainsKey("$ref")) continue;
+            if (!IsObjectShape(prop)) continue;
 
-        if (!canonical.ContainsKey("title"))
-        {
-            canonical["title"] = uniqueName;
-        }
-        schemas[uniqueName] = canonical;
+            var pascalProp = char.ToUpperInvariant(propName[0]) + propName.Substring(1);
+            var newName = ChooseUnique(schemas, $"{contextName}{pascalProp}");
 
-        foreach (var (container, name) in occurrences)
-        {
-            container[name] = new JsonObject { ["$ref"] = $"#/components/schemas/{uniqueName}" };
+            var clone = (JsonObject)prop.DeepClone();
+            if (clone["type"] is JsonArray typeArr)
+            {
+                var nonNull = typeArr.OfType<JsonValue>().Select(v => v.GetValue<string>()).FirstOrDefault(t => t != "null");
+                clone["type"] = nonNull ?? "object";
+            }
+            schemas[newName] = clone;
+            counter++;
+
+            HoistContainer(clone, newName, schemas, ref counter);
+
+            props[propName] = new JsonObject { ["$ref"] = $"#/components/schemas/{newName}" };
         }
-        extractions++;
     }
 
-    Console.WriteLine($"Inline-object dedupe: extracted {extractions} shared shapes to components.schemas.");
+    static bool IsObjectShape(JsonObject schema)
+    {
+        if (schema["properties"] is JsonObject p && p.Count > 0)
+        {
+            var t = schema["type"];
+            if (t is JsonValue v && v.GetValue<string>() == "object") return true;
+            if (t is JsonArray arr && arr.OfType<JsonValue>().Any(x => x.GetValue<string>() == "object")) return true;
+        }
+        return false;
+    }
+
+    static string ChooseUnique(JsonObject schemas, string preferred)
+    {
+        if (!schemas.ContainsKey(preferred)) return preferred;
+        for (var i = 2; ; i++)
+        {
+            var candidate = preferred + i;
+            if (!schemas.ContainsKey(candidate)) return candidate;
+        }
+    }
 }
 
-static bool IsInlineObjectWithProperties(JsonObject schema)
-{
-    if (schema.ContainsKey("$ref")) return false;
-    if (schema["properties"] is not JsonObject props || props.Count == 0) return false;
-
-    var typeNode = schema["type"];
-    if (typeNode is null) return false;
-    if (typeNode is JsonValue v && v.GetValue<string>() == "object") return true;
-    if (typeNode is JsonArray arr && arr.OfType<JsonValue>().Any(x => x.GetValue<string>() == "object")) return true;
-    return false;
-}
-
-static string CanonicalHash(JsonObject schema)
-{
-    var canonical = Canonicalise(schema);
-    var bytes = System.Text.Encoding.UTF8.GetBytes(canonical.ToJsonString());
-    var hash = System.Security.Cryptography.SHA256.HashData(bytes);
-    return Convert.ToHexString(hash);
-}
-
-static JsonNode Canonicalise(JsonNode? node)
-{
-    if (node is JsonObject obj)
-    {
-        var sorted = new JsonObject();
-        foreach (var (k, v) in obj.OrderBy(kv => kv.Key, StringComparer.Ordinal))
-        {
-            if (k is "title" or "description" or "example" or "examples") continue;
-            sorted[k] = v is null ? null : Canonicalise(v);
-        }
-        return sorted;
-    }
-    if (node is JsonArray array)
-    {
-        var copy = new JsonArray();
-        foreach (var item in array)
-        {
-            copy.Add(item is null ? null : Canonicalise(item));
-        }
-        return copy;
-    }
-    return node?.DeepClone() ?? JsonValue.Create((string?)null)!;
-}
-
-static string ChooseUniqueSchemaName(JsonObject schemas, string preferred)
-{
-    if (!schemas.ContainsKey(preferred)) return preferred;
-    for (var i = 2; ; i++)
-    {
-        var candidate = preferred + i;
-        if (!schemas.ContainsKey(candidate)) return candidate;
-    }
-}
 
 internal sealed class PascalCaseTagOperationNameGenerator : IOperationNameGenerator
 {

@@ -10,7 +10,7 @@
 
     <PropertyGroup>
         <PackageId>Recommand.Client</PackageId>
-        <Version>0.1.0</Version>
+        <Version>0.2.1</Version>
         <Authors>Techworx</Authors>
         <Company>Techworx</Company>
         <Description>Unofficial .NET client for the Recommand Peppol API. Generated from the OpenAPI specification with NSwag and shipped with HTTP Basic auth, dependency-injection registration, and System.Text.Json serialisation.</Description>
