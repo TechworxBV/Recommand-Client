@@ -1,5 +1,16 @@
 name: Regenerate client from spec
 
+# The OpenAPI spec lives in the repo at spec/openapi.json (no longer fetched
+# from a live URL). This workflow re-runs the generator against it and opens
+# a PR if the generated client has drifted from the spec — useful as a
+# safety net when someone edits spec/openapi.json without locally rerunning
+# the generator.
+#
+# Triggers:
+#   - schedule: daily, in case scripts or scripted spec edits land without
+#     a follow-up regen.
+#   - workflow_dispatch: manual run, e.g. after updating spec/openapi.json.
+
 on:
   schedule:
     - cron: '0 6 * * *'
@@ -19,37 +30,44 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      - name: Regenerate client + spec snapshot
+      - name: Regenerate client from spec/openapi.json
         run: dotnet run --project Recommand.Generator --configuration Release
 
       - name: Verify regenerated client compiles
         run: dotnet build Recommand.Client/Recommand.Client.csproj --configuration Release
+
+      - name: Run tests against regenerated client
+        run: dotnet test recommand-client.sln --configuration Release
 
       - name: Open pull request if anything changed
         uses: peter-evans/create-pull-request@v6
         with:
           branch: chore/regen-spec
           delete-branch: true
-          commit-message: "chore(spec): regenerate client from updated OpenAPI spec"
-          title: "chore(spec): regenerate client from updated OpenAPI spec"
+          commit-message: "chore(spec): regenerate client from spec/openapi.json"
+          title: "chore(spec): regenerate client from spec/openapi.json"
           labels: |
             spec-update
             automated
           body: |
-            Automated PR triggered by a change to the upstream OpenAPI spec at
-            <https://peppol.recommand.eu/openapi>.
+            Automated PR: the generator was re-run against `spec/openapi.json`
+            and produced a different `Recommand.Client/Generated/RecommandClient.g.cs`
+            than what's currently checked in.
+
+            This usually means someone updated the spec without locally running
+            the generator. Review the diff to confirm the changes are intended
+            before merging.
 
             ## What changed
 
-            - `spec/openapi.json` — the spec-level diff (read this first to understand intent).
-            - `Recommand.Client/Generated/RecommandClient.g.cs` — the resulting client diff.
+            - `Recommand.Client/Generated/RecommandClient.g.cs` — the regenerated client.
+            - Possibly other files if a normalizer was updated since the last regen.
 
             ## Reviewer checklist
 
-            - [ ] Spec changes look intentional (not e.g. an upstream deploy bug or transient field churn).
-            - [ ] Generated code compiles. The workflow itself ran `dotnet build` against `Recommand.Client.csproj` before opening this PR.
-            - [ ] Public surface assessed for breaking changes — if so, decide on the next version manually before merging.
-
-            ---
-
-            🤖 Opened by `.github/workflows/regenerate-on-spec-change.yml`.
+            - [ ] The spec change that triggered this is intentional (check the
+                  recent commit history of `spec/openapi.json`).
+            - [ ] Generated code compiles. The workflow ran `dotnet build` and
+                  `dotnet test recommand-client.sln` before opening this PR.
+            - [ ] Public surface assessed for breaking changes — bump the version
+                  appropriately if so.

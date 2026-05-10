@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -9,12 +9,12 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <PackageId>Recommand.Client</PackageId>
+        <PackageId>Recommand.Client.AspNetCore</PackageId>
         <Version>0.4.0</Version>
         <Authors>Techworx</Authors>
         <Company>Techworx</Company>
-        <Description>Unofficial .NET client for the Recommand Peppol API. Generated from the OpenAPI specification with NSwag and shipped with HTTP Basic auth, dependency-injection registration, and System.Text.Json serialisation.</Description>
-        <PackageTags>recommand;peppol;einvoicing;sdk;client;e-invoicing</PackageTags>
+        <Description>ASP.NET Core integration for Recommand.Client: a one-line MapRecommandWebhook endpoint extension that reads the raw body, verifies the X-Signature HMAC, deduplicates on X-Idempotency-Key, parses the polymorphic payload, and dispatches to a strongly-typed handler delegate.</Description>
+        <PackageTags>recommand;peppol;einvoicing;webhooks;aspnetcore</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Copyright>Copyright © Techworx</Copyright>
@@ -37,17 +37,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="Recommand.Client.Tests" />
+        <InternalsVisibleTo Include="Recommand.Client.AspNetCore.Tests" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="System.Text.Json" Version="8.0.5" />
-        <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
-        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
-
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <ProjectReference Include="..\Recommand.Client\Recommand.Client.csproj" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     </ItemGroup>
 

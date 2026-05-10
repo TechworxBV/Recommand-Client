@@ -38,16 +38,23 @@ jobs:
       - name: Test
         run: dotnet test recommand-client.sln --configuration Release --no-build
 
+      # Pack the whole solution. Only IsPackable=true projects produce a
+      # nupkg — currently Recommand.Client and Recommand.Client.AspNetCore.
+      # Test projects and the build-time generator are excluded via their
+      # csproj. Adding a new packable project requires no change here.
       - name: Pack
         run: |
-          dotnet pack Recommand.Client/Recommand.Client.csproj \
+          dotnet pack recommand-client.sln \
             --configuration Release \
             --no-build \
             --output ${{ runner.temp }}/packages \
             -p:Version=${{ steps.version.outputs.version }} \
             -p:ContinuousIntegrationBuild=true
 
-      - name: Upload package as workflow artefact
+      - name: List packed artefacts
+        run: ls -lh "${{ runner.temp }}/packages"
+
+      - name: Upload packages as workflow artefact
         uses: actions/upload-artifact@v4
         with:
           name: nuget-packages
@@ -55,6 +62,9 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+      # `dotnet nuget push` with a wildcard handles every .nupkg in the
+      # output directory — both library packages publish in one step,
+      # in matching order with their .snupkg symbol packages.
       - name: Push to nuget.org
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}

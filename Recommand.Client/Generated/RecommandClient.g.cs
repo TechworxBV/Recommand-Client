@@ -67,7 +67,7 @@ namespace Recommand.Client
         public SendingClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -494,7 +494,7 @@ namespace Recommand.Client
         public CompaniesClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -1477,7 +1477,7 @@ namespace Recommand.Client
         public CompanyIdentifiersClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -2349,7 +2349,7 @@ namespace Recommand.Client
         public CompanyDocumentTypesClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -3231,7 +3231,7 @@ namespace Recommand.Client
         public CompanyNotificationEmailAddressesClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -4207,7 +4207,7 @@ namespace Recommand.Client
         public DocumentsClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -5542,7 +5542,7 @@ namespace Recommand.Client
         public RecipientsClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -6121,7 +6121,7 @@ namespace Recommand.Client
         public WebhooksClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -6911,7 +6911,7 @@ namespace Recommand.Client
         public PlaygroundsClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -7453,7 +7453,7 @@ namespace Recommand.Client
         public SuppliersClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -8424,7 +8424,7 @@ namespace Recommand.Client
         public CustomersClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -9167,7 +9167,7 @@ namespace Recommand.Client
         public LabelsClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -9940,7 +9940,7 @@ namespace Recommand.Client
         public AuthenticationClient(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = "https://app.recommand.eu";
+            BaseUrl = "http://localhost:3001";
             _httpClient = httpClient;
             Initialize();
         }
@@ -10283,19 +10283,27 @@ namespace Recommand.Client
 
     }
 
+    /// <summary>
+    /// Invoice to send to a recipient
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Invoice
+    public partial class SendInvoice
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("invoiceNumber")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string InvoiceNumber { get; set; } = default!;
 
+        /// <summary>
+        /// If not provided, the issue date will be the current date.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("issueDate")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset IssueDate { get; set; } = default!;
+        public System.DateTimeOffset? IssueDate { get; set; } = default!;
 
+        /// <summary>
+        /// If not provided, the due date will be 1 month from the issue date.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("dueDate")]
         [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
         public System.DateTimeOffset? DueDate { get; set; } = default!;
@@ -10324,9 +10332,11 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("despatchReference")]
         public string? DespatchReference { get; set; } = default!;
 
+        /// <summary>
+        /// If not provided, the seller will be the company that is sending the invoice.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("seller")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Party Seller { get; set; } = new Party();
+        public Party Seller { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("buyer")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -10367,6 +10377,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
         public Totals Totals { get; set; } = default!;
 
+        /// <summary>
+        /// If not provided, the VAT totals will be calculated from the document lines.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
         public VatTotals Vat { get; set; } = default!;
 
@@ -11014,6 +11027,36 @@ namespace Recommand.Client
 
     }
 
+    /// <summary>
+    /// Recommand will automatically calculate the VAT totals based on the document lines. For invoices that are exempt from VAT, you can provide the exemption reason or reason code here to inform the recipient of the reason why the amount is exempt from VAT.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VatTotalsAutoCalculation
+    {
+
+        /// <summary>
+        /// If the invoice is exempt from VAT, this (or exemptionReason) is required. The exemption reason code identifier must belong to the CEF VATEX code list	found [here](https://docs.peppol.eu/poacc/billing/3.0/2024-Q4/codelist/vatex/).
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("exemptionReasonCode")]
+        public string? ExemptionReasonCode { get; set; } = default!;
+
+        /// <summary>
+        /// If the invoice is exempt from VAT, this (or exemptionReasonCode) is required. The exemption reason must be a textual statement of the reason why the amount is exempt from VAT or why no VAT is charged.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("exemptionReason")]
+        public string? ExemptionReason { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Attachment
     {
@@ -11046,264 +11089,6 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("url")]
         public string? Url { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// Invoice to send to a recipient
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendInvoice
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("invoiceNumber")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string InvoiceNumber { get; set; } = default!;
-
-        /// <summary>
-        /// If not provided, the issue date will be the current date.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("issueDate")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? IssueDate { get; set; } = default!;
-
-        /// <summary>
-        /// If not provided, the due date will be 1 month from the issue date.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("dueDate")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? DueDate { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        public string? Note { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("buyerReference")]
-        public string? BuyerReference { get; set; } = default!;
-
-        /// <summary>
-        /// A reference to a related purchase order
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("purchaseOrderReference")]
-        public string? PurchaseOrderReference { get; set; } = default!;
-
-        /// <summary>
-        /// A reference to a related sales order.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("salesOrderReference")]
-        public string? SalesOrderReference { get; set; } = default!;
-
-        /// <summary>
-        /// A reference to a related despatch advice document (e.g. packing slip)
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("despatchReference")]
-        public string? DespatchReference { get; set; } = default!;
-
-        /// <summary>
-        /// If not provided, the seller will be the company that is sending the invoice.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("seller")]
-        public Party Seller { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("buyer")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Party Buyer { get; set; } = new Party();
-
-        /// <summary>
-        /// Optional delivery information.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery Delivery { get; set; } = default!;
-
-        /// <summary>
-        /// Optional payment information. For most invoices, this should be provided. For prepaid invoices, this could be omitted.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("paymentMeans")]
-        public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms PaymentTerms { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("lines")]
-        [System.ComponentModel.DataAnnotations.Required]
-        [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<Line> Lines { get; set; } = new System.Collections.ObjectModel.Collection<Line>();
-
-        /// <summary>
-        /// Optional global discounts
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("discounts")]
-        public System.Collections.Generic.ICollection<Discount>? Discounts { get; set; } = default!;
-
-        /// <summary>
-        /// Optional global surcharges
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("surcharges")]
-        public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals Totals { get; set; } = default!;
-
-        /// <summary>
-        /// If not provided, the VAT totals will be calculated from the document lines.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public VatTotals Vat { get; set; } = default!;
-
-        /// <summary>
-        /// Optional attachments to the invoice
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("attachments")]
-        public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
-        public Currency Currency { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// Recommand will automatically calculate the VAT totals based on the document lines. For invoices that are exempt from VAT, you can provide the exemption reason or reason code here to inform the recipient of the reason why the amount is exempt from VAT.
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class VatTotalsAutoCalculation
-    {
-
-        /// <summary>
-        /// If the invoice is exempt from VAT, this (or exemptionReason) is required. The exemption reason code identifier must belong to the CEF VATEX code list	found [here](https://docs.peppol.eu/poacc/billing/3.0/2024-Q4/codelist/vatex/).
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("exemptionReasonCode")]
-        public string? ExemptionReasonCode { get; set; } = default!;
-
-        /// <summary>
-        /// If the invoice is exempt from VAT, this (or exemptionReasonCode) is required. The exemption reason must be a textual statement of the reason why the amount is exempt from VAT or why no VAT is charged.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("exemptionReason")]
-        public string? ExemptionReason { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreditNote
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("creditNoteNumber")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CreditNoteNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("issueDate")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset IssueDate { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        public string? Note { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("buyerReference")]
-        public string? BuyerReference { get; set; } = default!;
-
-        /// <summary>
-        /// References to one or more invoices that are being credited
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("invoiceReferences")]
-        public System.Collections.Generic.ICollection<CreditNoteInvoiceReference> InvoiceReferences { get; set; } = default!;
-
-        /// <summary>
-        /// A reference to a related purchase order
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("purchaseOrderReference")]
-        public string? PurchaseOrderReference { get; set; } = default!;
-
-        /// <summary>
-        /// A reference to a related sales order.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("salesOrderReference")]
-        public string? SalesOrderReference { get; set; } = default!;
-
-        /// <summary>
-        /// A reference to a related despatch advice document (e.g. packing slip)
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("despatchReference")]
-        public string? DespatchReference { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("seller")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Party Seller { get; set; } = new Party();
-
-        [System.Text.Json.Serialization.JsonPropertyName("buyer")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public Party Buyer { get; set; } = new Party();
-
-        /// <summary>
-        /// Optional delivery information.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery Delivery { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("paymentMeans")]
-        public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public PaymentTerms PaymentTerms { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("lines")]
-        [System.ComponentModel.DataAnnotations.Required]
-        [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<Line> Lines { get; set; } = new System.Collections.ObjectModel.Collection<Line>();
-
-        /// <summary>
-        /// Optional global discounts
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("discounts")]
-        public System.Collections.Generic.ICollection<Discount>? Discounts { get; set; } = default!;
-
-        /// <summary>
-        /// Optional global surcharges
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("surcharges")]
-        public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals Totals { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vat")]
-        public VatTotals Vat { get; set; } = default!;
-
-        /// <summary>
-        /// Optional attachments to the credit note
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("attachments")]
-        public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
-        public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -11489,12 +11274,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("despatchReference")]
         public string? DespatchReference { get; set; } = default!;
 
-        /// <summary>
-        /// For self billing invoices, the seller is mandatory.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("seller")]
         [System.ComponentModel.DataAnnotations.Required]
-        public Party Seller { get; set; } = new Party();
+        public SendSelfBillingInvoiceSeller Seller { get; set; } = new SendSelfBillingInvoiceSeller();
 
         /// <summary>
         /// If not provided, the buyer will be the company that is sending the self billing invoice.
@@ -11612,12 +11394,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("despatchReference")]
         public string? DespatchReference { get; set; } = default!;
 
-        /// <summary>
-        /// For self billing credit notes, the seller is mandatory.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("seller")]
         [System.ComponentModel.DataAnnotations.Required]
-        public Party Seller { get; set; } = new Party();
+        public SendSelfBillingCreditNoteSeller Seller { get; set; } = new SendSelfBillingCreditNoteSeller();
 
         /// <summary>
         /// If not provided, the buyer will be the company that is sending the self billing credit note.
@@ -11692,45 +11471,6 @@ namespace Recommand.Client
     }
 
     /// <summary>
-    /// Message Level Response received from a recipient
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class MessageLevelResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("issueDate")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset IssueDate { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("responseCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<MessageLevelResponseResponseCode>))]
-        public MessageLevelResponseResponseCode ResponseCode { get; set; } = default!;
-
-        /// <summary>
-        /// Identifies the document on which the message level response is based.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("envelopeId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string EnvelopeId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
     /// Message Level Response to send to a recipient
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
@@ -11752,8 +11492,8 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("responseCode")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<MessageLevelResponseResponseCode>))]
-        public MessageLevelResponseResponseCode ResponseCode { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SendMessageLevelResponseResponseCode>))]
+        public SendMessageLevelResponseResponseCode ResponseCode { get; set; } = default!;
 
         /// <summary>
         /// Identifies the document on which the message level response is based.
@@ -11773,11 +11513,8 @@ namespace Recommand.Client
 
     }
 
-    /// <summary>
-    /// Self billing invoice
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SelfBillingInvoice
+    public partial class Invoice
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("invoiceNumber")]
@@ -11885,11 +11622,8 @@ namespace Recommand.Client
 
     }
 
-    /// <summary>
-    /// Self billing credit note
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SelfBillingCreditNote
+    public partial class CreditNote
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("creditNoteNumber")]
@@ -11985,6 +11719,142 @@ namespace Recommand.Client
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
         public Currency Currency { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// Sent when an inbound Peppol document is received and stored for a company.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DocumentReceivedWebhook : WebhookPayload
+    {
+
+        /// <summary>
+        /// ID of the transmitted document. Use this to fetch the full document via GET /v1/documents/{id}.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("documentId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string DocumentId { get; set; } = default!;
+
+    }
+
+    /// <summary>
+    /// Sent when a document is successfully transmitted via Peppol or email.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DocumentSentWebhook : WebhookPayload
+    {
+
+        /// <summary>
+        /// ID of the transmitted document. Use this to fetch the full document via GET /v1/documents/{id}.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("documentId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string DocumentId { get; set; } = default!;
+
+    }
+
+    /// <summary>
+    /// Sent when a label is added to a transmitted document.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DocumentLabelAssignedWebhook : WebhookPayload
+    {
+
+        /// <summary>
+        /// ID of the transmitted document the label was assigned to.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("documentId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string DocumentId { get; set; } = default!;
+
+        /// <summary>
+        /// ID of the label that was assigned.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("labelId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string LabelId { get; set; } = default!;
+
+    }
+
+    /// <summary>
+    /// Sent when a label is removed from a transmitted document.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DocumentLabelUnassignedWebhook : WebhookPayload
+    {
+
+        /// <summary>
+        /// ID of the transmitted document the label was removed from.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("documentId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string DocumentId { get; set; } = default!;
+
+        /// <summary>
+        /// ID of the label that was removed.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("labelId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string LabelId { get; set; } = default!;
+
+    }
+
+    /// <summary>
+    /// Sent when a company verification finishes (succeeded, rejected, or errored).
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CompanyVerificationWebhook : WebhookPayload
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CompanyVerificationWebhookStatus>))]
+        public CompanyVerificationWebhookStatus Status { get; set; } = default!;
+
+        /// <summary>
+        /// Human-readable failure reason. Populated when status is `rejected` or `error`.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("errorMessage")]
+        public string ErrorMessage { get; set; } = default!;
+
+    }
+
+    /// <summary>
+    /// Discriminated union of all webhook payload types. The concrete shape is selected by the `eventType` discriminator.
+    /// </summary>
+    [JsonInheritanceConverter(typeof(WebhookPayload), "eventType")]
+    [JsonInheritanceAttribute("document.received", typeof(DocumentReceivedWebhook))]
+    [JsonInheritanceAttribute("document.sent", typeof(DocumentSentWebhook))]
+    [JsonInheritanceAttribute("document.label.assigned", typeof(DocumentLabelAssignedWebhook))]
+    [JsonInheritanceAttribute("document.label.unassigned", typeof(DocumentLabelUnassignedWebhook))]
+    [JsonInheritanceAttribute("company.verification", typeof(CompanyVerificationWebhook))]
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class WebhookPayload
+    {
+
+        /// <summary>
+        /// ID of the team that received the document.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string TeamId { get; set; } = default!;
+
+        /// <summary>
+        /// ID of the company the document was addressed to.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string CompanyId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -14008,6 +13878,152 @@ namespace Recommand.Client
 
     }
 
+    /// <summary>
+    /// For self billing invoices, the seller is mandatory.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendSelfBillingInvoiceSeller
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
+        public string? VatNumber { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
+        public string? EnterpriseNumber { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("street")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Street { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("street2")]
+        public string? Street2 { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string City { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("postalZone")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string PostalZone { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.StringLength(2, MinimumLength = 2)]
+        public string Country { get; set; } = default!;
+
+        /// <summary>
+        /// The email address of the party. If not provided, the email address will not be included in the document.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number of the party. Must contain at least 3 digits. If not provided, the phone number will not be included in the document.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// For self billing credit notes, the seller is mandatory.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendSelfBillingCreditNoteSeller
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
+        public string? VatNumber { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
+        public string? EnterpriseNumber { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("street")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Street { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("street2")]
+        public string? Street2 { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string City { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("postalZone")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string PostalZone { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.StringLength(2, MinimumLength = 2)]
+        public string Country { get; set; } = default!;
+
+        /// <summary>
+        /// The email address of the party. If not provided, the email address will not be included in the document.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number of the party. Must contain at least 3 digits. If not provided, the phone number will not be included in the document.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// The response code of the message level response (AB: Message acknowledgement, AP: Accepted, RE: Rejected)
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum SendMessageLevelResponseResponseCode
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"AB")]
+        AB = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"AP")]
+        AP = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"RE")]
+        RE = 2,
+
+    }
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class CreditNoteInvoiceReference
     {
@@ -14038,20 +14054,20 @@ namespace Recommand.Client
     }
 
     /// <summary>
-    /// The response code of the message level response (AB: Message acknowledgement, AP: Accepted, RE: Rejected)
+    /// Final verification status. `verified` means the company is approved, `rejected` means the verification was declined, `error` means the verification flow itself failed (network error, provider outage, etc.).
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum MessageLevelResponseResponseCode
+    public enum CompanyVerificationWebhookStatus
     {
 
-        [System.Runtime.Serialization.EnumMember(Value = @"AB")]
-        AB = 0,
+        [System.Runtime.Serialization.EnumMember(Value = @"verified")]
+        Verified = 0,
 
-        [System.Runtime.Serialization.EnumMember(Value = @"AP")]
-        AP = 1,
+        [System.Runtime.Serialization.EnumMember(Value = @"rejected")]
+        Rejected = 1,
 
-        [System.Runtime.Serialization.EnumMember(Value = @"RE")]
-        RE = 2,
+        [System.Runtime.Serialization.EnumMember(Value = @"error")]
+        Error = 2,
 
     }
 
@@ -15383,7 +15399,7 @@ namespace Recommand.Client
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("parsed")]
-        public SelfBillingInvoice Parsed { get; set; } = default!;
+        public Invoice Parsed { get; set; } = default!;
 
     }
 
@@ -15392,7 +15408,7 @@ namespace Recommand.Client
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("parsed")]
-        public SelfBillingCreditNote Parsed { get; set; } = default!;
+        public CreditNote Parsed { get; set; } = default!;
 
     }
 
@@ -15431,7 +15447,7 @@ namespace Recommand.Client
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("parsed")]
-        public SelfBillingInvoice Parsed { get; set; } = default!;
+        public Invoice Parsed { get; set; } = default!;
 
     }
 
@@ -15440,7 +15456,7 @@ namespace Recommand.Client
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("parsed")]
-        public SelfBillingCreditNote Parsed { get; set; } = default!;
+        public CreditNote Parsed { get; set; } = default!;
 
     }
 

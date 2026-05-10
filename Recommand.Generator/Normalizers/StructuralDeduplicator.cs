@@ -245,6 +245,15 @@ internal sealed class StructuralDeduplicator : ISpecNormalizer
             sb.Append("];");
         }
 
+        // JSON Schema 2020-12 `const` is stored by NJsonSchema 11.6 in
+        // ExtensionData["const"] (no first-class property). Two schemas with
+        // the same shape but different `const` values are functionally distinct
+        // (e.g. discriminator tags), so they MUST fingerprint differently.
+        if (schema.ExtensionData is { } ext && ext.TryGetValue("const", out var constValue) && constValue is not null)
+        {
+            sb.Append("const:").Append(constValue).Append(';');
+        }
+
         if (schema.Properties is { Count: > 0 })
         {
             sb.Append("props:[");

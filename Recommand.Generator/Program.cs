@@ -2,17 +2,14 @@ using NSwag;
 using Recommand.Generator;
 using Recommand.Generator.Normalizers;
 
-const string SpecUrl = "https://peppol.recommand.eu/openapi";
-
+// Spec source is the in-repo file. No URL fetch — see commit history for
+// when this changed. To update the spec, replace spec/openapi.json directly.
 var repoRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
 var generatedPath = Path.Combine(repoRoot, "Recommand.Client", "Generated", "RecommandClient.g.cs");
-var snapshotPath = Path.Combine(repoRoot, "spec", "openapi.json");
-var localOverride = Environment.GetEnvironmentVariable("RECOMMAND_SPEC_PATH");
+var specPath = Path.Combine(repoRoot, "spec", "openapi.json");
 
-var rawJson = await SpecFetcher.FetchAsync(SpecUrl, localOverride);
-await SpecSnapshot.WriteAsync(rawJson, snapshotPath);
-
-var document = await OpenApiDocument.FromJsonAsync(rawJson);
+Console.WriteLine($"Reading spec from {specPath}");
+var document = await OpenApiDocument.FromFileAsync(specPath);
 Console.WriteLine($"Loaded: {document.Info.Title} v{document.Info.Version} ({document.Paths.Count} paths)");
 
 static string PascalCase(string s) =>
@@ -25,6 +22,9 @@ ISpecNormalizer[] normalizers =
     new PrimitiveUnionNormalizer(),
     new VatPropertyNormalizer(),
     new InlineSchemaHoister(),
+    // Modern OAS 3.1 oneOf+discriminator → allOf inheritance. Generic;
+    // walks all definitions and finds the pattern automatically.
+    new OneOfDiscriminatorNormalizer(),
     // Polymorphism rewrite needs the hoister's parents (Get*Document) to exist
     // first; SendDocumentRequest's parent is promoted in-normalizer regardless.
     new SiblingDiscriminatorPolymorphismNormalizer(
