@@ -182,22 +182,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response>("Invalid document data provided", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid document data provided", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 422)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response2>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response2>("Recipient could not be reached and no email fallback was configured or possible", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Recipient could not be reached and no email fallback was configured or possible", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -610,12 +610,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response3>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response3>("Failed to fetch companies", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch companies", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -714,22 +714,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response4>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response4>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response5>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response5>("Failed to create company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to create company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -828,22 +828,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response6>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response6>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response7>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response7>("Failed to fetch company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -946,32 +946,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response8>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response8>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response9>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response9>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response10>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response10>("Failed to update company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to update company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1070,12 +1070,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response11>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response11>("Failed to delete company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to delete company", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1176,32 +1176,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response12>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response12>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response13>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response13>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response14>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response14>("Failed to create verification session", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to create verification session", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1588,12 +1588,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response15>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response15>("Failed to fetch company identifiers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch company identifiers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1697,22 +1697,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response16>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response16>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response17>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response17>("Failed to create company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to create company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1816,22 +1816,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response18>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response18>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response19>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response19>("Failed to fetch company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1939,22 +1939,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response20>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response20>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response21>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response21>("Failed to update company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to update company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2058,22 +2058,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response22>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response22>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company identifier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response23>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response23>("Failed to delete company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to delete company identifier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2460,12 +2460,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response24>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response24>("Failed to fetch company document types", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch company document types", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2569,22 +2569,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response25>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response25>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response26>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response26>("Failed to create company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to create company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2688,22 +2688,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response27>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response27>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response28>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response28>("Failed to fetch company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2811,32 +2811,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response29>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response29>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response30>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response30>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response31>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response31>("Failed to update company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to update company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2940,22 +2940,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response32>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response32>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company document type not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response33>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response33>("Failed to delete company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to delete company document type", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3342,12 +3342,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response34>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response34>("Failed to fetch company notification email addresses", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch company notification email addresses", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3451,32 +3451,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response35>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response35>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response36>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response36>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response37>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response37>("Failed to create company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to create company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3580,22 +3580,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response38>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response38>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response39>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response39>("Failed to fetch company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3703,32 +3703,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response40>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response40>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response41>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response41>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response42>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response42>("Failed to update company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to update company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3832,22 +3832,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response43>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response43>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Company notification email address not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response44>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response44>("Failed to delete company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to delete company notification email address", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4009,7 +4009,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved transmitted documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments);
+        System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, GetDocumentsDirection? direction, string? search, GetDocumentsType? type, string? from, string? to, GetDocumentsIsUnread? isUnread, string? envelopeId, bool? excludeAttachments);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4020,7 +4020,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved transmitted documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, GetDocumentsDirection? direction, string? search, GetDocumentsType? type, string? from, string? to, GetDocumentsIsUnread? isUnread, string? envelopeId, bool? excludeAttachments, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Document
@@ -4114,7 +4114,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully downloaded the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<FileResponse> DownloadPackageAsync(string documentId, GeneratePdf? generatePdf);
+        System.Threading.Tasks.Task<FileResponse> DownloadPackageAsync(string documentId, DownloadPackageGeneratePdf? generatePdf);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4125,7 +4125,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully downloaded the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<FileResponse> DownloadPackageAsync(string documentId, GeneratePdf? generatePdf, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<FileResponse> DownloadPackageAsync(string documentId, DownloadPackageGeneratePdf? generatePdf, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Assign Label to Document
@@ -4177,7 +4177,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully rendered the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<string> RenderDocumentAsync(string documentId, Type2 type);
+        System.Threading.Tasks.Task<string> RenderDocumentAsync(string documentId, RenderDocumentType type);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4188,7 +4188,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully rendered the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<string> RenderDocumentAsync(string documentId, Type2 type, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<string> RenderDocumentAsync(string documentId, RenderDocumentType type, System.Threading.CancellationToken cancellationToken);
 
     }
 
@@ -4248,7 +4248,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved transmitted documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments)
+        public virtual System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, GetDocumentsDirection? direction, string? search, GetDocumentsType? type, string? from, string? to, GetDocumentsIsUnread? isUnread, string? envelopeId, bool? excludeAttachments)
         {
             return GetDocumentsAsync(page, limit, companyId, labelId, direction, search, type, from, to, isUnread, envelopeId, excludeAttachments, System.Threading.CancellationToken.None);
         }
@@ -4262,7 +4262,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully retrieved transmitted documents</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, Direction? direction, string? search, Type? type, string? from, string? to, IsUnread? isUnread, string? envelopeId, bool? excludeAttachments, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetDocumentsResponse> GetDocumentsAsync(double? page, double? limit, CompanyId? companyId, LabelId? labelId, GetDocumentsDirection? direction, string? search, GetDocumentsType? type, string? from, string? to, GetDocumentsIsUnread? isUnread, string? envelopeId, bool? excludeAttachments, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -4363,12 +4363,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response45>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response45>("Failed to fetch transmitted documents", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch transmitted documents", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4467,22 +4467,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response46>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response46>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response47>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response47>("Failed to fetch document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4581,22 +4581,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response48>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response48>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response49>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response49>("Failed to delete document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to delete document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4697,12 +4697,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response50>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response50>("Failed to fetch inbox documents", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch inbox documents", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4806,22 +4806,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response51>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response51>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response52>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response52>("Failed to update document read status", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to update document read status", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4851,7 +4851,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully downloaded the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<FileResponse> DownloadPackageAsync(string documentId, GeneratePdf? generatePdf)
+        public virtual System.Threading.Tasks.Task<FileResponse> DownloadPackageAsync(string documentId, DownloadPackageGeneratePdf? generatePdf)
         {
             return DownloadPackageAsync(documentId, generatePdf, System.Threading.CancellationToken.None);
         }
@@ -4865,7 +4865,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully downloaded the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<FileResponse> DownloadPackageAsync(string documentId, GeneratePdf? generatePdf, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<FileResponse> DownloadPackageAsync(string documentId, DownloadPackageGeneratePdf? generatePdf, System.Threading.CancellationToken cancellationToken)
         {
             if (documentId == null)
                 throw new System.ArgumentNullException("documentId");
@@ -4925,22 +4925,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response53>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response53>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response54>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response54>("Failed to download document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to download document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -5045,32 +5045,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response55>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response55>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response56>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response56>("Document or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Document or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response57>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response57>("Failed to assign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to assign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -5174,22 +5174,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response58>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response58>("Document or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Document or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response59>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response59>("Failed to unassign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to unassign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -5219,7 +5219,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully rendered the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<string> RenderDocumentAsync(string documentId, Type2 type)
+        public virtual System.Threading.Tasks.Task<string> RenderDocumentAsync(string documentId, RenderDocumentType type)
         {
             return RenderDocumentAsync(documentId, type, System.Threading.CancellationToken.None);
         }
@@ -5233,7 +5233,7 @@ namespace Recommand.Client
         /// </remarks>
         /// <returns>Successfully rendered the document</returns>
         /// <exception cref="RecommandApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<string> RenderDocumentAsync(string documentId, Type2 type, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<string> RenderDocumentAsync(string documentId, RenderDocumentType type, System.Threading.CancellationToken cancellationToken)
         {
             if (documentId == null)
                 throw new System.ArgumentNullException("documentId");
@@ -5293,22 +5293,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response60>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response60>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Document not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response61>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response61>("Failed to render document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to render document", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -5840,12 +5840,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 503)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response62>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response62>("Peppol directory is currently unavailable", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Peppol directory is currently unavailable", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6233,12 +6233,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response63>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response63>("Failed to fetch webhooks", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch webhooks", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6337,22 +6337,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response64>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response64>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response65>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response65>("Failed to create webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to create webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6451,22 +6451,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response66>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response66>("Webhook not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Webhook not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response67>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response67>("Failed to fetch webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6569,32 +6569,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response68>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response68>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response69>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response69>("Webhook not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Webhook not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response70>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response70>("Failed to update webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to update webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6693,12 +6693,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response71>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response71>("Failed to delete webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to delete webhook", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7017,22 +7017,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response72>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response72>("Playground not found for this team", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Playground not found for this team", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response73>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response73>("Failed to fetch playground", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch playground", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7131,32 +7131,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response74>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response74>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 401)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response75>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response75>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response76>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response76>("Failed to create playground", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to create playground", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7573,12 +7573,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response77>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response77>("Failed to fetch suppliers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch suppliers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7677,22 +7677,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response78>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response78>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response79>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response79>("Failed to upsert supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to upsert supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7791,22 +7791,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response80>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response80>("Supplier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Supplier not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response81>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response81>("Failed to fetch supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -7905,22 +7905,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response82>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response82>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response83>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response83>("Failed to delete supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to delete supplier", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8025,32 +8025,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response84>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response84>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response85>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response85>("Supplier or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Supplier or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response86>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response86>("Failed to assign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to assign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8154,22 +8154,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response87>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response87>("Supplier or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Supplier or label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response88>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response88>("Failed to unassign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to unassign label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8544,12 +8544,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response89>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response89>("Failed to fetch customers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch customers", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8648,22 +8648,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response90>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response90>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response91>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response91>("Failed to upsert customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to upsert customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8762,22 +8762,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response92>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response92>("Customer not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Customer not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response93>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response93>("Failed to fetch customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -8876,22 +8876,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response94>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response94>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response95>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response95>("Failed to delete customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to delete customer", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9273,12 +9273,12 @@ namespace Recommand.Client
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response96>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response96>("Failed to fetch labels", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch labels", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9377,22 +9377,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response97>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response97>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response98>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response98>("Failed to create label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to create label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9491,22 +9491,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response99>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response99>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response100>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response100>("Failed to fetch label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to fetch label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9609,32 +9609,32 @@ namespace Recommand.Client
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response101>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response101>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Invalid request data", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response102>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response102>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response103>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response103>("Failed to update label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to update label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -9733,22 +9733,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 404)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response104>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response104>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Label not found", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response105>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response105>("Failed to delete label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Failed to delete label", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -10046,22 +10046,22 @@ namespace Recommand.Client
                         else
                         if (status_ == 401)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response106>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response106>("User is not authenticated", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("User is not authenticated", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 500)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<Response107>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new RecommandApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new RecommandApiException<Response107>("Internal server error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new RecommandApiException<ValidationErrorResponse>("Internal server error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -10219,12 +10219,9 @@ namespace Recommand.Client
     public partial class Email
     {
 
-        /// <summary>
-        /// When to send the email. If the provided Peppol recipient is null, email becomes the primary delivery method and emails are always sent.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("when")]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EmailWhen>))]
-        public EmailWhen When { get; set; } = Recommand.Client.EmailWhen.On_peppol_failure;
+        public EmailWhen When { get; set; } = default!;
 
         /// <summary>
         /// The email addresses to send the document to.
@@ -10339,7 +10336,7 @@ namespace Recommand.Client
         /// Optional delivery information.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery? Delivery { get; set; } = default!;
+        public Delivery Delivery { get; set; } = default!;
 
         /// <summary>
         /// Optional payment information. For most invoices, this should be provided. For prepaid invoices, this could be omitted.
@@ -10348,7 +10345,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public InvoicePaymentTerms PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -10368,7 +10365,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals? Totals { get; set; } = default!;
+        public Totals Totals { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
         public VatTotals Vat { get; set; } = default!;
@@ -10379,12 +10376,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("attachments")]
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
-        /// <summary>
-        /// The currency of the invoice. Defaults to EUR.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<InvoiceCurrency>))]
-        public InvoiceCurrency Currency { get; set; } = Recommand.Client.InvoiceCurrency.EUR;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -10404,12 +10398,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
         public string? VatNumber { get; set; } = default!;
 
-        /// <summary>
-        /// The scheme that corresponds to the enterprise number. Can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/ICD/).
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<PartyEnterpriseNumberScheme>))]
-        public PartyEnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
         public string? EnterpriseNumber { get; set; } = default!;
@@ -10507,7 +10498,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentMethod")]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<PaymentMeansPaymentMethod>))]
-        public PaymentMeansPaymentMethod PaymentMethod { get; set; } = Recommand.Client.PaymentMeansPaymentMethod.Credit_transfer;
+        public PaymentMeansPaymentMethod PaymentMethod { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("reference")]
         public string Reference { get; set; } = "";
@@ -10663,9 +10654,6 @@ namespace Recommand.Client
     public partial class ItemClassificationCode
     {
 
-        /// <summary>
-        /// The scheme of the item classification code. Can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/UNCL7143/).
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("scheme")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<ItemClassificationCodeScheme>))]
@@ -10787,12 +10775,9 @@ namespace Recommand.Client
     public partial class VAT
     {
 
-        /// <summary>
-        /// VAT category code. All codes can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/UNCL5305/). When sending regular invoices, you should most often use the `S` category. When sending an invoice to another EU country, use the `AE` category for VAT Reverse Charge. In those cases, it is still recommended to include a note in the invoice explaining that the VAT Reverse Charge applies.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("category")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<VATCategory>))]
-        public VATCategory Category { get; set; } = Recommand.Client.VATCategory.S;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Category>))]
+        public Category Category { get; set; } = default!;
 
         /// <summary>
         /// Decimal number as a string with 2 decimal places
@@ -10994,13 +10979,10 @@ namespace Recommand.Client
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string VatAmount { get; set; } = default!;
 
-        /// <summary>
-        /// VAT category code. All codes can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/UNCL5305/). When sending regular invoices, you should most often use the `S` category. When sending an invoice to another EU country, use the `AE` category for VAT Reverse Charge. In those cases, it is still recommended to include a note in the invoice explaining that the VAT Reverse Charge applies.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("category")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<VATSubtotalCategory>))]
-        public VATSubtotalCategory Category { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Category>))]
+        public Category Category { get; set; } = default!;
 
         /// <summary>
         /// Decimal number as a string with 2 decimal places
@@ -11129,7 +11111,7 @@ namespace Recommand.Client
         /// If not provided, the seller will be the company that is sending the invoice.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("seller")]
-        public Party? Seller { get; set; } = default!;
+        public Party Seller { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("buyer")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11139,7 +11121,7 @@ namespace Recommand.Client
         /// Optional delivery information.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery? Delivery { get; set; } = default!;
+        public Delivery Delivery { get; set; } = default!;
 
         /// <summary>
         /// Optional payment information. For most invoices, this should be provided. For prepaid invoices, this could be omitted.
@@ -11148,7 +11130,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public SendInvoicePaymentTerms PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11168,7 +11150,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals? Totals { get; set; } = default!;
+        public Totals Totals { get; set; } = default!;
 
         /// <summary>
         /// If not provided, the VAT totals will be calculated from the document lines.
@@ -11182,12 +11164,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("attachments")]
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
-        /// <summary>
-        /// The currency of the invoice. Defaults to EUR.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SendInvoiceCurrency>))]
-        public SendInvoiceCurrency Currency { get; set; } = Recommand.Client.SendInvoiceCurrency.EUR;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -11253,7 +11232,7 @@ namespace Recommand.Client
         /// References to one or more invoices that are being credited
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("invoiceReferences")]
-        public System.Collections.Generic.ICollection<InvoiceReferences> InvoiceReferences { get; set; } = default!;
+        public System.Collections.Generic.ICollection<CreditNoteInvoiceReference> InvoiceReferences { get; set; } = default!;
 
         /// <summary>
         /// A reference to a related purchase order
@@ -11285,13 +11264,13 @@ namespace Recommand.Client
         /// Optional delivery information.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery? Delivery { get; set; } = default!;
+        public Delivery Delivery { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentMeans")]
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public CreditNotePaymentTerms PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11311,7 +11290,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals? Totals { get; set; } = default!;
+        public Totals Totals { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
         public VatTotals Vat { get; set; } = default!;
@@ -11322,12 +11301,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("attachments")]
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
-        /// <summary>
-        /// The currency of the credit note. Defaults to EUR.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CreditNoteCurrency>))]
-        public CreditNoteCurrency Currency { get; set; } = Recommand.Client.CreditNoteCurrency.EUR;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -11368,7 +11344,7 @@ namespace Recommand.Client
         /// References to one or more invoices that are being credited
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("invoiceReferences")]
-        public System.Collections.Generic.ICollection<InvoiceReferences2> InvoiceReferences { get; set; } = default!;
+        public System.Collections.Generic.ICollection<CreditNoteInvoiceReference> InvoiceReferences { get; set; } = default!;
 
         /// <summary>
         /// A reference to a related purchase order
@@ -11392,7 +11368,7 @@ namespace Recommand.Client
         /// If not provided, the seller will be the company that is sending the credit note.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("seller")]
-        public Party? Seller { get; set; } = default!;
+        public Party Seller { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("buyer")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11402,13 +11378,13 @@ namespace Recommand.Client
         /// Optional delivery information.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery? Delivery { get; set; } = default!;
+        public Delivery Delivery { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentMeans")]
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public SendCreditNotePaymentTerms PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11428,7 +11404,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals? Totals { get; set; } = default!;
+        public Totals Totals { get; set; } = default!;
 
         /// <summary>
         /// If not provided, the VAT totals will be calculated from the document lines.
@@ -11442,12 +11418,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("attachments")]
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
-        /// <summary>
-        /// The currency of the credit note. Defaults to EUR.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SendCreditNoteCurrency>))]
-        public SendCreditNoteCurrency Currency { get; set; } = Recommand.Client.SendCreditNoteCurrency.EUR;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        public Currency Currency { get; set; } = default!;
 
         /// <summary>
         /// If not provided, the due date will be 1 month from the issue date.
@@ -11527,13 +11500,13 @@ namespace Recommand.Client
         /// If not provided, the buyer will be the company that is sending the self billing invoice.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("buyer")]
-        public Party? Buyer { get; set; } = default!;
+        public Party Buyer { get; set; } = default!;
 
         /// <summary>
         /// Optional delivery information.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery? Delivery { get; set; } = default!;
+        public Delivery Delivery { get; set; } = default!;
 
         /// <summary>
         /// Optional payment information. For most invoices, this should be provided. For prepaid invoices, this could be omitted.
@@ -11542,7 +11515,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public SendSelfBillingInvoicePaymentTerms PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11562,7 +11535,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals? Totals { get; set; } = default!;
+        public Totals Totals { get; set; } = default!;
 
         /// <summary>
         /// If not provided, the VAT totals will be calculated from the document lines.
@@ -11576,12 +11549,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("attachments")]
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
-        /// <summary>
-        /// The currency of the invoice. Defaults to EUR.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SendSelfBillingInvoiceCurrency>))]
-        public SendSelfBillingInvoiceCurrency Currency { get; set; } = Recommand.Client.SendSelfBillingInvoiceCurrency.EUR;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -11622,7 +11592,7 @@ namespace Recommand.Client
         /// References to one or more invoices that are being credited
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("invoiceReferences")]
-        public System.Collections.Generic.ICollection<InvoiceReferences3> InvoiceReferences { get; set; } = default!;
+        public System.Collections.Generic.ICollection<CreditNoteInvoiceReference> InvoiceReferences { get; set; } = default!;
 
         /// <summary>
         /// A reference to a related purchase order
@@ -11653,19 +11623,19 @@ namespace Recommand.Client
         /// If not provided, the buyer will be the company that is sending the self billing credit note.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("buyer")]
-        public Party? Buyer { get; set; } = default!;
+        public Party Buyer { get; set; } = default!;
 
         /// <summary>
         /// Optional delivery information.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery? Delivery { get; set; } = default!;
+        public Delivery Delivery { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentMeans")]
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public SendSelfBillingCreditNotePaymentTerms PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11685,7 +11655,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals? Totals { get; set; } = default!;
+        public Totals Totals { get; set; } = default!;
 
         /// <summary>
         /// If not provided, the VAT totals will be calculated from the document lines.
@@ -11699,12 +11669,9 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("attachments")]
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
-        /// <summary>
-        /// The currency of the credit note. Defaults to EUR.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SendSelfBillingCreditNoteCurrency>))]
-        public SendSelfBillingCreditNoteCurrency Currency { get; set; } = Recommand.Client.SendSelfBillingCreditNoteCurrency.EUR;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        public Currency Currency { get; set; } = default!;
 
         /// <summary>
         /// If not provided, the due date will be 1 month from the issue date.
@@ -11740,9 +11707,6 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
         public System.DateTimeOffset IssueDate { get; set; } = default!;
 
-        /// <summary>
-        /// The response code of the message level response (AB: Message acknowledgement, AP: Accepted, RE: Rejected)
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("responseCode")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<MessageLevelResponseResponseCode>))]
@@ -11786,13 +11750,10 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
         public System.DateTimeOffset IssueDate { get; set; } = default!;
 
-        /// <summary>
-        /// The response code of the message level response (AB: Message acknowledgement, AP: Accepted, RE: Rejected)
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("responseCode")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SendMessageLevelResponseResponseCode>))]
-        public SendMessageLevelResponseResponseCode ResponseCode { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<MessageLevelResponseResponseCode>))]
+        public MessageLevelResponseResponseCode ResponseCode { get; set; } = default!;
 
         /// <summary>
         /// Identifies the document on which the message level response is based.
@@ -11868,7 +11829,7 @@ namespace Recommand.Client
         /// Optional delivery information.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery? Delivery { get; set; } = default!;
+        public Delivery Delivery { get; set; } = default!;
 
         /// <summary>
         /// Optional payment information. For most invoices, this should be provided. For prepaid invoices, this could be omitted.
@@ -11877,7 +11838,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public SelfBillingInvoicePaymentTerms PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11897,7 +11858,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals? Totals { get; set; } = default!;
+        public Totals Totals { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
         public VatTotals Vat { get; set; } = default!;
@@ -11908,13 +11869,10 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("attachments")]
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
-        /// <summary>
-        /// The currency of the invoice. Defaults to EUR.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SelfBillingInvoiceCurrency>))]
-        public SelfBillingInvoiceCurrency Currency { get; set; } = Recommand.Client.SelfBillingInvoiceCurrency.EUR;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -11954,7 +11912,7 @@ namespace Recommand.Client
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("invoiceReferences")]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<InvoiceReferences4> InvoiceReferences { get; set; } = new System.Collections.ObjectModel.Collection<InvoiceReferences4>();
+        public System.Collections.Generic.ICollection<CreditNoteInvoiceReference> InvoiceReferences { get; set; } = new System.Collections.ObjectModel.Collection<CreditNoteInvoiceReference>();
 
         /// <summary>
         /// A reference to a related purchase order
@@ -11986,13 +11944,13 @@ namespace Recommand.Client
         /// Optional delivery information.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("delivery")]
-        public Delivery? Delivery { get; set; } = default!;
+        public Delivery Delivery { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentMeans")]
         public System.Collections.Generic.ICollection<PaymentMeans>? PaymentMeans { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentTerms")]
-        public SelfBillingCreditNotePaymentTerms PaymentTerms { get; set; } = default!;
+        public PaymentTerms PaymentTerms { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("lines")]
         [System.ComponentModel.DataAnnotations.Required]
@@ -12012,7 +11970,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Surcharge>? Surcharges { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("totals")]
-        public Totals? Totals { get; set; } = default!;
+        public Totals Totals { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("vat")]
         public VatTotals Vat { get; set; } = default!;
@@ -12023,138 +11981,10 @@ namespace Recommand.Client
         [System.Text.Json.Serialization.JsonPropertyName("attachments")]
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
-        /// <summary>
-        /// The currency of the credit note. Defaults to EUR.
-        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SelfBillingCreditNoteCurrency>))]
-        public SelfBillingCreditNoteCurrency Currency { get; set; } = Recommand.Client.SelfBillingCreditNoteCurrency.EUR;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [JsonInheritanceConverter(typeof(SendDocumentRequest), "documentType")]
-    [JsonInheritanceAttribute("invoice", typeof(SendInvoiceRequest))]
-    [JsonInheritanceAttribute("creditNote", typeof(SendCreditNoteRequest))]
-    [JsonInheritanceAttribute("selfBillingInvoice", typeof(SendSelfBillingInvoiceRequest))]
-    [JsonInheritanceAttribute("selfBillingCreditNote", typeof(SendSelfBillingCreditNoteRequest))]
-    [JsonInheritanceAttribute("messageLevelResponse", typeof(SendMessageLevelResponseRequest))]
-    [JsonInheritanceAttribute("xml", typeof(SendXmlRequest))]
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendDocumentRequest
-    {
-
-        /// <summary>
-        /// The Peppol address of the recipient. If null, the document will be sent via email only (requires `email.to`).
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("recipient")]
-        public string? Recipient { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public Email Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("pdfGeneration")]
-        public PDFGeneration PdfGeneration { get; set; } = default!;
-
-        /// <summary>
-        /// The document type identifier. Not required, only used when documentType is "xml". For supported document types, the doctypeId can be detected automatically from your XML document, if that's not the case you can provide it manually.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("doctypeId")]
-        public string DoctypeId { get; set; } = default!;
-
-        /// <summary>
-        /// The process identifier. Not required, only used when documentType is "xml". For supported document types, the processId can be detected automatically from your XML document, if that's not the case you can provide it manually.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("processId")]
-        public string ProcessId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendInvoiceRequest : SendDocumentRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("document")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public SendInvoice Document { get; set; } = new SendInvoice();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendCreditNoteRequest : SendDocumentRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("document")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public SendCreditNote Document { get; set; } = new SendCreditNote();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendSelfBillingInvoiceRequest : SendDocumentRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("document")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public SendSelfBillingInvoice Document { get; set; } = new SendSelfBillingInvoice();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendSelfBillingCreditNoteRequest : SendDocumentRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("document")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public SendSelfBillingCreditNote Document { get; set; } = new SendSelfBillingCreditNote();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendMessageLevelResponseRequest : SendDocumentRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("document")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public SendMessageLevelResponse Document { get; set; } = new SendMessageLevelResponse();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendXmlRequest : SendDocumentRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("document")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Document { get; set; } = default!;
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class InvoicePaymentTerms
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -12168,5980 +11998,8 @@ namespace Recommand.Client
     }
 
     /// <summary>
-    /// The identifier of the delivery location. Schemes can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/ICD/).
+    /// When to send the email. If the provided Peppol recipient is null, email becomes the primary delivery method and emails are always sent.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeliveryLocationIdentifier
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Scheme { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Identifier { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeliveryLocation
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("street")]
-        public string? Street { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("street2")]
-        public string? Street2 { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        public string? City { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("postalZone")]
-        public string? PostalZone { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.ComponentModel.DataAnnotations.Required]
-        [System.ComponentModel.DataAnnotations.StringLength(2, MinimumLength = 2)]
-        public string Country { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// The standard identifier of the item based on a registered scheme. Schemes can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/ICD/).
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class LineStandardId
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Scheme { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Identifier { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendInvoicePaymentTerms
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreditNotePaymentTerms
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendCreditNotePaymentTerms
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendSelfBillingInvoicePaymentTerms
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendSelfBillingCreditNotePaymentTerms
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SelfBillingInvoicePaymentTerms
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SelfBillingCreditNotePaymentTerms
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Note { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyResponseCompany
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("address")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Address { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string PostalCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string City { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Country { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        public string? EnterpriseNumberScheme { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string EnterpriseNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string VatNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("isSmpRecipient")]
-        public bool IsSmpRecipient { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("isVerified")]
-        public bool IsVerified { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyResponseCompany
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("address")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Address { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string PostalCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string City { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Country { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        public string? EnterpriseNumberScheme { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string EnterpriseNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string VatNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("isSmpRecipient")]
-        public bool IsSmpRecipient { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("isVerified")]
-        public bool IsVerified { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyResponseCompany
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("address")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Address { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string PostalCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string City { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Country { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        public string? EnterpriseNumberScheme { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string EnterpriseNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string VatNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("isSmpRecipient")]
-        public bool IsSmpRecipient { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("isVerified")]
-        public bool IsVerified { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyIdentifierResponseIdentifier
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Scheme { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Identifier { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyIdentifierResponseIdentifier
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Scheme { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Identifier { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyIdentifierResponseIdentifier
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Scheme { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Identifier { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyDocumentTypeResponseDocumentType
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("docTypeId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string DocTypeId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("processId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ProcessId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyDocumentTypeResponseDocumentType
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("docTypeId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string DocTypeId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("processId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ProcessId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyDocumentTypeResponseDocumentType
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("docTypeId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string DocTypeId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("processId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ProcessId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyNotificationEmailAddressResponseNotificationEmailAddress
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notifyIncoming")]
-        public bool NotifyIncoming { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notifyOutgoing")]
-        public bool NotifyOutgoing { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfIncoming")]
-        public bool IncludeAutoGeneratedPdfIncoming { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfOutgoing")]
-        public bool IncludeAutoGeneratedPdfOutgoing { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonIncoming")]
-        public bool IncludeDocumentJsonIncoming { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonOutgoing")]
-        public bool IncludeDocumentJsonOutgoing { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyNotificationEmailAddressResponseNotificationEmailAddress
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notifyIncoming")]
-        public bool NotifyIncoming { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notifyOutgoing")]
-        public bool NotifyOutgoing { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfIncoming")]
-        public bool IncludeAutoGeneratedPdfIncoming { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfOutgoing")]
-        public bool IncludeAutoGeneratedPdfOutgoing { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonIncoming")]
-        public bool IncludeDocumentJsonIncoming { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonOutgoing")]
-        public bool IncludeDocumentJsonOutgoing { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyNotificationEmailAddressResponseNotificationEmailAddress
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notifyIncoming")]
-        public bool NotifyIncoming { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notifyOutgoing")]
-        public bool NotifyOutgoing { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfIncoming")]
-        public bool IncludeAutoGeneratedPdfIncoming { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfOutgoing")]
-        public bool IncludeAutoGeneratedPdfOutgoing { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonIncoming")]
-        public bool IncludeDocumentJsonIncoming { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonOutgoing")]
-        public bool IncludeDocumentJsonOutgoing { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetDocumentsResponsePagination
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("total")]
-        public double Total { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("page")]
-        public double Page { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("limit")]
-        public double Limit { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("totalPages")]
-        public double TotalPages { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetDocumentResponseDocument
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("direction")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<GetDocumentResponseDocumentDirection>))]
-        public GetDocumentResponseDocumentDirection Direction { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("senderId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string SenderId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("receiverId")]
-        public string? ReceiverId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("docTypeId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string DocTypeId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("processId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ProcessId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("countryC1")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CountryC1 { get; set; } = default!;
-
-        /// <summary>
-        /// The type of document.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("type")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<GetDocumentResponseDocumentType>))]
-        public GetDocumentResponseDocumentType Type { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("readAt")]
-        public string? ReadAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string UpdatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("xml")]
-        public string? Xml { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
-        public Parsed Parsed { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("validation")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetDocumentResponseDocumentValidation Validation { get; set; } = new GetDocumentResponseDocumentValidation();
-
-        [System.Text.Json.Serialization.JsonPropertyName("sentOverPeppol")]
-        public bool SentOverPeppol { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("sentOverEmail")]
-        public bool SentOverEmail { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("emailRecipients")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> EmailRecipients { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("labels")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Labels> Labels { get; set; } = new System.Collections.ObjectModel.Collection<Labels>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("peppolMessageId")]
-        public string? PeppolMessageId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("peppolConversationId")]
-        public string? PeppolConversationId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("receivedPeppolSignalMessage")]
-        public string? ReceivedPeppolSignalMessage { get; set; } = default!;
-
-        /// <summary>
-        /// The envelope ID of the document, also known as the SBDH instance identifier (Standard Business Document Header Instance Identifier)
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("envelopeId")]
-        public string? EnvelopeId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetDocumentResponseDocumentValidation
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("result")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<GetDocumentResponseDocumentValidationResult>))]
-        public GetDocumentResponseDocumentValidationResult Result { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Errors> Errors { get; set; } = new System.Collections.ObjectModel.Collection<Errors>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateWebhookResponseWebhook
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        public string? CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("url")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Uri Url { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetWebhookResponseWebhook
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        public string? CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("url")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Uri Url { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateWebhookResponseWebhook
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        public string? CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("url")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Uri Url { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetPlaygroundResponsePlayground
-    {
-
-        /// <summary>
-        /// Team ID
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string Id { get; set; } = default!;
-
-        /// <summary>
-        /// Team name
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string Name { get; set; } = default!;
-
-        /// <summary>
-        /// Team description
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("teamDescription")]
-        public string TeamDescription { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the team is a playground
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("isPlayground")]
-        public bool IsPlayground { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to use the Peppol Test Network
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("useTestNetwork")]
-        public bool UseTestNetwork { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreatePlaygroundResponsePlayground
-    {
-
-        /// <summary>
-        /// Team ID
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string Id { get; set; } = default!;
-
-        /// <summary>
-        /// Team name
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string Name { get; set; } = default!;
-
-        /// <summary>
-        /// Team description
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("teamDescription")]
-        public string TeamDescription { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the team is a playground
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("isPlayground")]
-        public bool IsPlayground { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to use the Peppol Test Network
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("useTestNetwork")]
-        public bool UseTestNetwork { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetSuppliersResponsePagination
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("total")]
-        public double Total { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("page")]
-        public double Page { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("limit")]
-        public double Limit { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("totalPages")]
-        public double TotalPages { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpsertSupplierResponseSupplier
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        public string? VatNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string UpdatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("labels")]
-        public System.Collections.Generic.ICollection<Labels2> Labels { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetSupplierResponseSupplier
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        public string? VatNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string UpdatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("labels")]
-        public System.Collections.Generic.ICollection<Labels3> Labels { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCustomersResponsePagination
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("total")]
-        public double Total { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("page")]
-        public double Page { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("limit")]
-        public double Limit { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("totalPages")]
-        public double TotalPages { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpsertCustomerResponseCustomer
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        public string? VatNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
-        public string? EnterpriseNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("address")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Address { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string City { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string PostalCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Country { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCustomerResponseCustomer
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        public string? VatNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
-        public string? EnterpriseNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("address")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Address { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string City { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string PostalCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Country { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateLabelResponseLabel
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ColorHex { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetLabelResponseLabel
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ColorHex { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateLabelResponseLabel
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ColorHex { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("address")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Address { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string PostalCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string City { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CreateCompanyRequestCountry>))]
-        public CreateCompanyRequestCountry Country { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CreateCompanyRequestEnterpriseNumberScheme>))]
-        public CreateCompanyRequestEnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
-
-        /// <summary>
-        /// The enterprise number of the company. Can only contain alphanumeric characters. For Belgian businesses it will be inferred from the VAT number if not provided.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
-        public string? EnterpriseNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        public string? VatNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public Email2 Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("isSmpRecipient")]
-        public bool IsSmpRecipient { get; set; } = true;
-
-        /// <summary>
-        /// If true, the automatic creation of company identifiers and document types will be skipped. You will need to create them afterwards using the company identifier creation endpoint and company document type creation endpoint.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("skipDefaultCompanySetup")]
-        public bool SkipDefaultCompanySetup { get; set; } = false;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("address")]
-        public string Address { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
-        public string PostalCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        public string City { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<UpdateCompanyRequestCountry>))]
-        public UpdateCompanyRequestCountry Country { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<UpdateCompanyRequestEnterpriseNumberScheme>))]
-        public UpdateCompanyRequestEnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
-        public string? EnterpriseNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        public string? VatNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public Email3 Email { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("isSmpRecipient")]
-        public bool IsSmpRecipient { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyIdentifierRequest
-    {
-
-        /// <summary>
-        /// The scheme of the identifier
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Scheme { get; set; } = default!;
-
-        /// <summary>
-        /// The value of the identifier
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Identifier { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyIdentifierRequest
-    {
-
-        /// <summary>
-        /// The scheme of the identifier
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Scheme { get; set; } = default!;
-
-        /// <summary>
-        /// The value of the identifier
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Identifier { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyDocumentTypeRequest
-    {
-
-        /// <summary>
-        /// The ID of the document type to create
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("docTypeId")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string DocTypeId { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the process to create
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("processId")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string ProcessId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyDocumentTypeRequest
-    {
-
-        /// <summary>
-        /// The ID of the document type to update
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("docTypeId")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string DocTypeId { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the process to update
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("processId")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string ProcessId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyNotificationEmailAddressRequest
-    {
-
-        /// <summary>
-        /// The email address to create
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Email { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to notify on incoming documents
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("notifyIncoming")]
-        public bool NotifyIncoming { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to notify on outgoing documents
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("notifyOutgoing")]
-        public bool NotifyOutgoing { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to include the auto-generated PDF attachment for incoming document notifications
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfIncoming")]
-        public bool IncludeAutoGeneratedPdfIncoming { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to include the auto-generated PDF attachment for outgoing document notifications
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfOutgoing")]
-        public bool IncludeAutoGeneratedPdfOutgoing { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to include the document.json attachment for incoming document notifications
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonIncoming")]
-        public bool IncludeDocumentJsonIncoming { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to include the document.json attachment for outgoing document notifications
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonOutgoing")]
-        public bool IncludeDocumentJsonOutgoing { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyNotificationEmailAddressRequest
-    {
-
-        /// <summary>
-        /// The email address to update
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Email { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to notify on incoming documents
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("notifyIncoming")]
-        public bool NotifyIncoming { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to notify on outgoing documents
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("notifyOutgoing")]
-        public bool NotifyOutgoing { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to include the auto-generated PDF attachment for incoming document notifications
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfIncoming")]
-        public bool IncludeAutoGeneratedPdfIncoming { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to include the auto-generated PDF attachment for outgoing document notifications
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfOutgoing")]
-        public bool IncludeAutoGeneratedPdfOutgoing { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to include the document.json attachment for incoming document notifications
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonIncoming")]
-        public bool IncludeDocumentJsonIncoming { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to include the document.json attachment for outgoing document notifications
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonOutgoing")]
-        public bool IncludeDocumentJsonOutgoing { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// Filter documents by company ID
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CompanyId
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// Filter documents by label ID
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class LabelId
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// Filter documents by direction (incoming or outgoing)
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Direction
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"incoming")]
-        Incoming = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"outgoing")]
-        Outgoing = 1,
-
-    }
-
-    /// <summary>
-    /// Filter documents by type
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Type
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"invoice")]
-        Invoice = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"creditNote")]
-        CreditNote = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingInvoice")]
-        SelfBillingInvoice = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingCreditNote")]
-        SelfBillingCreditNote = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"messageLevelResponse")]
-        MessageLevelResponse = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"unknown")]
-        Unknown = 5,
-
-    }
-
-    /// <summary>
-    /// Filter documents by read status: true for unread documents (readAt is null), false for read documents.
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum IsUnread
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"true")]
-        True = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"false")]
-        False = 1,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class MarkAsReadRequest
-    {
-
-        /// <summary>
-        /// Whether to mark the document as read (true) or unread (false). If not provided, defaults to true.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("read")]
-        public bool Read { get; set; } = true;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// When to include the autogenerated PDF in the package
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum GeneratePdf
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"never")]
-        Never = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"always")]
-        Always = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"when_no_pdf_attachment")]
-        When_no_pdf_attachment = 2,
-
-    }
-
-    /// <summary>
-    /// The type of the document to render
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Type2
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"html")]
-        Html = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"pdf")]
-        Pdf = 1,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class VerifyRecipientRequest
-    {
-
-        /// <summary>
-        /// The Peppol address of the recipient to verify.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("peppolAddress")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string PeppolAddress { get; set; } = default!;
-
-        /// <summary>
-        /// If true, fetches endpoint details for all supported document types.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeEndpointDetails")]
-        public bool IncludeEndpointDetails { get; set; } = default!;
-
-        /// <summary>
-        /// If true, fetches the business card from the SMP for company name and country.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("includeBusinessCard")]
-        public bool IncludeBusinessCard { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class VerifyDocumentSupportRequest
-    {
-
-        /// <summary>
-        /// The Peppol address of the recipient to verify.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("peppolAddress")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string PeppolAddress { get; set; } = default!;
-
-        /// <summary>
-        /// The document type to verify. You can use a full document type ID, or the simplified versions (e.g. "invoice", "creditNote", "selfBillingInvoice", "selfBillingCreditNote", ...).
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string DocumentType { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SearchDirectoryRequest
-    {
-
-        /// <summary>
-        /// The search query to find recipients.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("query")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Query { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateWebhookRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("url")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Uri Url { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        public string? CompanyId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateWebhookRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("url")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Uri Url { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        public string? CompanyId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreatePlaygroundRequest
-    {
-
-        /// <summary>
-        /// Playground name
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Name { get; set; } = default!;
-
-        /// <summary>
-        /// Whether to use the Peppol Test Network
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("useTestNetwork")]
-        public bool UseTestNetwork { get; set; } = false;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpsertSupplierRequest
-    {
-
-        /// <summary>
-        /// The internal ID of the supplier to update. If provided, updates by id.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string Id { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the supplier
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        /// <summary>
-        /// The external ID of the supplier. If provided without id, finds by externalId and updates or creates if not found.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        /// <summary>
-        /// The VAT number of the supplier
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        public string? VatNumber { get; set; } = default!;
-
-        /// <summary>
-        /// The Peppol addresses of the supplier
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
-        public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpsertCustomerRequest
-    {
-
-        /// <summary>
-        /// The internal ID of the customer to update. If provided, updates by id.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string Id { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        /// <summary>
-        /// The external ID of the customer. If provided without id, finds by externalId and updates or creates if not found.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        /// <summary>
-        /// The VAT number of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
-        public string? VatNumber { get; set; } = default!;
-
-        /// <summary>
-        /// The enterprise number of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
-        public string? EnterpriseNumber { get; set; } = default!;
-
-        /// <summary>
-        /// The Peppol addresses of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
-        public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = default!;
-
-        /// <summary>
-        /// The street address of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("address")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Address { get; set; } = default!;
-
-        /// <summary>
-        /// The city of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string City { get; set; } = default!;
-
-        /// <summary>
-        /// The postal code of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string PostalCode { get; set; } = default!;
-
-        /// <summary>
-        /// The country code (ISO 3166-1 alpha-2) of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Country { get; set; } = default!;
-
-        /// <summary>
-        /// The email address of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        /// <summary>
-        /// The phone number of the customer
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateLabelRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.ComponentModel.DataAnnotations.RegularExpression(@"^#[A-Fa-f0-9]{6}$")]
-        public string ColorHex { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateLabelRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.StringLength(int.MaxValue, MinimumLength = 1)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.RegularExpression(@"^#[A-Fa-f0-9]{6}$")]
-        public string ColorHex { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SendDocumentResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("sentOverPeppol")]
-        public bool SentOverPeppol { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("sentOverEmail")]
-        public bool SentOverEmail { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("emailRecipients")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> EmailRecipients { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string TeamId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string CompanyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("peppolMessageId")]
-        public string? PeppolMessageId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("envelopeId")]
-        public string? EnvelopeId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response2
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompaniesResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("companies")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Companies> Companies { get; set; } = new System.Collections.ObjectModel.Collection<Companies>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("company")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateCompanyResponseCompany Company { get; set; } = new CreateCompanyResponseCompany();
-
-        [System.Text.Json.Serialization.JsonPropertyName("verificationUrl")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string VerificationUrl { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("company")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetCompanyResponseCompany Company { get; set; } = new GetCompanyResponseCompany();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("company")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpdateCompanyResponseCompany Company { get; set; } = new UpdateCompanyResponseCompany();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeleteCompanyResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class VerifyCompanyResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("verificationUrl")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string VerificationUrl { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response3
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response4
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response5
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response6
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response7
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response8
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response9
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response10
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response11
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response12
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response13
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response14
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyIdentifiersResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("identifiers")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Identifiers> Identifiers { get; set; } = new System.Collections.ObjectModel.Collection<Identifiers>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyIdentifierResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateCompanyIdentifierResponseIdentifier Identifier { get; set; } = new CreateCompanyIdentifierResponseIdentifier();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyIdentifierResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetCompanyIdentifierResponseIdentifier Identifier { get; set; } = new GetCompanyIdentifierResponseIdentifier();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyIdentifierResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpdateCompanyIdentifierResponseIdentifier Identifier { get; set; } = new UpdateCompanyIdentifierResponseIdentifier();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeleteCompanyIdentifierResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response15
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response16
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response17
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response18
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response19
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response20
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response21
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response22
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response23
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyDocumentTypesResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("documentTypes")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<DocumentTypes> DocumentTypes { get; set; } = new System.Collections.ObjectModel.Collection<DocumentTypes>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyDocumentTypeResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateCompanyDocumentTypeResponseDocumentType DocumentType { get; set; } = new CreateCompanyDocumentTypeResponseDocumentType();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyDocumentTypeResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetCompanyDocumentTypeResponseDocumentType DocumentType { get; set; } = new GetCompanyDocumentTypeResponseDocumentType();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyDocumentTypeResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpdateCompanyDocumentTypeResponseDocumentType DocumentType { get; set; } = new UpdateCompanyDocumentTypeResponseDocumentType();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeleteCompanyDocumentTypeResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response24
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response25
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response26
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response27
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response28
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response29
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response30
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response31
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response32
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response33
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyNotificationEmailAddressesResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddresses")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<NotificationEmailAddresses> NotificationEmailAddresses { get; set; } = new System.Collections.ObjectModel.Collection<NotificationEmailAddresses>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateCompanyNotificationEmailAddressResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateCompanyNotificationEmailAddressResponseNotificationEmailAddress NotificationEmailAddress { get; set; } = new CreateCompanyNotificationEmailAddressResponseNotificationEmailAddress();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCompanyNotificationEmailAddressResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetCompanyNotificationEmailAddressResponseNotificationEmailAddress NotificationEmailAddress { get; set; } = new GetCompanyNotificationEmailAddressResponseNotificationEmailAddress();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateCompanyNotificationEmailAddressResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpdateCompanyNotificationEmailAddressResponseNotificationEmailAddress NotificationEmailAddress { get; set; } = new UpdateCompanyNotificationEmailAddressResponseNotificationEmailAddress();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeleteCompanyNotificationEmailAddressResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response34
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response35
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response36
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response37
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response38
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response39
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response40
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response41
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response42
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response43
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response44
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetDocumentsResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("documents")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Documents> Documents { get; set; } = new System.Collections.ObjectModel.Collection<Documents>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetDocumentsResponsePagination Pagination { get; set; } = new GetDocumentsResponsePagination();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetDocumentResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("document")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetDocumentResponseDocument Document { get; set; } = new GetDocumentResponseDocument();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeleteDocumentResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetInboxResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("documents")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Documents2> Documents { get; set; } = new System.Collections.ObjectModel.Collection<Documents2>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class MarkAsReadResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class AssignLabelToDocumentResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UnassignLabelFromDocumentResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response45
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response46
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response47
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response48
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response49
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response50
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response51
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response52
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response53
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response54
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response55
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response56
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response57
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response58
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response59
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response60
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response61
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class VerifyRecipientResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the recipient is registered in the Peppol network.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("isValid")]
-        public bool IsValid { get; set; } = default!;
-
-        /// <summary>
-        /// The SMP URL of the recipient.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("smpUrl")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string SmpUrl { get; set; } = default!;
-
-        /// <summary>
-        /// The service metadata references of the recipient.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("serviceMetadataReferences")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> ServiceMetadataReferences { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        /// <summary>
-        /// The SMP hostnames of the recipient.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("smpHostnames")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> SmpHostnames { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        /// <summary>
-        /// Document types supported by this participant. Includes endpoint details when includeEndpointDetails is true.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("supportedDocuments")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<SupportedDocuments> SupportedDocuments { get; set; } = new System.Collections.ObjectModel.Collection<SupportedDocuments>();
-
-        /// <summary>
-        /// Company name from SMP business card.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("companyName")]
-        public string? CompanyName { get; set; } = default!;
-
-        /// <summary>
-        /// Country code from SMP business card.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("countryCode")]
-        public string? CountryCode { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class VerifyDocumentSupportResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the recipient supports the document type.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("isValid")]
-        public bool IsValid { get; set; } = default!;
-
-        /// <summary>
-        /// The SMP URL of the recipient.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("smpUrl")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string SmpUrl { get; set; } = default!;
-
-        /// <summary>
-        /// Service description from the endpoint metadata.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("serviceProvider")]
-        public string? ServiceProvider { get; set; } = default!;
-
-        /// <summary>
-        /// The endpoint URL.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("serviceEndpoint")]
-        public string? ServiceEndpoint { get; set; } = default!;
-
-        /// <summary>
-        /// Technical contact URL.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("technicalContact")]
-        public string? TechnicalContact { get; set; } = default!;
-
-        /// <summary>
-        /// Certificate expiry date (ISO 8601).
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("certificateExpiry")]
-        public string? CertificateExpiry { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SearchDirectoryResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("results")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Results> Results { get; set; } = new System.Collections.ObjectModel.Collection<Results>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response62
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetWebhooksResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("webhooks")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Webhooks> Webhooks { get; set; } = new System.Collections.ObjectModel.Collection<Webhooks>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateWebhookResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateWebhookResponseWebhook Webhook { get; set; } = new CreateWebhookResponseWebhook();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetWebhookResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetWebhookResponseWebhook Webhook { get; set; } = new GetWebhookResponseWebhook();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateWebhookResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpdateWebhookResponseWebhook Webhook { get; set; } = new UpdateWebhookResponseWebhook();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeleteWebhookResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response63
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response64
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response65
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response66
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response67
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response68
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response69
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response70
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response71
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetPlaygroundResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("playground")]
-        public GetPlaygroundResponsePlayground Playground { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreatePlaygroundResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("playground")]
-        public CreatePlaygroundResponsePlayground Playground { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response72
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response73
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response74
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response75
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response76
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetSuppliersResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("suppliers")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Suppliers> Suppliers { get; set; } = new System.Collections.ObjectModel.Collection<Suppliers>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetSuppliersResponsePagination Pagination { get; set; } = new GetSuppliersResponsePagination();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpsertSupplierResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("supplier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpsertSupplierResponseSupplier Supplier { get; set; } = new UpsertSupplierResponseSupplier();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetSupplierResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("supplier")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetSupplierResponseSupplier Supplier { get; set; } = new GetSupplierResponseSupplier();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeleteSupplierResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class AssignLabelToSupplierResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UnassignLabelFromSupplierResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response77
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response78
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response79
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response80
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response81
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response82
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response83
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response84
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response85
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response86
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response87
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response88
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCustomersResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("customers")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Customers> Customers { get; set; } = new System.Collections.ObjectModel.Collection<Customers>();
-
-        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetCustomersResponsePagination Pagination { get; set; } = new GetCustomersResponsePagination();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpsertCustomerResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpsertCustomerResponseCustomer Customer { get; set; } = new UpsertCustomerResponseCustomer();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetCustomerResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetCustomerResponseCustomer Customer { get; set; } = new GetCustomerResponseCustomer();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeleteCustomerResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response89
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response90
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response91
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response92
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response93
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response94
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response95
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetLabelsResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("labels")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Labels4> Labels { get; set; } = new System.Collections.ObjectModel.Collection<Labels4>();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreateLabelResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("label")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateLabelResponseLabel Label { get; set; } = new CreateLabelResponseLabel();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetLabelResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("label")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public GetLabelResponseLabel Label { get; set; } = new GetLabelResponseLabel();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdateLabelResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("label")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpdateLabelResponseLabel Label { get; set; } = new UpdateLabelResponseLabel();
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeleteLabelResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response96
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response97
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response98
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response99
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response100
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response101
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response102
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response103
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response104
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response105
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class VerifyAuthResponse
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response106
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Response107
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("success")]
-        public bool Success { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum EmailWhen
     {
@@ -18150,12 +12008,34 @@ namespace Recommand.Client
         Always = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"on_peppol_failure")]
-        On_peppol_failure = 1,
+        OnPeppolFailure = 1,
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum InvoiceCurrency
+    public partial class PaymentTerms
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Note { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// The currency of the invoice. Defaults to EUR.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum Currency
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"XUA")]
@@ -18694,8 +12574,11 @@ namespace Recommand.Client
 
     }
 
+    /// <summary>
+    /// The scheme that corresponds to the enterprise number. Can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/ICD/).
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum PartyEnterpriseNumberScheme
+    public enum EnterpriseNumberScheme
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"0002")]
@@ -19405,6 +13288,64 @@ namespace Recommand.Client
 
     }
 
+    /// <summary>
+    /// The identifier of the delivery location. Schemes can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/ICD/).
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeliveryLocationIdentifier
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Scheme { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Identifier { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeliveryLocation
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("street")]
+        public string? Street { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("street2")]
+        public string? Street2 { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        public string? City { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("postalZone")]
+        public string? PostalZone { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.StringLength(2, MinimumLength = 2)]
+        public string Country { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum PaymentMeansPaymentMethod
     {
@@ -19413,31 +13354,60 @@ namespace Recommand.Client
         Cash = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"credit_transfer")]
-        Credit_transfer = 1,
+        CreditTransfer = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"debit_transfer")]
-        Debit_transfer = 2,
+        DebitTransfer = 2,
 
         [System.Runtime.Serialization.EnumMember(Value = @"bank_card")]
-        Bank_card = 3,
+        BankCard = 3,
 
         [System.Runtime.Serialization.EnumMember(Value = @"credit_card")]
-        Credit_card = 4,
+        CreditCard = 4,
 
         [System.Runtime.Serialization.EnumMember(Value = @"debit_card")]
-        Debit_card = 5,
+        DebitCard = 5,
 
         [System.Runtime.Serialization.EnumMember(Value = @"sepa_credit_transfer")]
-        Sepa_credit_transfer = 6,
+        SepaCreditTransfer = 6,
 
         [System.Runtime.Serialization.EnumMember(Value = @"sepa_direct_debit")]
-        Sepa_direct_debit = 7,
+        SepaDirectDebit = 7,
 
         [System.Runtime.Serialization.EnumMember(Value = @"other")]
         Other = 8,
 
     }
 
+    /// <summary>
+    /// The standard identifier of the item based on a registered scheme. Schemes can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/ICD/).
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class LineStandardId
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Scheme { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Identifier { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// The scheme of the item classification code. Can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/UNCL7143/).
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum ItemClassificationCodeScheme
     {
@@ -19999,8 +13969,11 @@ namespace Recommand.Client
 
     }
 
+    /// <summary>
+    /// VAT category code. All codes can be found [here](https://docs.peppol.eu/poacc/billing/3.0/codelist/UNCL5305/). When sending regular invoices, you should most often use the `S` category. When sending an invoice to another EU country, use the `AE` category for VAT Reverse Charge. In those cases, it is still recommended to include a note in the invoice explaining that the VAT Reverse Charge applies.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum VATCategory
+    public enum Category
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"AE")]
@@ -20036,583 +14009,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum VATSubtotalCategory
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AE")]
-        AE = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"E")]
-        E = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"S")]
-        S = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"Z")]
-        Z = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"G")]
-        G = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"O")]
-        O = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"K")]
-        K = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"L")]
-        L = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"M")]
-        M = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"B")]
-        B = 9,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum SendInvoiceCurrency
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XUA")]
-        XUA = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AFN")]
-        AFN = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DZD")]
-        DZD = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ARS")]
-        ARS = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AMD")]
-        AMD = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AWG")]
-        AWG = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AUD")]
-        AUD = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AZN")]
-        AZN = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BSD")]
-        BSD = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BHD")]
-        BHD = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"THB")]
-        THB = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PAB")]
-        PAB = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BBD")]
-        BBD = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BYN")]
-        BYN = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BZD")]
-        BZD = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BMD")]
-        BMD = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VES")]
-        VES = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VED")]
-        VED = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOB")]
-        BOB = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBA")]
-        XBA = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBB")]
-        XBB = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBD")]
-        XBD = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBC")]
-        XBC = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BRL")]
-        BRL = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BND")]
-        BND = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BGN")]
-        BGN = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BIF")]
-        BIF = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CVE")]
-        CVE = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CAD")]
-        CAD = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KYD")]
-        KYD = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XOF")]
-        XOF = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAF")]
-        XAF = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPF")]
-        XPF = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLP")]
-        CLP = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XTS")]
-        XTS = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COP")]
-        COP = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KMF")]
-        KMF = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CDF")]
-        CDF = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BAM")]
-        BAM = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NIO")]
-        NIO = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CRC")]
-        CRC = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CUP")]
-        CUP = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CZK")]
-        CZK = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GMD")]
-        GMD = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DKK")]
-        DKK = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MKD")]
-        MKD = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DJF")]
-        DJF = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"STN")]
-        STN = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DOP")]
-        DOP = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VND")]
-        VND = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XCD")]
-        XCD = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EGP")]
-        EGP = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SVC")]
-        SVC = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ETB")]
-        ETB = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EUR")]
-        EUR = 54,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FKP")]
-        FKP = 55,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FJD")]
-        FJD = 56,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HUF")]
-        HUF = 57,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GHS")]
-        GHS = 58,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GIP")]
-        GIP = 59,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAU")]
-        XAU = 60,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HTG")]
-        HTG = 61,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PYG")]
-        PYG = 62,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GNF")]
-        GNF = 63,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GYD")]
-        GYD = 64,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HKD")]
-        HKD = 65,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UAH")]
-        UAH = 66,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ISK")]
-        ISK = 67,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"INR")]
-        INR = 68,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IRR")]
-        IRR = 69,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IQD")]
-        IQD = 70,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JMD")]
-        JMD = 71,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JOD")]
-        JOD = 72,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KES")]
-        KES = 73,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PGK")]
-        PGK = 74,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KWD")]
-        KWD = 75,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AOA")]
-        AOA = 76,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MMK")]
-        MMK = 77,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LAK")]
-        LAK = 78,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GEL")]
-        GEL = 79,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LBP")]
-        LBP = 80,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ALL")]
-        ALL = 81,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HNL")]
-        HNL = 82,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LRD")]
-        LRD = 83,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LYD")]
-        LYD = 84,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SZL")]
-        SZL = 85,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LSL")]
-        LSL = 86,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MGA")]
-        MGA = 87,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MWK")]
-        MWK = 88,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MYR")]
-        MYR = 89,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MUR")]
-        MUR = 90,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXN")]
-        MXN = 91,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXV")]
-        MXV = 92,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MDL")]
-        MDL = 93,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MAD")]
-        MAD = 94,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MZN")]
-        MZN = 95,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOV")]
-        BOV = 96,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NGN")]
-        NGN = 97,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ERN")]
-        ERN = 98,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NAD")]
-        NAD = 99,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NPR")]
-        NPR = 100,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ANG")]
-        ANG = 101,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ILS")]
-        ILS = 102,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TWD")]
-        TWD = 103,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NZD")]
-        NZD = 104,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BTN")]
-        BTN = 105,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KPW")]
-        KPW = 106,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NOK")]
-        NOK = 107,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MRU")]
-        MRU = 108,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TOP")]
-        TOP = 109,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PKR")]
-        PKR = 110,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPD")]
-        XPD = 111,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MOP")]
-        MOP = 112,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYU")]
-        UYU = 113,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PHP")]
-        PHP = 114,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPT")]
-        XPT = 115,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GBP")]
-        GBP = 116,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BWP")]
-        BWP = 117,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"QAR")]
-        QAR = 118,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GTQ")]
-        GTQ = 119,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZAR")]
-        ZAR = 120,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"OMR")]
-        OMR = 121,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KHR")]
-        KHR = 122,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RON")]
-        RON = 123,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MVR")]
-        MVR = 124,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IDR")]
-        IDR = 125,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RUB")]
-        RUB = 126,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RWF")]
-        RWF = 127,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SHP")]
-        SHP = 128,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SAR")]
-        SAR = 129,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XDR")]
-        XDR = 130,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RSD")]
-        RSD = 131,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SCR")]
-        SCR = 132,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SLE")]
-        SLE = 133,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAG")]
-        XAG = 134,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SGD")]
-        SGD = 135,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PEN")]
-        PEN = 136,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SBD")]
-        SBD = 137,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KGS")]
-        KGS = 138,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SOS")]
-        SOS = 139,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TJS")]
-        TJS = 140,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SSP")]
-        SSP = 141,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LKR")]
-        LKR = 142,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XSU")]
-        XSU = 143,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SDG")]
-        SDG = 144,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SRD")]
-        SRD = 145,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SEK")]
-        SEK = 146,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHF")]
-        CHF = 147,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SYP")]
-        SYP = 148,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BDT")]
-        BDT = 149,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"WST")]
-        WST = 150,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TZS")]
-        TZS = 151,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KZT")]
-        KZT = 152,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XXX")]
-        XXX = 153,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TTD")]
-        TTD = 154,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MNT")]
-        MNT = 155,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TND")]
-        TND = 156,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TRY")]
-        TRY = 157,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TMT")]
-        TMT = 158,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AED")]
-        AED = 159,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UGX")]
-        UGX = 160,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLF")]
-        CLF = 161,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COU")]
-        COU = 162,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYW")]
-        UYW = 163,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYI")]
-        UYI = 164,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USD")]
-        USD = 165,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USN")]
-        USN = 166,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UZS")]
-        UZS = 167,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VUV")]
-        VUV = 168,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHE")]
-        CHE = 169,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHW")]
-        CHW = 170,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KRW")]
-        KRW = 171,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"YER")]
-        YER = 172,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JPY")]
-        JPY = 173,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CNY")]
-        CNY = 174,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZMW")]
-        ZMW = 175,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZWG")]
-        ZWG = 176,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PLN")]
-        PLN = 177,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class InvoiceReferences
+    public partial class CreditNoteInvoiceReference
     {
 
         /// <summary>
@@ -20640,2224 +14037,9 @@ namespace Recommand.Client
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum CreditNoteCurrency
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XUA")]
-        XUA = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AFN")]
-        AFN = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DZD")]
-        DZD = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ARS")]
-        ARS = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AMD")]
-        AMD = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AWG")]
-        AWG = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AUD")]
-        AUD = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AZN")]
-        AZN = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BSD")]
-        BSD = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BHD")]
-        BHD = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"THB")]
-        THB = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PAB")]
-        PAB = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BBD")]
-        BBD = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BYN")]
-        BYN = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BZD")]
-        BZD = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BMD")]
-        BMD = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VES")]
-        VES = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VED")]
-        VED = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOB")]
-        BOB = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBA")]
-        XBA = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBB")]
-        XBB = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBD")]
-        XBD = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBC")]
-        XBC = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BRL")]
-        BRL = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BND")]
-        BND = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BGN")]
-        BGN = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BIF")]
-        BIF = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CVE")]
-        CVE = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CAD")]
-        CAD = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KYD")]
-        KYD = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XOF")]
-        XOF = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAF")]
-        XAF = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPF")]
-        XPF = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLP")]
-        CLP = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XTS")]
-        XTS = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COP")]
-        COP = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KMF")]
-        KMF = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CDF")]
-        CDF = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BAM")]
-        BAM = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NIO")]
-        NIO = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CRC")]
-        CRC = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CUP")]
-        CUP = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CZK")]
-        CZK = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GMD")]
-        GMD = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DKK")]
-        DKK = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MKD")]
-        MKD = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DJF")]
-        DJF = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"STN")]
-        STN = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DOP")]
-        DOP = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VND")]
-        VND = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XCD")]
-        XCD = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EGP")]
-        EGP = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SVC")]
-        SVC = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ETB")]
-        ETB = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EUR")]
-        EUR = 54,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FKP")]
-        FKP = 55,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FJD")]
-        FJD = 56,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HUF")]
-        HUF = 57,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GHS")]
-        GHS = 58,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GIP")]
-        GIP = 59,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAU")]
-        XAU = 60,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HTG")]
-        HTG = 61,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PYG")]
-        PYG = 62,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GNF")]
-        GNF = 63,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GYD")]
-        GYD = 64,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HKD")]
-        HKD = 65,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UAH")]
-        UAH = 66,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ISK")]
-        ISK = 67,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"INR")]
-        INR = 68,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IRR")]
-        IRR = 69,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IQD")]
-        IQD = 70,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JMD")]
-        JMD = 71,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JOD")]
-        JOD = 72,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KES")]
-        KES = 73,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PGK")]
-        PGK = 74,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KWD")]
-        KWD = 75,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AOA")]
-        AOA = 76,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MMK")]
-        MMK = 77,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LAK")]
-        LAK = 78,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GEL")]
-        GEL = 79,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LBP")]
-        LBP = 80,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ALL")]
-        ALL = 81,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HNL")]
-        HNL = 82,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LRD")]
-        LRD = 83,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LYD")]
-        LYD = 84,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SZL")]
-        SZL = 85,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LSL")]
-        LSL = 86,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MGA")]
-        MGA = 87,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MWK")]
-        MWK = 88,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MYR")]
-        MYR = 89,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MUR")]
-        MUR = 90,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXN")]
-        MXN = 91,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXV")]
-        MXV = 92,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MDL")]
-        MDL = 93,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MAD")]
-        MAD = 94,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MZN")]
-        MZN = 95,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOV")]
-        BOV = 96,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NGN")]
-        NGN = 97,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ERN")]
-        ERN = 98,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NAD")]
-        NAD = 99,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NPR")]
-        NPR = 100,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ANG")]
-        ANG = 101,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ILS")]
-        ILS = 102,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TWD")]
-        TWD = 103,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NZD")]
-        NZD = 104,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BTN")]
-        BTN = 105,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KPW")]
-        KPW = 106,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NOK")]
-        NOK = 107,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MRU")]
-        MRU = 108,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TOP")]
-        TOP = 109,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PKR")]
-        PKR = 110,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPD")]
-        XPD = 111,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MOP")]
-        MOP = 112,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYU")]
-        UYU = 113,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PHP")]
-        PHP = 114,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPT")]
-        XPT = 115,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GBP")]
-        GBP = 116,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BWP")]
-        BWP = 117,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"QAR")]
-        QAR = 118,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GTQ")]
-        GTQ = 119,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZAR")]
-        ZAR = 120,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"OMR")]
-        OMR = 121,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KHR")]
-        KHR = 122,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RON")]
-        RON = 123,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MVR")]
-        MVR = 124,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IDR")]
-        IDR = 125,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RUB")]
-        RUB = 126,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RWF")]
-        RWF = 127,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SHP")]
-        SHP = 128,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SAR")]
-        SAR = 129,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XDR")]
-        XDR = 130,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RSD")]
-        RSD = 131,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SCR")]
-        SCR = 132,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SLE")]
-        SLE = 133,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAG")]
-        XAG = 134,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SGD")]
-        SGD = 135,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PEN")]
-        PEN = 136,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SBD")]
-        SBD = 137,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KGS")]
-        KGS = 138,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SOS")]
-        SOS = 139,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TJS")]
-        TJS = 140,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SSP")]
-        SSP = 141,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LKR")]
-        LKR = 142,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XSU")]
-        XSU = 143,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SDG")]
-        SDG = 144,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SRD")]
-        SRD = 145,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SEK")]
-        SEK = 146,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHF")]
-        CHF = 147,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SYP")]
-        SYP = 148,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BDT")]
-        BDT = 149,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"WST")]
-        WST = 150,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TZS")]
-        TZS = 151,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KZT")]
-        KZT = 152,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XXX")]
-        XXX = 153,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TTD")]
-        TTD = 154,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MNT")]
-        MNT = 155,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TND")]
-        TND = 156,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TRY")]
-        TRY = 157,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TMT")]
-        TMT = 158,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AED")]
-        AED = 159,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UGX")]
-        UGX = 160,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLF")]
-        CLF = 161,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COU")]
-        COU = 162,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYW")]
-        UYW = 163,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYI")]
-        UYI = 164,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USD")]
-        USD = 165,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USN")]
-        USN = 166,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UZS")]
-        UZS = 167,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VUV")]
-        VUV = 168,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHE")]
-        CHE = 169,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHW")]
-        CHW = 170,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KRW")]
-        KRW = 171,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"YER")]
-        YER = 172,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JPY")]
-        JPY = 173,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CNY")]
-        CNY = 174,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZMW")]
-        ZMW = 175,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZWG")]
-        ZWG = 176,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PLN")]
-        PLN = 177,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class InvoiceReferences2
-    {
-
-        /// <summary>
-        /// The reference to the invoice that is being credited
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Id { get; set; } = default!;
-
-        /// <summary>
-        /// The issue date of the invoice that is being credited
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("issueDate")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? IssueDate { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum SendCreditNoteCurrency
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XUA")]
-        XUA = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AFN")]
-        AFN = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DZD")]
-        DZD = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ARS")]
-        ARS = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AMD")]
-        AMD = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AWG")]
-        AWG = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AUD")]
-        AUD = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AZN")]
-        AZN = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BSD")]
-        BSD = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BHD")]
-        BHD = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"THB")]
-        THB = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PAB")]
-        PAB = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BBD")]
-        BBD = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BYN")]
-        BYN = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BZD")]
-        BZD = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BMD")]
-        BMD = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VES")]
-        VES = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VED")]
-        VED = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOB")]
-        BOB = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBA")]
-        XBA = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBB")]
-        XBB = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBD")]
-        XBD = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBC")]
-        XBC = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BRL")]
-        BRL = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BND")]
-        BND = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BGN")]
-        BGN = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BIF")]
-        BIF = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CVE")]
-        CVE = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CAD")]
-        CAD = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KYD")]
-        KYD = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XOF")]
-        XOF = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAF")]
-        XAF = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPF")]
-        XPF = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLP")]
-        CLP = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XTS")]
-        XTS = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COP")]
-        COP = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KMF")]
-        KMF = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CDF")]
-        CDF = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BAM")]
-        BAM = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NIO")]
-        NIO = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CRC")]
-        CRC = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CUP")]
-        CUP = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CZK")]
-        CZK = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GMD")]
-        GMD = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DKK")]
-        DKK = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MKD")]
-        MKD = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DJF")]
-        DJF = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"STN")]
-        STN = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DOP")]
-        DOP = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VND")]
-        VND = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XCD")]
-        XCD = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EGP")]
-        EGP = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SVC")]
-        SVC = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ETB")]
-        ETB = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EUR")]
-        EUR = 54,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FKP")]
-        FKP = 55,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FJD")]
-        FJD = 56,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HUF")]
-        HUF = 57,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GHS")]
-        GHS = 58,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GIP")]
-        GIP = 59,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAU")]
-        XAU = 60,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HTG")]
-        HTG = 61,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PYG")]
-        PYG = 62,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GNF")]
-        GNF = 63,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GYD")]
-        GYD = 64,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HKD")]
-        HKD = 65,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UAH")]
-        UAH = 66,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ISK")]
-        ISK = 67,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"INR")]
-        INR = 68,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IRR")]
-        IRR = 69,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IQD")]
-        IQD = 70,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JMD")]
-        JMD = 71,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JOD")]
-        JOD = 72,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KES")]
-        KES = 73,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PGK")]
-        PGK = 74,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KWD")]
-        KWD = 75,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AOA")]
-        AOA = 76,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MMK")]
-        MMK = 77,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LAK")]
-        LAK = 78,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GEL")]
-        GEL = 79,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LBP")]
-        LBP = 80,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ALL")]
-        ALL = 81,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HNL")]
-        HNL = 82,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LRD")]
-        LRD = 83,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LYD")]
-        LYD = 84,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SZL")]
-        SZL = 85,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LSL")]
-        LSL = 86,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MGA")]
-        MGA = 87,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MWK")]
-        MWK = 88,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MYR")]
-        MYR = 89,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MUR")]
-        MUR = 90,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXN")]
-        MXN = 91,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXV")]
-        MXV = 92,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MDL")]
-        MDL = 93,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MAD")]
-        MAD = 94,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MZN")]
-        MZN = 95,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOV")]
-        BOV = 96,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NGN")]
-        NGN = 97,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ERN")]
-        ERN = 98,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NAD")]
-        NAD = 99,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NPR")]
-        NPR = 100,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ANG")]
-        ANG = 101,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ILS")]
-        ILS = 102,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TWD")]
-        TWD = 103,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NZD")]
-        NZD = 104,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BTN")]
-        BTN = 105,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KPW")]
-        KPW = 106,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NOK")]
-        NOK = 107,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MRU")]
-        MRU = 108,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TOP")]
-        TOP = 109,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PKR")]
-        PKR = 110,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPD")]
-        XPD = 111,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MOP")]
-        MOP = 112,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYU")]
-        UYU = 113,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PHP")]
-        PHP = 114,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPT")]
-        XPT = 115,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GBP")]
-        GBP = 116,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BWP")]
-        BWP = 117,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"QAR")]
-        QAR = 118,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GTQ")]
-        GTQ = 119,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZAR")]
-        ZAR = 120,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"OMR")]
-        OMR = 121,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KHR")]
-        KHR = 122,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RON")]
-        RON = 123,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MVR")]
-        MVR = 124,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IDR")]
-        IDR = 125,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RUB")]
-        RUB = 126,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RWF")]
-        RWF = 127,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SHP")]
-        SHP = 128,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SAR")]
-        SAR = 129,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XDR")]
-        XDR = 130,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RSD")]
-        RSD = 131,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SCR")]
-        SCR = 132,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SLE")]
-        SLE = 133,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAG")]
-        XAG = 134,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SGD")]
-        SGD = 135,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PEN")]
-        PEN = 136,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SBD")]
-        SBD = 137,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KGS")]
-        KGS = 138,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SOS")]
-        SOS = 139,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TJS")]
-        TJS = 140,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SSP")]
-        SSP = 141,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LKR")]
-        LKR = 142,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XSU")]
-        XSU = 143,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SDG")]
-        SDG = 144,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SRD")]
-        SRD = 145,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SEK")]
-        SEK = 146,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHF")]
-        CHF = 147,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SYP")]
-        SYP = 148,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BDT")]
-        BDT = 149,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"WST")]
-        WST = 150,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TZS")]
-        TZS = 151,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KZT")]
-        KZT = 152,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XXX")]
-        XXX = 153,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TTD")]
-        TTD = 154,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MNT")]
-        MNT = 155,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TND")]
-        TND = 156,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TRY")]
-        TRY = 157,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TMT")]
-        TMT = 158,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AED")]
-        AED = 159,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UGX")]
-        UGX = 160,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLF")]
-        CLF = 161,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COU")]
-        COU = 162,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYW")]
-        UYW = 163,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYI")]
-        UYI = 164,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USD")]
-        USD = 165,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USN")]
-        USN = 166,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UZS")]
-        UZS = 167,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VUV")]
-        VUV = 168,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHE")]
-        CHE = 169,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHW")]
-        CHW = 170,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KRW")]
-        KRW = 171,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"YER")]
-        YER = 172,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JPY")]
-        JPY = 173,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CNY")]
-        CNY = 174,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZMW")]
-        ZMW = 175,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZWG")]
-        ZWG = 176,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PLN")]
-        PLN = 177,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum SendSelfBillingInvoiceCurrency
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XUA")]
-        XUA = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AFN")]
-        AFN = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DZD")]
-        DZD = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ARS")]
-        ARS = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AMD")]
-        AMD = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AWG")]
-        AWG = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AUD")]
-        AUD = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AZN")]
-        AZN = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BSD")]
-        BSD = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BHD")]
-        BHD = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"THB")]
-        THB = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PAB")]
-        PAB = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BBD")]
-        BBD = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BYN")]
-        BYN = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BZD")]
-        BZD = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BMD")]
-        BMD = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VES")]
-        VES = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VED")]
-        VED = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOB")]
-        BOB = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBA")]
-        XBA = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBB")]
-        XBB = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBD")]
-        XBD = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBC")]
-        XBC = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BRL")]
-        BRL = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BND")]
-        BND = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BGN")]
-        BGN = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BIF")]
-        BIF = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CVE")]
-        CVE = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CAD")]
-        CAD = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KYD")]
-        KYD = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XOF")]
-        XOF = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAF")]
-        XAF = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPF")]
-        XPF = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLP")]
-        CLP = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XTS")]
-        XTS = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COP")]
-        COP = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KMF")]
-        KMF = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CDF")]
-        CDF = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BAM")]
-        BAM = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NIO")]
-        NIO = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CRC")]
-        CRC = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CUP")]
-        CUP = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CZK")]
-        CZK = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GMD")]
-        GMD = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DKK")]
-        DKK = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MKD")]
-        MKD = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DJF")]
-        DJF = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"STN")]
-        STN = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DOP")]
-        DOP = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VND")]
-        VND = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XCD")]
-        XCD = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EGP")]
-        EGP = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SVC")]
-        SVC = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ETB")]
-        ETB = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EUR")]
-        EUR = 54,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FKP")]
-        FKP = 55,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FJD")]
-        FJD = 56,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HUF")]
-        HUF = 57,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GHS")]
-        GHS = 58,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GIP")]
-        GIP = 59,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAU")]
-        XAU = 60,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HTG")]
-        HTG = 61,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PYG")]
-        PYG = 62,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GNF")]
-        GNF = 63,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GYD")]
-        GYD = 64,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HKD")]
-        HKD = 65,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UAH")]
-        UAH = 66,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ISK")]
-        ISK = 67,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"INR")]
-        INR = 68,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IRR")]
-        IRR = 69,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IQD")]
-        IQD = 70,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JMD")]
-        JMD = 71,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JOD")]
-        JOD = 72,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KES")]
-        KES = 73,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PGK")]
-        PGK = 74,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KWD")]
-        KWD = 75,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AOA")]
-        AOA = 76,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MMK")]
-        MMK = 77,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LAK")]
-        LAK = 78,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GEL")]
-        GEL = 79,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LBP")]
-        LBP = 80,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ALL")]
-        ALL = 81,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HNL")]
-        HNL = 82,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LRD")]
-        LRD = 83,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LYD")]
-        LYD = 84,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SZL")]
-        SZL = 85,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LSL")]
-        LSL = 86,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MGA")]
-        MGA = 87,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MWK")]
-        MWK = 88,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MYR")]
-        MYR = 89,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MUR")]
-        MUR = 90,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXN")]
-        MXN = 91,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXV")]
-        MXV = 92,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MDL")]
-        MDL = 93,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MAD")]
-        MAD = 94,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MZN")]
-        MZN = 95,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOV")]
-        BOV = 96,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NGN")]
-        NGN = 97,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ERN")]
-        ERN = 98,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NAD")]
-        NAD = 99,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NPR")]
-        NPR = 100,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ANG")]
-        ANG = 101,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ILS")]
-        ILS = 102,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TWD")]
-        TWD = 103,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NZD")]
-        NZD = 104,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BTN")]
-        BTN = 105,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KPW")]
-        KPW = 106,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NOK")]
-        NOK = 107,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MRU")]
-        MRU = 108,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TOP")]
-        TOP = 109,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PKR")]
-        PKR = 110,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPD")]
-        XPD = 111,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MOP")]
-        MOP = 112,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYU")]
-        UYU = 113,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PHP")]
-        PHP = 114,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPT")]
-        XPT = 115,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GBP")]
-        GBP = 116,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BWP")]
-        BWP = 117,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"QAR")]
-        QAR = 118,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GTQ")]
-        GTQ = 119,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZAR")]
-        ZAR = 120,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"OMR")]
-        OMR = 121,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KHR")]
-        KHR = 122,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RON")]
-        RON = 123,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MVR")]
-        MVR = 124,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IDR")]
-        IDR = 125,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RUB")]
-        RUB = 126,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RWF")]
-        RWF = 127,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SHP")]
-        SHP = 128,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SAR")]
-        SAR = 129,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XDR")]
-        XDR = 130,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RSD")]
-        RSD = 131,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SCR")]
-        SCR = 132,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SLE")]
-        SLE = 133,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAG")]
-        XAG = 134,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SGD")]
-        SGD = 135,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PEN")]
-        PEN = 136,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SBD")]
-        SBD = 137,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KGS")]
-        KGS = 138,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SOS")]
-        SOS = 139,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TJS")]
-        TJS = 140,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SSP")]
-        SSP = 141,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LKR")]
-        LKR = 142,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XSU")]
-        XSU = 143,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SDG")]
-        SDG = 144,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SRD")]
-        SRD = 145,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SEK")]
-        SEK = 146,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHF")]
-        CHF = 147,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SYP")]
-        SYP = 148,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BDT")]
-        BDT = 149,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"WST")]
-        WST = 150,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TZS")]
-        TZS = 151,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KZT")]
-        KZT = 152,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XXX")]
-        XXX = 153,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TTD")]
-        TTD = 154,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MNT")]
-        MNT = 155,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TND")]
-        TND = 156,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TRY")]
-        TRY = 157,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TMT")]
-        TMT = 158,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AED")]
-        AED = 159,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UGX")]
-        UGX = 160,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLF")]
-        CLF = 161,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COU")]
-        COU = 162,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYW")]
-        UYW = 163,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYI")]
-        UYI = 164,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USD")]
-        USD = 165,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USN")]
-        USN = 166,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UZS")]
-        UZS = 167,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VUV")]
-        VUV = 168,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHE")]
-        CHE = 169,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHW")]
-        CHW = 170,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KRW")]
-        KRW = 171,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"YER")]
-        YER = 172,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JPY")]
-        JPY = 173,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CNY")]
-        CNY = 174,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZMW")]
-        ZMW = 175,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZWG")]
-        ZWG = 176,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PLN")]
-        PLN = 177,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class InvoiceReferences3
-    {
-
-        /// <summary>
-        /// The reference to the invoice that is being credited
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Id { get; set; } = default!;
-
-        /// <summary>
-        /// The issue date of the invoice that is being credited
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("issueDate")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? IssueDate { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum SendSelfBillingCreditNoteCurrency
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XUA")]
-        XUA = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AFN")]
-        AFN = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DZD")]
-        DZD = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ARS")]
-        ARS = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AMD")]
-        AMD = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AWG")]
-        AWG = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AUD")]
-        AUD = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AZN")]
-        AZN = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BSD")]
-        BSD = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BHD")]
-        BHD = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"THB")]
-        THB = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PAB")]
-        PAB = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BBD")]
-        BBD = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BYN")]
-        BYN = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BZD")]
-        BZD = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BMD")]
-        BMD = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VES")]
-        VES = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VED")]
-        VED = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOB")]
-        BOB = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBA")]
-        XBA = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBB")]
-        XBB = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBD")]
-        XBD = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBC")]
-        XBC = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BRL")]
-        BRL = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BND")]
-        BND = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BGN")]
-        BGN = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BIF")]
-        BIF = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CVE")]
-        CVE = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CAD")]
-        CAD = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KYD")]
-        KYD = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XOF")]
-        XOF = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAF")]
-        XAF = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPF")]
-        XPF = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLP")]
-        CLP = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XTS")]
-        XTS = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COP")]
-        COP = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KMF")]
-        KMF = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CDF")]
-        CDF = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BAM")]
-        BAM = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NIO")]
-        NIO = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CRC")]
-        CRC = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CUP")]
-        CUP = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CZK")]
-        CZK = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GMD")]
-        GMD = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DKK")]
-        DKK = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MKD")]
-        MKD = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DJF")]
-        DJF = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"STN")]
-        STN = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DOP")]
-        DOP = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VND")]
-        VND = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XCD")]
-        XCD = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EGP")]
-        EGP = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SVC")]
-        SVC = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ETB")]
-        ETB = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EUR")]
-        EUR = 54,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FKP")]
-        FKP = 55,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FJD")]
-        FJD = 56,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HUF")]
-        HUF = 57,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GHS")]
-        GHS = 58,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GIP")]
-        GIP = 59,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAU")]
-        XAU = 60,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HTG")]
-        HTG = 61,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PYG")]
-        PYG = 62,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GNF")]
-        GNF = 63,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GYD")]
-        GYD = 64,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HKD")]
-        HKD = 65,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UAH")]
-        UAH = 66,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ISK")]
-        ISK = 67,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"INR")]
-        INR = 68,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IRR")]
-        IRR = 69,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IQD")]
-        IQD = 70,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JMD")]
-        JMD = 71,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JOD")]
-        JOD = 72,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KES")]
-        KES = 73,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PGK")]
-        PGK = 74,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KWD")]
-        KWD = 75,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AOA")]
-        AOA = 76,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MMK")]
-        MMK = 77,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LAK")]
-        LAK = 78,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GEL")]
-        GEL = 79,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LBP")]
-        LBP = 80,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ALL")]
-        ALL = 81,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HNL")]
-        HNL = 82,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LRD")]
-        LRD = 83,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LYD")]
-        LYD = 84,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SZL")]
-        SZL = 85,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LSL")]
-        LSL = 86,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MGA")]
-        MGA = 87,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MWK")]
-        MWK = 88,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MYR")]
-        MYR = 89,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MUR")]
-        MUR = 90,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXN")]
-        MXN = 91,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXV")]
-        MXV = 92,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MDL")]
-        MDL = 93,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MAD")]
-        MAD = 94,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MZN")]
-        MZN = 95,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOV")]
-        BOV = 96,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NGN")]
-        NGN = 97,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ERN")]
-        ERN = 98,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NAD")]
-        NAD = 99,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NPR")]
-        NPR = 100,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ANG")]
-        ANG = 101,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ILS")]
-        ILS = 102,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TWD")]
-        TWD = 103,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NZD")]
-        NZD = 104,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BTN")]
-        BTN = 105,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KPW")]
-        KPW = 106,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NOK")]
-        NOK = 107,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MRU")]
-        MRU = 108,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TOP")]
-        TOP = 109,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PKR")]
-        PKR = 110,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPD")]
-        XPD = 111,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MOP")]
-        MOP = 112,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYU")]
-        UYU = 113,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PHP")]
-        PHP = 114,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPT")]
-        XPT = 115,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GBP")]
-        GBP = 116,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BWP")]
-        BWP = 117,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"QAR")]
-        QAR = 118,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GTQ")]
-        GTQ = 119,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZAR")]
-        ZAR = 120,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"OMR")]
-        OMR = 121,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KHR")]
-        KHR = 122,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RON")]
-        RON = 123,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MVR")]
-        MVR = 124,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IDR")]
-        IDR = 125,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RUB")]
-        RUB = 126,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RWF")]
-        RWF = 127,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SHP")]
-        SHP = 128,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SAR")]
-        SAR = 129,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XDR")]
-        XDR = 130,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RSD")]
-        RSD = 131,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SCR")]
-        SCR = 132,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SLE")]
-        SLE = 133,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAG")]
-        XAG = 134,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SGD")]
-        SGD = 135,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PEN")]
-        PEN = 136,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SBD")]
-        SBD = 137,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KGS")]
-        KGS = 138,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SOS")]
-        SOS = 139,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TJS")]
-        TJS = 140,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SSP")]
-        SSP = 141,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LKR")]
-        LKR = 142,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XSU")]
-        XSU = 143,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SDG")]
-        SDG = 144,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SRD")]
-        SRD = 145,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SEK")]
-        SEK = 146,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHF")]
-        CHF = 147,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SYP")]
-        SYP = 148,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BDT")]
-        BDT = 149,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"WST")]
-        WST = 150,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TZS")]
-        TZS = 151,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KZT")]
-        KZT = 152,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XXX")]
-        XXX = 153,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TTD")]
-        TTD = 154,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MNT")]
-        MNT = 155,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TND")]
-        TND = 156,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TRY")]
-        TRY = 157,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TMT")]
-        TMT = 158,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AED")]
-        AED = 159,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UGX")]
-        UGX = 160,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLF")]
-        CLF = 161,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COU")]
-        COU = 162,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYW")]
-        UYW = 163,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYI")]
-        UYI = 164,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USD")]
-        USD = 165,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USN")]
-        USN = 166,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UZS")]
-        UZS = 167,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VUV")]
-        VUV = 168,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHE")]
-        CHE = 169,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHW")]
-        CHW = 170,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KRW")]
-        KRW = 171,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"YER")]
-        YER = 172,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JPY")]
-        JPY = 173,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CNY")]
-        CNY = 174,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZMW")]
-        ZMW = 175,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZWG")]
-        ZWG = 176,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PLN")]
-        PLN = 177,
-
-    }
-
+    /// <summary>
+    /// The response code of the message level response (AB: Message acknowledgement, AP: Accepted, RE: Rejected)
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public enum MessageLevelResponseResponseCode
     {
@@ -22873,1144 +14055,11 @@ namespace Recommand.Client
 
     }
 
+    /// <summary>
+    /// The type of document.
+    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum SendMessageLevelResponseResponseCode
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AB")]
-        AB = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AP")]
-        AP = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RE")]
-        RE = 2,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum SelfBillingInvoiceCurrency
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XUA")]
-        XUA = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AFN")]
-        AFN = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DZD")]
-        DZD = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ARS")]
-        ARS = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AMD")]
-        AMD = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AWG")]
-        AWG = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AUD")]
-        AUD = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AZN")]
-        AZN = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BSD")]
-        BSD = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BHD")]
-        BHD = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"THB")]
-        THB = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PAB")]
-        PAB = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BBD")]
-        BBD = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BYN")]
-        BYN = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BZD")]
-        BZD = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BMD")]
-        BMD = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VES")]
-        VES = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VED")]
-        VED = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOB")]
-        BOB = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBA")]
-        XBA = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBB")]
-        XBB = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBD")]
-        XBD = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBC")]
-        XBC = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BRL")]
-        BRL = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BND")]
-        BND = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BGN")]
-        BGN = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BIF")]
-        BIF = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CVE")]
-        CVE = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CAD")]
-        CAD = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KYD")]
-        KYD = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XOF")]
-        XOF = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAF")]
-        XAF = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPF")]
-        XPF = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLP")]
-        CLP = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XTS")]
-        XTS = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COP")]
-        COP = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KMF")]
-        KMF = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CDF")]
-        CDF = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BAM")]
-        BAM = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NIO")]
-        NIO = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CRC")]
-        CRC = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CUP")]
-        CUP = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CZK")]
-        CZK = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GMD")]
-        GMD = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DKK")]
-        DKK = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MKD")]
-        MKD = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DJF")]
-        DJF = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"STN")]
-        STN = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DOP")]
-        DOP = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VND")]
-        VND = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XCD")]
-        XCD = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EGP")]
-        EGP = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SVC")]
-        SVC = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ETB")]
-        ETB = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EUR")]
-        EUR = 54,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FKP")]
-        FKP = 55,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FJD")]
-        FJD = 56,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HUF")]
-        HUF = 57,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GHS")]
-        GHS = 58,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GIP")]
-        GIP = 59,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAU")]
-        XAU = 60,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HTG")]
-        HTG = 61,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PYG")]
-        PYG = 62,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GNF")]
-        GNF = 63,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GYD")]
-        GYD = 64,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HKD")]
-        HKD = 65,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UAH")]
-        UAH = 66,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ISK")]
-        ISK = 67,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"INR")]
-        INR = 68,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IRR")]
-        IRR = 69,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IQD")]
-        IQD = 70,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JMD")]
-        JMD = 71,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JOD")]
-        JOD = 72,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KES")]
-        KES = 73,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PGK")]
-        PGK = 74,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KWD")]
-        KWD = 75,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AOA")]
-        AOA = 76,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MMK")]
-        MMK = 77,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LAK")]
-        LAK = 78,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GEL")]
-        GEL = 79,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LBP")]
-        LBP = 80,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ALL")]
-        ALL = 81,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HNL")]
-        HNL = 82,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LRD")]
-        LRD = 83,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LYD")]
-        LYD = 84,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SZL")]
-        SZL = 85,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LSL")]
-        LSL = 86,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MGA")]
-        MGA = 87,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MWK")]
-        MWK = 88,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MYR")]
-        MYR = 89,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MUR")]
-        MUR = 90,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXN")]
-        MXN = 91,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXV")]
-        MXV = 92,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MDL")]
-        MDL = 93,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MAD")]
-        MAD = 94,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MZN")]
-        MZN = 95,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOV")]
-        BOV = 96,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NGN")]
-        NGN = 97,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ERN")]
-        ERN = 98,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NAD")]
-        NAD = 99,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NPR")]
-        NPR = 100,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ANG")]
-        ANG = 101,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ILS")]
-        ILS = 102,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TWD")]
-        TWD = 103,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NZD")]
-        NZD = 104,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BTN")]
-        BTN = 105,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KPW")]
-        KPW = 106,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NOK")]
-        NOK = 107,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MRU")]
-        MRU = 108,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TOP")]
-        TOP = 109,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PKR")]
-        PKR = 110,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPD")]
-        XPD = 111,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MOP")]
-        MOP = 112,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYU")]
-        UYU = 113,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PHP")]
-        PHP = 114,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPT")]
-        XPT = 115,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GBP")]
-        GBP = 116,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BWP")]
-        BWP = 117,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"QAR")]
-        QAR = 118,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GTQ")]
-        GTQ = 119,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZAR")]
-        ZAR = 120,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"OMR")]
-        OMR = 121,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KHR")]
-        KHR = 122,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RON")]
-        RON = 123,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MVR")]
-        MVR = 124,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IDR")]
-        IDR = 125,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RUB")]
-        RUB = 126,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RWF")]
-        RWF = 127,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SHP")]
-        SHP = 128,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SAR")]
-        SAR = 129,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XDR")]
-        XDR = 130,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RSD")]
-        RSD = 131,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SCR")]
-        SCR = 132,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SLE")]
-        SLE = 133,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAG")]
-        XAG = 134,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SGD")]
-        SGD = 135,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PEN")]
-        PEN = 136,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SBD")]
-        SBD = 137,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KGS")]
-        KGS = 138,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SOS")]
-        SOS = 139,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TJS")]
-        TJS = 140,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SSP")]
-        SSP = 141,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LKR")]
-        LKR = 142,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XSU")]
-        XSU = 143,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SDG")]
-        SDG = 144,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SRD")]
-        SRD = 145,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SEK")]
-        SEK = 146,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHF")]
-        CHF = 147,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SYP")]
-        SYP = 148,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BDT")]
-        BDT = 149,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"WST")]
-        WST = 150,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TZS")]
-        TZS = 151,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KZT")]
-        KZT = 152,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XXX")]
-        XXX = 153,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TTD")]
-        TTD = 154,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MNT")]
-        MNT = 155,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TND")]
-        TND = 156,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TRY")]
-        TRY = 157,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TMT")]
-        TMT = 158,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AED")]
-        AED = 159,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UGX")]
-        UGX = 160,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLF")]
-        CLF = 161,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COU")]
-        COU = 162,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYW")]
-        UYW = 163,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYI")]
-        UYI = 164,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USD")]
-        USD = 165,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USN")]
-        USN = 166,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UZS")]
-        UZS = 167,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VUV")]
-        VUV = 168,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHE")]
-        CHE = 169,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHW")]
-        CHW = 170,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KRW")]
-        KRW = 171,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"YER")]
-        YER = 172,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JPY")]
-        JPY = 173,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CNY")]
-        CNY = 174,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZMW")]
-        ZMW = 175,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZWG")]
-        ZWG = 176,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PLN")]
-        PLN = 177,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class InvoiceReferences4
-    {
-
-        /// <summary>
-        /// The reference to the invoice that is being credited
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Id { get; set; } = default!;
-
-        /// <summary>
-        /// The issue date of the invoice that is being credited
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("issueDate")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? IssueDate { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum SelfBillingCreditNoteCurrency
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XUA")]
-        XUA = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AFN")]
-        AFN = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DZD")]
-        DZD = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ARS")]
-        ARS = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AMD")]
-        AMD = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AWG")]
-        AWG = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AUD")]
-        AUD = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AZN")]
-        AZN = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BSD")]
-        BSD = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BHD")]
-        BHD = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"THB")]
-        THB = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PAB")]
-        PAB = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BBD")]
-        BBD = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BYN")]
-        BYN = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BZD")]
-        BZD = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BMD")]
-        BMD = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VES")]
-        VES = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VED")]
-        VED = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOB")]
-        BOB = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBA")]
-        XBA = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBB")]
-        XBB = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBD")]
-        XBD = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XBC")]
-        XBC = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BRL")]
-        BRL = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BND")]
-        BND = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BGN")]
-        BGN = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BIF")]
-        BIF = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CVE")]
-        CVE = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CAD")]
-        CAD = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KYD")]
-        KYD = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XOF")]
-        XOF = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAF")]
-        XAF = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPF")]
-        XPF = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLP")]
-        CLP = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XTS")]
-        XTS = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COP")]
-        COP = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KMF")]
-        KMF = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CDF")]
-        CDF = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BAM")]
-        BAM = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NIO")]
-        NIO = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CRC")]
-        CRC = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CUP")]
-        CUP = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CZK")]
-        CZK = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GMD")]
-        GMD = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DKK")]
-        DKK = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MKD")]
-        MKD = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DJF")]
-        DJF = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"STN")]
-        STN = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DOP")]
-        DOP = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VND")]
-        VND = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XCD")]
-        XCD = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EGP")]
-        EGP = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SVC")]
-        SVC = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ETB")]
-        ETB = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EUR")]
-        EUR = 54,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FKP")]
-        FKP = 55,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FJD")]
-        FJD = 56,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HUF")]
-        HUF = 57,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GHS")]
-        GHS = 58,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GIP")]
-        GIP = 59,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAU")]
-        XAU = 60,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HTG")]
-        HTG = 61,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PYG")]
-        PYG = 62,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GNF")]
-        GNF = 63,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GYD")]
-        GYD = 64,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HKD")]
-        HKD = 65,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UAH")]
-        UAH = 66,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ISK")]
-        ISK = 67,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"INR")]
-        INR = 68,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IRR")]
-        IRR = 69,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IQD")]
-        IQD = 70,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JMD")]
-        JMD = 71,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JOD")]
-        JOD = 72,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KES")]
-        KES = 73,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PGK")]
-        PGK = 74,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KWD")]
-        KWD = 75,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AOA")]
-        AOA = 76,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MMK")]
-        MMK = 77,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LAK")]
-        LAK = 78,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GEL")]
-        GEL = 79,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LBP")]
-        LBP = 80,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ALL")]
-        ALL = 81,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HNL")]
-        HNL = 82,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LRD")]
-        LRD = 83,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LYD")]
-        LYD = 84,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SZL")]
-        SZL = 85,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LSL")]
-        LSL = 86,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MGA")]
-        MGA = 87,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MWK")]
-        MWK = 88,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MYR")]
-        MYR = 89,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MUR")]
-        MUR = 90,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXN")]
-        MXN = 91,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MXV")]
-        MXV = 92,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MDL")]
-        MDL = 93,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MAD")]
-        MAD = 94,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MZN")]
-        MZN = 95,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BOV")]
-        BOV = 96,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NGN")]
-        NGN = 97,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ERN")]
-        ERN = 98,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NAD")]
-        NAD = 99,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NPR")]
-        NPR = 100,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ANG")]
-        ANG = 101,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ILS")]
-        ILS = 102,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TWD")]
-        TWD = 103,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NZD")]
-        NZD = 104,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BTN")]
-        BTN = 105,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KPW")]
-        KPW = 106,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NOK")]
-        NOK = 107,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MRU")]
-        MRU = 108,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TOP")]
-        TOP = 109,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PKR")]
-        PKR = 110,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPD")]
-        XPD = 111,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MOP")]
-        MOP = 112,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYU")]
-        UYU = 113,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PHP")]
-        PHP = 114,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XPT")]
-        XPT = 115,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GBP")]
-        GBP = 116,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BWP")]
-        BWP = 117,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"QAR")]
-        QAR = 118,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GTQ")]
-        GTQ = 119,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZAR")]
-        ZAR = 120,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"OMR")]
-        OMR = 121,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KHR")]
-        KHR = 122,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RON")]
-        RON = 123,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MVR")]
-        MVR = 124,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IDR")]
-        IDR = 125,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RUB")]
-        RUB = 126,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RWF")]
-        RWF = 127,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SHP")]
-        SHP = 128,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SAR")]
-        SAR = 129,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XDR")]
-        XDR = 130,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"RSD")]
-        RSD = 131,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SCR")]
-        SCR = 132,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SLE")]
-        SLE = 133,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XAG")]
-        XAG = 134,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SGD")]
-        SGD = 135,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PEN")]
-        PEN = 136,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SBD")]
-        SBD = 137,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KGS")]
-        KGS = 138,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SOS")]
-        SOS = 139,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TJS")]
-        TJS = 140,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SSP")]
-        SSP = 141,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LKR")]
-        LKR = 142,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XSU")]
-        XSU = 143,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SDG")]
-        SDG = 144,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SRD")]
-        SRD = 145,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SEK")]
-        SEK = 146,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHF")]
-        CHF = 147,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SYP")]
-        SYP = 148,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BDT")]
-        BDT = 149,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"WST")]
-        WST = 150,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TZS")]
-        TZS = 151,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KZT")]
-        KZT = 152,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"XXX")]
-        XXX = 153,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TTD")]
-        TTD = 154,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MNT")]
-        MNT = 155,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TND")]
-        TND = 156,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TRY")]
-        TRY = 157,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"TMT")]
-        TMT = 158,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AED")]
-        AED = 159,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UGX")]
-        UGX = 160,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CLF")]
-        CLF = 161,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"COU")]
-        COU = 162,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYW")]
-        UYW = 163,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UYI")]
-        UYI = 164,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USD")]
-        USD = 165,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"USN")]
-        USN = 166,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"UZS")]
-        UZS = 167,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"VUV")]
-        VUV = 168,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHE")]
-        CHE = 169,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CHW")]
-        CHW = 170,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"KRW")]
-        KRW = 171,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"YER")]
-        YER = 172,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JPY")]
-        JPY = 173,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CNY")]
-        CNY = 174,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZMW")]
-        ZMW = 175,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"ZWG")]
-        ZWG = 176,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PLN")]
-        PLN = 177,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum GetDocumentResponseDocumentDirection
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"incoming")]
-        Incoming = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"outgoing")]
-        Outgoing = 1,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum GetDocumentResponseDocumentType
+    public enum DocumentType
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"invoice")]
@@ -24034,1790 +14083,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Parsed
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Labels
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ColorHex { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum GetDocumentResponseDocumentValidationResult
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"valid")]
-        Valid = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"invalid")]
-        Invalid = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"not_supported")]
-        Not_supported = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"error")]
-        Error = 3,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Errors
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("ruleCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string RuleCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errorMessage")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ErrorMessage { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("errorLevel")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ErrorLevel { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("fieldName")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string FieldName { get; set; } = default!;
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Labels2
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ColorHex { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Labels3
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ColorHex { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum CreateCompanyRequestCountry
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AU")]
-        AU = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AT")]
-        AT = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BE")]
-        BE = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BG")]
-        BG = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CA")]
-        CA = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HR")]
-        HR = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DK")]
-        DK = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EE")]
-        EE = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FI")]
-        FI = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FR")]
-        FR = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DE")]
-        DE = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GR")]
-        GR = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HU")]
-        HU = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IS")]
-        IS = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IE")]
-        IE = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IT")]
-        IT = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JP")]
-        JP = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LU")]
-        LU = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MY")]
-        MY = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NL")]
-        NL = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NZ")]
-        NZ = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NO")]
-        NO = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PL")]
-        PL = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SG")]
-        SG = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SK")]
-        SK = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SE")]
-        SE = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AE")]
-        AE = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GB")]
-        GB = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"US")]
-        US = 28,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum CreateCompanyRequestEnterpriseNumberScheme
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0002")]
-        _0002 = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0003")]
-        _0003 = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0004")]
-        _0004 = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0005")]
-        _0005 = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0006")]
-        _0006 = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0007")]
-        _0007 = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0008")]
-        _0008 = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0009")]
-        _0009 = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0010")]
-        _0010 = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0011")]
-        _0011 = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0012")]
-        _0012 = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0013")]
-        _0013 = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0014")]
-        _0014 = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0015")]
-        _0015 = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0016")]
-        _0016 = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0017")]
-        _0017 = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0018")]
-        _0018 = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0019")]
-        _0019 = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0020")]
-        _0020 = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0021")]
-        _0021 = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0022")]
-        _0022 = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0023")]
-        _0023 = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0024")]
-        _0024 = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0025")]
-        _0025 = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0026")]
-        _0026 = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0027")]
-        _0027 = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0028")]
-        _0028 = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0029")]
-        _0029 = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0030")]
-        _0030 = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0031")]
-        _0031 = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0032")]
-        _0032 = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0033")]
-        _0033 = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0034")]
-        _0034 = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0035")]
-        _0035 = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0036")]
-        _0036 = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0037")]
-        _0037 = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0038")]
-        _0038 = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0039")]
-        _0039 = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0040")]
-        _0040 = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0041")]
-        _0041 = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0042")]
-        _0042 = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0043")]
-        _0043 = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0044")]
-        _0044 = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0045")]
-        _0045 = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0046")]
-        _0046 = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0047")]
-        _0047 = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0048")]
-        _0048 = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0049")]
-        _0049 = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0050")]
-        _0050 = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0051")]
-        _0051 = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0052")]
-        _0052 = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0053")]
-        _0053 = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0054")]
-        _0054 = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0055")]
-        _0055 = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0056")]
-        _0056 = 54,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0057")]
-        _0057 = 55,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0058")]
-        _0058 = 56,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0059")]
-        _0059 = 57,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0060")]
-        _0060 = 58,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0061")]
-        _0061 = 59,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0062")]
-        _0062 = 60,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0063")]
-        _0063 = 61,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0064")]
-        _0064 = 62,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0065")]
-        _0065 = 63,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0066")]
-        _0066 = 64,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0067")]
-        _0067 = 65,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0068")]
-        _0068 = 66,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0069")]
-        _0069 = 67,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0070")]
-        _0070 = 68,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0071")]
-        _0071 = 69,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0072")]
-        _0072 = 70,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0073")]
-        _0073 = 71,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0074")]
-        _0074 = 72,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0075")]
-        _0075 = 73,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0076")]
-        _0076 = 74,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0077")]
-        _0077 = 75,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0078")]
-        _0078 = 76,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0079")]
-        _0079 = 77,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0080")]
-        _0080 = 78,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0081")]
-        _0081 = 79,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0082")]
-        _0082 = 80,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0083")]
-        _0083 = 81,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0084")]
-        _0084 = 82,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0085")]
-        _0085 = 83,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0086")]
-        _0086 = 84,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0087")]
-        _0087 = 85,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0088")]
-        _0088 = 86,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0089")]
-        _0089 = 87,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0090")]
-        _0090 = 88,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0091")]
-        _0091 = 89,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0093")]
-        _0093 = 90,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0094")]
-        _0094 = 91,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0095")]
-        _0095 = 92,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0096")]
-        _0096 = 93,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0097")]
-        _0097 = 94,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0098")]
-        _0098 = 95,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0099")]
-        _0099 = 96,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0100")]
-        _0100 = 97,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0101")]
-        _0101 = 98,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0102")]
-        _0102 = 99,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0104")]
-        _0104 = 100,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0105")]
-        _0105 = 101,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0106")]
-        _0106 = 102,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0107")]
-        _0107 = 103,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0108")]
-        _0108 = 104,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0109")]
-        _0109 = 105,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0110")]
-        _0110 = 106,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0111")]
-        _0111 = 107,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0112")]
-        _0112 = 108,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0113")]
-        _0113 = 109,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0114")]
-        _0114 = 110,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0115")]
-        _0115 = 111,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0116")]
-        _0116 = 112,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0117")]
-        _0117 = 113,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0118")]
-        _0118 = 114,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0119")]
-        _0119 = 115,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0120")]
-        _0120 = 116,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0121")]
-        _0121 = 117,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0122")]
-        _0122 = 118,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0123")]
-        _0123 = 119,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0124")]
-        _0124 = 120,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0125")]
-        _0125 = 121,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0126")]
-        _0126 = 122,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0127")]
-        _0127 = 123,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0128")]
-        _0128 = 124,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0129")]
-        _0129 = 125,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0130")]
-        _0130 = 126,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0131")]
-        _0131 = 127,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0132")]
-        _0132 = 128,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0133")]
-        _0133 = 129,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0134")]
-        _0134 = 130,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0135")]
-        _0135 = 131,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0136")]
-        _0136 = 132,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0137")]
-        _0137 = 133,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0138")]
-        _0138 = 134,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0139")]
-        _0139 = 135,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0140")]
-        _0140 = 136,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0141")]
-        _0141 = 137,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0142")]
-        _0142 = 138,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0143")]
-        _0143 = 139,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0144")]
-        _0144 = 140,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0145")]
-        _0145 = 141,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0146")]
-        _0146 = 142,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0147")]
-        _0147 = 143,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0148")]
-        _0148 = 144,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0149")]
-        _0149 = 145,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0150")]
-        _0150 = 146,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0151")]
-        _0151 = 147,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0152")]
-        _0152 = 148,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0153")]
-        _0153 = 149,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0154")]
-        _0154 = 150,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0155")]
-        _0155 = 151,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0156")]
-        _0156 = 152,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0157")]
-        _0157 = 153,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0158")]
-        _0158 = 154,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0159")]
-        _0159 = 155,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0160")]
-        _0160 = 156,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0161")]
-        _0161 = 157,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0162")]
-        _0162 = 158,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0163")]
-        _0163 = 159,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0164")]
-        _0164 = 160,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0165")]
-        _0165 = 161,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0166")]
-        _0166 = 162,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0167")]
-        _0167 = 163,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0168")]
-        _0168 = 164,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0169")]
-        _0169 = 165,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0170")]
-        _0170 = 166,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0171")]
-        _0171 = 167,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0172")]
-        _0172 = 168,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0173")]
-        _0173 = 169,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0174")]
-        _0174 = 170,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0175")]
-        _0175 = 171,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0176")]
-        _0176 = 172,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0177")]
-        _0177 = 173,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0178")]
-        _0178 = 174,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0179")]
-        _0179 = 175,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0180")]
-        _0180 = 176,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0183")]
-        _0183 = 177,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0184")]
-        _0184 = 178,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0185")]
-        _0185 = 179,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0186")]
-        _0186 = 180,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0187")]
-        _0187 = 181,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0188")]
-        _0188 = 182,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0189")]
-        _0189 = 183,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0190")]
-        _0190 = 184,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0191")]
-        _0191 = 185,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0192")]
-        _0192 = 186,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0193")]
-        _0193 = 187,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0194")]
-        _0194 = 188,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0195")]
-        _0195 = 189,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0196")]
-        _0196 = 190,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0197")]
-        _0197 = 191,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0198")]
-        _0198 = 192,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0199")]
-        _0199 = 193,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0200")]
-        _0200 = 194,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0201")]
-        _0201 = 195,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0202")]
-        _0202 = 196,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0203")]
-        _0203 = 197,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0204")]
-        _0204 = 198,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0205")]
-        _0205 = 199,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0206")]
-        _0206 = 200,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0207")]
-        _0207 = 201,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0208")]
-        _0208 = 202,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0209")]
-        _0209 = 203,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0210")]
-        _0210 = 204,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0211")]
-        _0211 = 205,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0212")]
-        _0212 = 206,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0213")]
-        _0213 = 207,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0214")]
-        _0214 = 208,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0215")]
-        _0215 = 209,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0216")]
-        _0216 = 210,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0217")]
-        _0217 = 211,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0218")]
-        _0218 = 212,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0219")]
-        _0219 = 213,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0220")]
-        _0220 = 214,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0221")]
-        _0221 = 215,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0222")]
-        _0222 = 216,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0223")]
-        _0223 = 217,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0224")]
-        _0224 = 218,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0225")]
-        _0225 = 219,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0226")]
-        _0226 = 220,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0227")]
-        _0227 = 221,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0228")]
-        _0228 = 222,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0229")]
-        _0229 = 223,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0230")]
-        _0230 = 224,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0231")]
-        _0231 = 225,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0232")]
-        _0232 = 226,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0233")]
-        _0233 = 227,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0234")]
-        _0234 = 228,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0235")]
-        _0235 = 229,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0236")]
-        _0236 = 230,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0237")]
-        _0237 = 231,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0238")]
-        _0238 = 232,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0239")]
-        _0239 = 233,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0240")]
-        _0240 = 234,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Email2
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum UpdateCompanyRequestCountry
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AU")]
-        AU = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AT")]
-        AT = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BE")]
-        BE = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"BG")]
-        BG = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"CA")]
-        CA = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HR")]
-        HR = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DK")]
-        DK = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"EE")]
-        EE = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FI")]
-        FI = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"FR")]
-        FR = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"DE")]
-        DE = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GR")]
-        GR = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"HU")]
-        HU = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IS")]
-        IS = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IE")]
-        IE = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"IT")]
-        IT = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"JP")]
-        JP = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"LU")]
-        LU = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"MY")]
-        MY = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NL")]
-        NL = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NZ")]
-        NZ = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"NO")]
-        NO = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"PL")]
-        PL = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SG")]
-        SG = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SK")]
-        SK = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"SE")]
-        SE = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"AE")]
-        AE = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"GB")]
-        GB = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"US")]
-        US = 28,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum UpdateCompanyRequestEnterpriseNumberScheme
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0002")]
-        _0002 = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0003")]
-        _0003 = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0004")]
-        _0004 = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0005")]
-        _0005 = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0006")]
-        _0006 = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0007")]
-        _0007 = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0008")]
-        _0008 = 6,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0009")]
-        _0009 = 7,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0010")]
-        _0010 = 8,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0011")]
-        _0011 = 9,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0012")]
-        _0012 = 10,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0013")]
-        _0013 = 11,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0014")]
-        _0014 = 12,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0015")]
-        _0015 = 13,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0016")]
-        _0016 = 14,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0017")]
-        _0017 = 15,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0018")]
-        _0018 = 16,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0019")]
-        _0019 = 17,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0020")]
-        _0020 = 18,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0021")]
-        _0021 = 19,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0022")]
-        _0022 = 20,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0023")]
-        _0023 = 21,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0024")]
-        _0024 = 22,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0025")]
-        _0025 = 23,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0026")]
-        _0026 = 24,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0027")]
-        _0027 = 25,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0028")]
-        _0028 = 26,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0029")]
-        _0029 = 27,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0030")]
-        _0030 = 28,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0031")]
-        _0031 = 29,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0032")]
-        _0032 = 30,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0033")]
-        _0033 = 31,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0034")]
-        _0034 = 32,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0035")]
-        _0035 = 33,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0036")]
-        _0036 = 34,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0037")]
-        _0037 = 35,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0038")]
-        _0038 = 36,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0039")]
-        _0039 = 37,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0040")]
-        _0040 = 38,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0041")]
-        _0041 = 39,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0042")]
-        _0042 = 40,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0043")]
-        _0043 = 41,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0044")]
-        _0044 = 42,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0045")]
-        _0045 = 43,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0046")]
-        _0046 = 44,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0047")]
-        _0047 = 45,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0048")]
-        _0048 = 46,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0049")]
-        _0049 = 47,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0050")]
-        _0050 = 48,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0051")]
-        _0051 = 49,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0052")]
-        _0052 = 50,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0053")]
-        _0053 = 51,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0054")]
-        _0054 = 52,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0055")]
-        _0055 = 53,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0056")]
-        _0056 = 54,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0057")]
-        _0057 = 55,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0058")]
-        _0058 = 56,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0059")]
-        _0059 = 57,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0060")]
-        _0060 = 58,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0061")]
-        _0061 = 59,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0062")]
-        _0062 = 60,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0063")]
-        _0063 = 61,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0064")]
-        _0064 = 62,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0065")]
-        _0065 = 63,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0066")]
-        _0066 = 64,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0067")]
-        _0067 = 65,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0068")]
-        _0068 = 66,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0069")]
-        _0069 = 67,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0070")]
-        _0070 = 68,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0071")]
-        _0071 = 69,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0072")]
-        _0072 = 70,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0073")]
-        _0073 = 71,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0074")]
-        _0074 = 72,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0075")]
-        _0075 = 73,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0076")]
-        _0076 = 74,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0077")]
-        _0077 = 75,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0078")]
-        _0078 = 76,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0079")]
-        _0079 = 77,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0080")]
-        _0080 = 78,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0081")]
-        _0081 = 79,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0082")]
-        _0082 = 80,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0083")]
-        _0083 = 81,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0084")]
-        _0084 = 82,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0085")]
-        _0085 = 83,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0086")]
-        _0086 = 84,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0087")]
-        _0087 = 85,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0088")]
-        _0088 = 86,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0089")]
-        _0089 = 87,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0090")]
-        _0090 = 88,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0091")]
-        _0091 = 89,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0093")]
-        _0093 = 90,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0094")]
-        _0094 = 91,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0095")]
-        _0095 = 92,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0096")]
-        _0096 = 93,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0097")]
-        _0097 = 94,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0098")]
-        _0098 = 95,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0099")]
-        _0099 = 96,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0100")]
-        _0100 = 97,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0101")]
-        _0101 = 98,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0102")]
-        _0102 = 99,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0104")]
-        _0104 = 100,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0105")]
-        _0105 = 101,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0106")]
-        _0106 = 102,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0107")]
-        _0107 = 103,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0108")]
-        _0108 = 104,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0109")]
-        _0109 = 105,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0110")]
-        _0110 = 106,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0111")]
-        _0111 = 107,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0112")]
-        _0112 = 108,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0113")]
-        _0113 = 109,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0114")]
-        _0114 = 110,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0115")]
-        _0115 = 111,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0116")]
-        _0116 = 112,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0117")]
-        _0117 = 113,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0118")]
-        _0118 = 114,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0119")]
-        _0119 = 115,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0120")]
-        _0120 = 116,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0121")]
-        _0121 = 117,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0122")]
-        _0122 = 118,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0123")]
-        _0123 = 119,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0124")]
-        _0124 = 120,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0125")]
-        _0125 = 121,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0126")]
-        _0126 = 122,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0127")]
-        _0127 = 123,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0128")]
-        _0128 = 124,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0129")]
-        _0129 = 125,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0130")]
-        _0130 = 126,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0131")]
-        _0131 = 127,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0132")]
-        _0132 = 128,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0133")]
-        _0133 = 129,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0134")]
-        _0134 = 130,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0135")]
-        _0135 = 131,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0136")]
-        _0136 = 132,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0137")]
-        _0137 = 133,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0138")]
-        _0138 = 134,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0139")]
-        _0139 = 135,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0140")]
-        _0140 = 136,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0141")]
-        _0141 = 137,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0142")]
-        _0142 = 138,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0143")]
-        _0143 = 139,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0144")]
-        _0144 = 140,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0145")]
-        _0145 = 141,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0146")]
-        _0146 = 142,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0147")]
-        _0147 = 143,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0148")]
-        _0148 = 144,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0149")]
-        _0149 = 145,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0150")]
-        _0150 = 146,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0151")]
-        _0151 = 147,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0152")]
-        _0152 = 148,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0153")]
-        _0153 = 149,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0154")]
-        _0154 = 150,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0155")]
-        _0155 = 151,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0156")]
-        _0156 = 152,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0157")]
-        _0157 = 153,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0158")]
-        _0158 = 154,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0159")]
-        _0159 = 155,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0160")]
-        _0160 = 156,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0161")]
-        _0161 = 157,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0162")]
-        _0162 = 158,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0163")]
-        _0163 = 159,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0164")]
-        _0164 = 160,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0165")]
-        _0165 = 161,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0166")]
-        _0166 = 162,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0167")]
-        _0167 = 163,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0168")]
-        _0168 = 164,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0169")]
-        _0169 = 165,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0170")]
-        _0170 = 166,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0171")]
-        _0171 = 167,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0172")]
-        _0172 = 168,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0173")]
-        _0173 = 169,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0174")]
-        _0174 = 170,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0175")]
-        _0175 = 171,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0176")]
-        _0176 = 172,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0177")]
-        _0177 = 173,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0178")]
-        _0178 = 174,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0179")]
-        _0179 = 175,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0180")]
-        _0180 = 176,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0183")]
-        _0183 = 177,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0184")]
-        _0184 = 178,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0185")]
-        _0185 = 179,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0186")]
-        _0186 = 180,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0187")]
-        _0187 = 181,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0188")]
-        _0188 = 182,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0189")]
-        _0189 = 183,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0190")]
-        _0190 = 184,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0191")]
-        _0191 = 185,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0192")]
-        _0192 = 186,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0193")]
-        _0193 = 187,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0194")]
-        _0194 = 188,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0195")]
-        _0195 = 189,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0196")]
-        _0196 = 190,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0197")]
-        _0197 = 191,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0198")]
-        _0198 = 192,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0199")]
-        _0199 = 193,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0200")]
-        _0200 = 194,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0201")]
-        _0201 = 195,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0202")]
-        _0202 = 196,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0203")]
-        _0203 = 197,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0204")]
-        _0204 = 198,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0205")]
-        _0205 = 199,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0206")]
-        _0206 = 200,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0207")]
-        _0207 = 201,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0208")]
-        _0208 = 202,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0209")]
-        _0209 = 203,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0210")]
-        _0210 = 204,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0211")]
-        _0211 = 205,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0212")]
-        _0212 = 206,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0213")]
-        _0213 = 207,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0214")]
-        _0214 = 208,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0215")]
-        _0215 = 209,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0216")]
-        _0216 = 210,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0217")]
-        _0217 = 211,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0218")]
-        _0218 = 212,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0219")]
-        _0219 = 213,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0220")]
-        _0220 = 214,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0221")]
-        _0221 = 215,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0222")]
-        _0222 = 216,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0223")]
-        _0223 = 217,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0224")]
-        _0224 = 218,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0225")]
-        _0225 = 219,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0226")]
-        _0226 = 220,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0227")]
-        _0227 = 221,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0228")]
-        _0228 = 222,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0229")]
-        _0229 = 223,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0230")]
-        _0230 = 224,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0231")]
-        _0231 = 225,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0232")]
-        _0232 = 226,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0233")]
-        _0233 = 227,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0234")]
-        _0234 = 228,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0235")]
-        _0235 = 229,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0236")]
-        _0236 = 230,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0237")]
-        _0237 = 231,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0238")]
-        _0238 = 232,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0239")]
-        _0239 = 233,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"0240")]
-        _0240 = 234,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Email3
-    {
-
-        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Companies
+    public partial class ResponseCompany
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -25891,7 +14157,100 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Identifiers
+    public enum CompanyRequestCountry
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"AU")]
+        AU = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"AT")]
+        AT = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"BE")]
+        BE = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"BG")]
+        BG = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"CA")]
+        CA = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"HR")]
+        HR = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"DK")]
+        DK = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"EE")]
+        EE = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"FI")]
+        FI = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"FR")]
+        FR = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"DE")]
+        DE = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"GR")]
+        GR = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"HU")]
+        HU = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"IS")]
+        IS = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"IE")]
+        IE = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"IT")]
+        IT = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"JP")]
+        JP = 16,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"LU")]
+        LU = 17,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"MY")]
+        MY = 18,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"NL")]
+        NL = 19,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"NZ")]
+        NZ = 20,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"NO")]
+        NO = 21,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"PL")]
+        PL = 22,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SG")]
+        SG = 23,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SK")]
+        SK = 24,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SE")]
+        SE = 25,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"AE")]
+        AE = 26,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"GB")]
+        GB = 27,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"US")]
+        US = 28,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class ResponseIdentifier
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -25930,7 +14289,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DocumentTypes
+    public partial class ResponseDocumentType
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -25969,7 +14328,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class NotificationEmailAddresses
+    public partial class ResponseNotificationEmailAddress
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -26021,8 +14380,15 @@ namespace Recommand.Client
 
     }
 
+    [JsonInheritanceConverter(typeof(GetDocumentsResponseDocument), "type")]
+    [JsonInheritanceAttribute("invoice", typeof(GetDocumentsResponseDocumentInvoice))]
+    [JsonInheritanceAttribute("creditNote", typeof(GetDocumentsResponseDocumentCreditNote))]
+    [JsonInheritanceAttribute("selfBillingInvoice", typeof(GetDocumentsResponseDocumentSelfBillingInvoice))]
+    [JsonInheritanceAttribute("selfBillingCreditNote", typeof(GetDocumentsResponseDocumentSelfBillingCreditNote))]
+    [JsonInheritanceAttribute("messageLevelResponse", typeof(GetDocumentsResponseDocumentMessageLevelResponse))]
+    [JsonInheritanceAttribute("xml", typeof(GetDocumentsResponseDocumentXml))]
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Documents
+    public partial class GetDocumentsResponseDocument
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -26039,8 +14405,8 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("direction")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<DocumentsDirection>))]
-        public DocumentsDirection Direction { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Direction>))]
+        public Direction Direction { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("senderId")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
@@ -26061,14 +14427,6 @@ namespace Recommand.Client
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string CountryC1 { get; set; } = default!;
 
-        /// <summary>
-        /// The type of document.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("type")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<DocumentsType>))]
-        public DocumentsType Type { get; set; } = default!;
-
         [System.Text.Json.Serialization.JsonPropertyName("readAt")]
         public string? ReadAt { get; set; } = default!;
 
@@ -26080,11 +14438,9 @@ namespace Recommand.Client
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string UpdatedAt { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
-        public Parsed2 Parsed { get; set; } = default!;
-
         [System.Text.Json.Serialization.JsonPropertyName("validation")]
-        public Validation? Validation { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseDocumentValidation Validation { get; set; } = new ResponseDocumentValidation();
 
         [System.Text.Json.Serialization.JsonPropertyName("sentOverPeppol")]
         public bool SentOverPeppol { get; set; } = default!;
@@ -26098,7 +14454,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("labels")]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Labels5> Labels { get; set; } = new System.Collections.ObjectModel.Collection<Labels5>();
+        public System.Collections.Generic.ICollection<Label> Labels { get; set; } = new System.Collections.ObjectModel.Collection<Label>();
 
         [System.Text.Json.Serialization.JsonPropertyName("peppolMessageId")]
         public string? PeppolMessageId { get; set; } = default!;
@@ -26127,7 +14483,198 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Documents2
+    public enum Direction
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"incoming")]
+        Incoming = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"outgoing")]
+        Outgoing = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class ResponseDocumentValidation
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("result")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<ResponseDocumentValidationResult>))]
+        public ResponseDocumentValidationResult Result { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ResponseDocumentValidationError> Errors { get; set; } = new System.Collections.ObjectModel.Collection<ResponseDocumentValidationError>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum ResponseDocumentValidationResult
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"valid")]
+        Valid = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"invalid")]
+        Invalid = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"not_supported")]
+        NotSupported = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"error")]
+        Error = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class ResponseDocumentValidationError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("ruleCode")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string RuleCode { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errorMessage")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string ErrorMessage { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errorLevel")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string ErrorLevel { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("fieldName")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string FieldName { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class Label
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
+        public string? ExternalId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string ColorHex { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class ResponsePagination
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("total")]
+        public double Total { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("page")]
+        public double Page { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("limit")]
+        public double Limit { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("totalPages")]
+        public double TotalPages { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// Filter documents by type
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum GetDocumentsType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"invoice")]
+        Invoice = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"creditNote")]
+        CreditNote = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingInvoice")]
+        SelfBillingInvoice = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingCreditNote")]
+        SelfBillingCreditNote = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"messageLevelResponse")]
+        MessageLevelResponse = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unknown")]
+        Unknown = 5,
+
+    }
+
+    /// <summary>
+    /// Filter documents by read status: true for unread documents (readAt is null), false for read documents.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum GetDocumentsIsUnread
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"true")]
+        True = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"false")]
+        False = 1,
+
+    }
+
+    [JsonInheritanceConverter(typeof(GetDocumentResponseDocument), "type")]
+    [JsonInheritanceAttribute("invoice", typeof(GetDocumentResponseDocumentInvoice))]
+    [JsonInheritanceAttribute("creditNote", typeof(GetDocumentResponseDocumentCreditNote))]
+    [JsonInheritanceAttribute("selfBillingInvoice", typeof(GetDocumentResponseDocumentSelfBillingInvoice))]
+    [JsonInheritanceAttribute("selfBillingCreditNote", typeof(GetDocumentResponseDocumentSelfBillingCreditNote))]
+    [JsonInheritanceAttribute("messageLevelResponse", typeof(GetDocumentResponseDocumentMessageLevelResponse))]
+    [JsonInheritanceAttribute("xml", typeof(GetDocumentResponseDocumentXml))]
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentResponseDocument
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -26144,8 +14691,8 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("direction")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Documents2Direction>))]
-        public Documents2Direction Direction { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Direction>))]
+        public Direction Direction { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("senderId")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
@@ -26166,14 +14713,6 @@ namespace Recommand.Client
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string CountryC1 { get; set; } = default!;
 
-        /// <summary>
-        /// The type of document.
-        /// </summary>
-        [System.Text.Json.Serialization.JsonPropertyName("type")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Documents2Type>))]
-        public Documents2Type Type { get; set; } = default!;
-
         [System.Text.Json.Serialization.JsonPropertyName("readAt")]
         public string? ReadAt { get; set; } = default!;
 
@@ -26185,8 +14724,12 @@ namespace Recommand.Client
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string UpdatedAt { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("xml")]
+        public string? Xml { get; set; } = default!;
+
         [System.Text.Json.Serialization.JsonPropertyName("validation")]
-        public Validation2? Validation { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseDocumentValidation Validation { get; set; } = new ResponseDocumentValidation();
 
         [System.Text.Json.Serialization.JsonPropertyName("sentOverPeppol")]
         public bool SentOverPeppol { get; set; } = default!;
@@ -26200,7 +14743,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("labels")]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Labels6> Labels { get; set; } = new System.Collections.ObjectModel.Collection<Labels6>();
+        public System.Collections.Generic.ICollection<Label> Labels { get; set; } = new System.Collections.ObjectModel.Collection<Label>();
 
         [System.Text.Json.Serialization.JsonPropertyName("peppolMessageId")]
         public string? PeppolMessageId { get; set; } = default!;
@@ -26229,7 +14772,140 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SupportedDocuments
+    public partial class GetInboxResponseDocument
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string TeamId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string CompanyId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("direction")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Direction>))]
+        public Direction Direction { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("senderId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string SenderId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("receiverId")]
+        public string? ReceiverId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("docTypeId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string DocTypeId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("processId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string ProcessId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("countryC1")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string CountryC1 { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<DocumentType>))]
+        public DocumentType Type { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("readAt")]
+        public string? ReadAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("validation")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseDocumentValidation Validation { get; set; } = new ResponseDocumentValidation();
+
+        [System.Text.Json.Serialization.JsonPropertyName("sentOverPeppol")]
+        public bool SentOverPeppol { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("sentOverEmail")]
+        public bool SentOverEmail { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("emailRecipients")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<string> EmailRecipients { get; set; } = new System.Collections.ObjectModel.Collection<string>();
+
+        [System.Text.Json.Serialization.JsonPropertyName("labels")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Label> Labels { get; set; } = new System.Collections.ObjectModel.Collection<Label>();
+
+        [System.Text.Json.Serialization.JsonPropertyName("peppolMessageId")]
+        public string? PeppolMessageId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("peppolConversationId")]
+        public string? PeppolConversationId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("receivedPeppolSignalMessage")]
+        public string? ReceivedPeppolSignalMessage { get; set; } = default!;
+
+        /// <summary>
+        /// The envelope ID of the document, also known as the SBDH instance identifier (Standard Business Document Header Instance Identifier)
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("envelopeId")]
+        public string? EnvelopeId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// When to include the autogenerated PDF in the package
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum DownloadPackageGeneratePdf
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"never")]
+        Never = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"always")]
+        Always = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"when_no_pdf_attachment")]
+        WhenNoPdfAttachment = 2,
+
+    }
+
+    /// <summary>
+    /// The type of the document to render
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum RenderDocumentType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"html")]
+        Html = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pdf")]
+        Pdf = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyRecipientResponseSupportedDocument
     {
 
         /// <summary>
@@ -26282,7 +14958,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Results
+    public partial class SearchDirectoryResponseResult
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("peppolAddress")]
@@ -26309,7 +14985,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Webhooks
+    public partial class ResponseWebhook
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -26347,7 +15023,58 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Suppliers
+    public partial class PlaygroundResponsePlayground
+    {
+
+        /// <summary>
+        /// Team ID
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public string Id { get; set; } = default!;
+
+        /// <summary>
+        /// Team name
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string Name { get; set; } = default!;
+
+        /// <summary>
+        /// Team description
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("teamDescription")]
+        public string TeamDescription { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the team is a playground
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("isPlayground")]
+        public bool IsPlayground { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to use the Peppol Test Network
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("useTestNetwork")]
+        public bool UseTestNetwork { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
+        public System.DateTimeOffset CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
+        public System.DateTimeOffset UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class ResponseSupplier
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -26381,7 +15108,7 @@ namespace Recommand.Client
         public string UpdatedAt { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("labels")]
-        public System.Collections.Generic.ICollection<Labels7> Labels { get; set; } = default!;
+        public System.Collections.Generic.ICollection<Label> Labels { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -26395,7 +15122,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Customers
+    public partial class ResponseCustomer
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -26465,7 +15192,7 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Labels4
+    public partial class ResponseLabel
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -26507,7 +15234,615 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum DocumentsDirection
+    public partial class ValidationErrorResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [JsonInheritanceConverter(typeof(SendDocumentRequest), "documentType")]
+    [JsonInheritanceAttribute("invoice", typeof(SendInvoiceRequest))]
+    [JsonInheritanceAttribute("creditNote", typeof(SendCreditNoteRequest))]
+    [JsonInheritanceAttribute("selfBillingInvoice", typeof(SendSelfBillingInvoiceRequest))]
+    [JsonInheritanceAttribute("selfBillingCreditNote", typeof(SendSelfBillingCreditNoteRequest))]
+    [JsonInheritanceAttribute("messageLevelResponse", typeof(SendMessageLevelResponseRequest))]
+    [JsonInheritanceAttribute("xml", typeof(SendXmlRequest))]
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendDocumentRequest
+    {
+
+        /// <summary>
+        /// The Peppol address of the recipient. If null, the document will be sent via email only (requires `email.to`).
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("recipient")]
+        public string? Recipient { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public Email Email { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("pdfGeneration")]
+        public PDFGeneration PdfGeneration { get; set; } = default!;
+
+        /// <summary>
+        /// The document type identifier. Not required, only used when documentType is "xml". For supported document types, the doctypeId can be detected automatically from your XML document, if that's not the case you can provide it manually.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("doctypeId")]
+        public string DoctypeId { get; set; } = default!;
+
+        /// <summary>
+        /// The process identifier. Not required, only used when documentType is "xml". For supported document types, the processId can be detected automatically from your XML document, if that's not the case you can provide it manually.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("processId")]
+        public string ProcessId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendInvoiceRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendInvoice Document { get; set; } = new SendInvoice();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendCreditNoteRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendCreditNote Document { get; set; } = new SendCreditNote();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendSelfBillingInvoiceRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendSelfBillingInvoice Document { get; set; } = new SendSelfBillingInvoice();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendSelfBillingCreditNoteRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendSelfBillingCreditNote Document { get; set; } = new SendSelfBillingCreditNote();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendMessageLevelResponseRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendMessageLevelResponse Document { get; set; } = new SendMessageLevelResponse();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SendXmlRequest : SendDocumentRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Document { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentResponseDocumentInvoice : GetDocumentResponseDocument
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
+        public Invoice Parsed { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentResponseDocumentCreditNote : GetDocumentResponseDocument
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
+        public CreditNote Parsed { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentResponseDocumentSelfBillingInvoice : GetDocumentResponseDocument
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
+        public SelfBillingInvoice Parsed { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentResponseDocumentSelfBillingCreditNote : GetDocumentResponseDocument
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
+        public SelfBillingCreditNote Parsed { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentResponseDocumentMessageLevelResponse : GetDocumentResponseDocument
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentResponseDocumentXml : GetDocumentResponseDocument
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentsResponseDocumentInvoice : GetDocumentsResponseDocument
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
+        public Invoice Parsed { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentsResponseDocumentCreditNote : GetDocumentsResponseDocument
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
+        public CreditNote Parsed { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentsResponseDocumentSelfBillingInvoice : GetDocumentsResponseDocument
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
+        public SelfBillingInvoice Parsed { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentsResponseDocumentSelfBillingCreditNote : GetDocumentsResponseDocument
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("parsed")]
+        public SelfBillingCreditNote Parsed { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentsResponseDocumentMessageLevelResponse : GetDocumentsResponseDocument
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentsResponseDocumentXml : GetDocumentsResponseDocument
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("address")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Address { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string PostalCode { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string City { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CompanyRequestCountry>))]
+        public CompanyRequestCountry Country { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
+
+        /// <summary>
+        /// The enterprise number of the company. Can only contain alphanumeric characters. For Belgian businesses it will be inferred from the VAT number if not provided.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
+        public string? EnterpriseNumber { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
+        public string? VatNumber { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("isSmpRecipient")]
+        public bool IsSmpRecipient { get; set; } = true;
+
+        /// <summary>
+        /// If true, the automatic creation of company identifiers and document types will be skipped. You will need to create them afterwards using the company identifier creation endpoint and company document type creation endpoint.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("skipDefaultCompanySetup")]
+        public bool SkipDefaultCompanySetup { get; set; } = false;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("address")]
+        public string Address { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
+        public string PostalCode { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        public string City { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CompanyRequestCountry>))]
+        public CompanyRequestCountry Country { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
+        public string? EnterpriseNumber { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
+        public string? VatNumber { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("isSmpRecipient")]
+        public bool IsSmpRecipient { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyIdentifierRequest
+    {
+
+        /// <summary>
+        /// The scheme of the identifier
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Scheme { get; set; } = default!;
+
+        /// <summary>
+        /// The value of the identifier
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Identifier { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyIdentifierRequest
+    {
+
+        /// <summary>
+        /// The scheme of the identifier
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("scheme")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Scheme { get; set; } = default!;
+
+        /// <summary>
+        /// The value of the identifier
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Identifier { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyDocumentTypeRequest
+    {
+
+        /// <summary>
+        /// The ID of the document type to create
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("docTypeId")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string DocTypeId { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the process to create
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("processId")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string ProcessId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyDocumentTypeRequest
+    {
+
+        /// <summary>
+        /// The ID of the document type to update
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("docTypeId")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string DocTypeId { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the process to update
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("processId")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string ProcessId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyNotificationEmailAddressRequest
+    {
+
+        /// <summary>
+        /// The email address to create
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Email { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to notify on incoming documents
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("notifyIncoming")]
+        public bool NotifyIncoming { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to notify on outgoing documents
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("notifyOutgoing")]
+        public bool NotifyOutgoing { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to include the auto-generated PDF attachment for incoming document notifications
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfIncoming")]
+        public bool IncludeAutoGeneratedPdfIncoming { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to include the auto-generated PDF attachment for outgoing document notifications
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfOutgoing")]
+        public bool IncludeAutoGeneratedPdfOutgoing { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to include the document.json attachment for incoming document notifications
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonIncoming")]
+        public bool IncludeDocumentJsonIncoming { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to include the document.json attachment for outgoing document notifications
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonOutgoing")]
+        public bool IncludeDocumentJsonOutgoing { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyNotificationEmailAddressRequest
+    {
+
+        /// <summary>
+        /// The email address to update
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Email { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to notify on incoming documents
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("notifyIncoming")]
+        public bool NotifyIncoming { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to notify on outgoing documents
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("notifyOutgoing")]
+        public bool NotifyOutgoing { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to include the auto-generated PDF attachment for incoming document notifications
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfIncoming")]
+        public bool IncludeAutoGeneratedPdfIncoming { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to include the auto-generated PDF attachment for outgoing document notifications
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeAutoGeneratedPdfOutgoing")]
+        public bool IncludeAutoGeneratedPdfOutgoing { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to include the document.json attachment for incoming document notifications
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonIncoming")]
+        public bool IncludeDocumentJsonIncoming { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to include the document.json attachment for outgoing document notifications
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeDocumentJsonOutgoing")]
+        public bool IncludeDocumentJsonOutgoing { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// Filter documents by company ID
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CompanyId
+    {
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// Filter documents by label ID
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class LabelId
+    {
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// Filter documents by direction (incoming or outgoing)
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public enum GetDocumentsDirection
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"incoming")]
@@ -26519,32 +15854,14 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum DocumentsType
+    public partial class MarkAsReadRequest
     {
 
-        [System.Runtime.Serialization.EnumMember(Value = @"invoice")]
-        Invoice = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"creditNote")]
-        CreditNote = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingInvoice")]
-        SelfBillingInvoice = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingCreditNote")]
-        SelfBillingCreditNote = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"messageLevelResponse")]
-        MessageLevelResponse = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"xml")]
-        Xml = 5,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Parsed2
-    {
+        /// <summary>
+        /// Whether to mark the document as read (true) or unread (false). If not provided, defaults to true.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("read")]
+        public bool Read { get; set; } = true;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -26558,38 +15875,150 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Validation
+    public partial class VerifyRecipientRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("result")]
+        /// <summary>
+        /// The Peppol address of the recipient to verify.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("peppolAddress")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<ValidationResult>))]
-        public ValidationResult Result { get; set; } = default!;
+        public string PeppolAddress { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        /// <summary>
+        /// If true, fetches endpoint details for all supported document types.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeEndpointDetails")]
+        public bool IncludeEndpointDetails { get; set; } = default!;
+
+        /// <summary>
+        /// If true, fetches the business card from the SMP for company name and country.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("includeBusinessCard")]
+        public bool IncludeBusinessCard { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyDocumentSupportRequest
+    {
+
+        /// <summary>
+        /// The Peppol address of the recipient to verify.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("peppolAddress")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string PeppolAddress { get; set; } = default!;
+
+        /// <summary>
+        /// The document type to verify. You can use a full document type ID, or the simplified versions (e.g. "invoice", "creditNote", "selfBillingInvoice", "selfBillingCreditNote", ...).
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string DocumentType { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SearchDirectoryRequest
+    {
+
+        /// <summary>
+        /// The search query to find recipients.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("query")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Query { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateWebhookRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("url")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public System.Uri Url { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
+        public string? CompanyId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateWebhookRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("url")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public System.Uri Url { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
+        public string? CompanyId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreatePlaygroundRequest
+    {
+
+        /// <summary>
+        /// Playground name
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Errors2> Errors { get; set; } = new System.Collections.ObjectModel.Collection<Errors2>();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Labels5
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Name { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ColorHex { get; set; } = default!;
+        /// <summary>
+        /// Whether to use the Peppol Test Network
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("useTestNetwork")]
+        public bool UseTestNetwork { get; set; } = false;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -26603,74 +16032,158 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Documents2Direction
+    public partial class UpsertSupplierRequest
     {
 
-        [System.Runtime.Serialization.EnumMember(Value = @"incoming")]
-        Incoming = 0,
+        /// <summary>
+        /// The internal ID of the supplier to update. If provided, updates by id.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public string Id { get; set; } = default!;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"outgoing")]
-        Outgoing = 1,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Documents2Type
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"invoice")]
-        Invoice = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"creditNote")]
-        CreditNote = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingInvoice")]
-        SelfBillingInvoice = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"selfBillingCreditNote")]
-        SelfBillingCreditNote = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"messageLevelResponse")]
-        MessageLevelResponse = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"xml")]
-        Xml = 5,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Validation2
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("result")]
+        /// <summary>
+        /// The name of the supplier
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Validation2Result>))]
-        public Validation2Result Result { get; set; } = default!;
+        public string Name { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+        /// <summary>
+        /// The external ID of the supplier. If provided without id, finds by externalId and updates or creates if not found.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
+        public string? ExternalId { get; set; } = default!;
+
+        /// <summary>
+        /// The VAT number of the supplier
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
+        public string? VatNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The Peppol addresses of the supplier
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
+        public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpsertCustomerRequest
+    {
+
+        /// <summary>
+        /// The internal ID of the customer to update. If provided, updates by id.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public string Id { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        /// <summary>
+        /// The external ID of the customer. If provided without id, finds by externalId and updates or creates if not found.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
+        public string? ExternalId { get; set; } = default!;
+
+        /// <summary>
+        /// The VAT number of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
+        public string? VatNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The enterprise number of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
+        public string? EnterpriseNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The Peppol addresses of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
+        public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = default!;
+
+        /// <summary>
+        /// The street address of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("address")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Address { get; set; } = default!;
+
+        /// <summary>
+        /// The city of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string City { get; set; } = default!;
+
+        /// <summary>
+        /// The postal code of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string PostalCode { get; set; } = default!;
+
+        /// <summary>
+        /// The country code (ISO 3166-1 alpha-2) of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Country { get; set; } = default!;
+
+        /// <summary>
+        /// The email address of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number of the customer
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateLabelRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<Errors3> Errors { get; set; } = new System.Collections.ObjectModel.Collection<Errors3>();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Labels6
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Name { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.ComponentModel.DataAnnotations.RegularExpression(@"^#[A-Fa-f0-9]{6}$")]
         public string ColorHex { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
+        public string? ExternalId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -26684,23 +16197,19 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Labels7
+    public partial class UpdateLabelRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; } = default!;
-
         [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.ComponentModel.DataAnnotations.StringLength(int.MaxValue, MinimumLength = 1)]
         public string Name { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("colorHex")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.ComponentModel.DataAnnotations.RegularExpression(@"^#[A-Fa-f0-9]{6}$")]
         public string ColorHex { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("externalId")]
+        public string? ExternalId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
@@ -26714,82 +16223,1265 @@ namespace Recommand.Client
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum ValidationResult
+    public partial class SendDocumentResponse
     {
 
-        [System.Runtime.Serialization.EnumMember(Value = @"valid")]
-        Valid = 0,
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"invalid")]
-        Invalid = 1,
+        [System.Text.Json.Serialization.JsonPropertyName("sentOverPeppol")]
+        public bool SentOverPeppol { get; set; } = default!;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"not_supported")]
-        Not_supported = 2,
+        [System.Text.Json.Serialization.JsonPropertyName("sentOverEmail")]
+        public bool SentOverEmail { get; set; } = default!;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"error")]
-        Error = 3,
+        [System.Text.Json.Serialization.JsonPropertyName("emailRecipients")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<string> EmailRecipients { get; set; } = new System.Collections.ObjectModel.Collection<string>();
+
+        [System.Text.Json.Serialization.JsonPropertyName("teamId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string TeamId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("companyId")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string CompanyId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("peppolMessageId")]
+        public string? PeppolMessageId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("envelopeId")]
+        public string? EnvelopeId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Errors2
+    public partial class GetCompaniesResponse
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("ruleCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string RuleCode { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("errorMessage")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ErrorMessage { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("companies")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ResponseCompany> Companies { get; set; } = new System.Collections.ObjectModel.Collection<ResponseCompany>();
 
-        [System.Text.Json.Serialization.JsonPropertyName("errorLevel")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ErrorLevel { get; set; } = default!;
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
-        [System.Text.Json.Serialization.JsonPropertyName("fieldName")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string FieldName { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Validation2Result
+    public partial class CreateCompanyResponse
     {
 
-        [System.Runtime.Serialization.EnumMember(Value = @"valid")]
-        Valid = 0,
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"invalid")]
-        Invalid = 1,
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseCompany Company { get; set; } = new ResponseCompany();
 
-        [System.Runtime.Serialization.EnumMember(Value = @"not_supported")]
-        Not_supported = 2,
+        [System.Text.Json.Serialization.JsonPropertyName("verificationUrl")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string VerificationUrl { get; set; } = default!;
 
-        [System.Runtime.Serialization.EnumMember(Value = @"error")]
-        Error = 3,
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Errors3
+    public partial class GetCompanyResponse
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("ruleCode")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string RuleCode { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("errorMessage")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ErrorMessage { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseCompany Company { get; set; } = new ResponseCompany();
 
-        [System.Text.Json.Serialization.JsonPropertyName("errorLevel")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string ErrorLevel { get; set; } = default!;
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
 
-        [System.Text.Json.Serialization.JsonPropertyName("fieldName")]
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseCompany Company { get; set; } = new ResponseCompany();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCompanyResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyCompanyResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("verificationUrl")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string FieldName { get; set; } = default!;
+        public string VerificationUrl { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyIdentifiersResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifiers")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ResponseIdentifier> Identifiers { get; set; } = new System.Collections.ObjectModel.Collection<ResponseIdentifier>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyIdentifierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseIdentifier Identifier { get; set; } = new ResponseIdentifier();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyIdentifierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseIdentifier Identifier { get; set; } = new ResponseIdentifier();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyIdentifierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("identifier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseIdentifier Identifier { get; set; } = new ResponseIdentifier();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCompanyIdentifierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyDocumentTypesResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documentTypes")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ResponseDocumentType> DocumentTypes { get; set; } = new System.Collections.ObjectModel.Collection<ResponseDocumentType>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyDocumentTypeResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseDocumentType DocumentType { get; set; } = new ResponseDocumentType();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyDocumentTypeResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseDocumentType DocumentType { get; set; } = new ResponseDocumentType();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyDocumentTypeResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documentType")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseDocumentType DocumentType { get; set; } = new ResponseDocumentType();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCompanyDocumentTypeResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyNotificationEmailAddressesResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddresses")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ResponseNotificationEmailAddress> NotificationEmailAddresses { get; set; } = new System.Collections.ObjectModel.Collection<ResponseNotificationEmailAddress>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateCompanyNotificationEmailAddressResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseNotificationEmailAddress NotificationEmailAddress { get; set; } = new ResponseNotificationEmailAddress();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCompanyNotificationEmailAddressResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseNotificationEmailAddress NotificationEmailAddress { get; set; } = new ResponseNotificationEmailAddress();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateCompanyNotificationEmailAddressResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("notificationEmailAddress")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseNotificationEmailAddress NotificationEmailAddress { get; set; } = new ResponseNotificationEmailAddress();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCompanyNotificationEmailAddressResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentsResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documents")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<GetDocumentsResponseDocument> Documents { get; set; } = new System.Collections.ObjectModel.Collection<GetDocumentsResponseDocument>();
+
+        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponsePagination Pagination { get; set; } = new ResponsePagination();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetDocumentResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("document")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public GetDocumentResponseDocument Document { get; set; } = new GetDocumentResponseDocument();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteDocumentResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetInboxResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("documents")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<GetInboxResponseDocument> Documents { get; set; } = new System.Collections.ObjectModel.Collection<GetInboxResponseDocument>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class MarkAsReadResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class AssignLabelToDocumentResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UnassignLabelFromDocumentResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyRecipientResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the recipient is registered in the Peppol network.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("isValid")]
+        public bool IsValid { get; set; } = default!;
+
+        /// <summary>
+        /// The SMP URL of the recipient.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("smpUrl")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string SmpUrl { get; set; } = default!;
+
+        /// <summary>
+        /// The service metadata references of the recipient.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("serviceMetadataReferences")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<string> ServiceMetadataReferences { get; set; } = new System.Collections.ObjectModel.Collection<string>();
+
+        /// <summary>
+        /// The SMP hostnames of the recipient.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("smpHostnames")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<string> SmpHostnames { get; set; } = new System.Collections.ObjectModel.Collection<string>();
+
+        /// <summary>
+        /// Document types supported by this participant. Includes endpoint details when includeEndpointDetails is true.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("supportedDocuments")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<VerifyRecipientResponseSupportedDocument> SupportedDocuments { get; set; } = new System.Collections.ObjectModel.Collection<VerifyRecipientResponseSupportedDocument>();
+
+        /// <summary>
+        /// Company name from SMP business card.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("companyName")]
+        public string? CompanyName { get; set; } = default!;
+
+        /// <summary>
+        /// Country code from SMP business card.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("countryCode")]
+        public string? CountryCode { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyDocumentSupportResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the recipient supports the document type.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("isValid")]
+        public bool IsValid { get; set; } = default!;
+
+        /// <summary>
+        /// The SMP URL of the recipient.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("smpUrl")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string SmpUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Service description from the endpoint metadata.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("serviceProvider")]
+        public string? ServiceProvider { get; set; } = default!;
+
+        /// <summary>
+        /// The endpoint URL.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("serviceEndpoint")]
+        public string? ServiceEndpoint { get; set; } = default!;
+
+        /// <summary>
+        /// Technical contact URL.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("technicalContact")]
+        public string? TechnicalContact { get; set; } = default!;
+
+        /// <summary>
+        /// Certificate expiry date (ISO 8601).
+        /// </summary>
+        [System.Text.Json.Serialization.JsonPropertyName("certificateExpiry")]
+        public string? CertificateExpiry { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SearchDirectoryResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("results")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<SearchDirectoryResponseResult> Results { get; set; } = new System.Collections.ObjectModel.Collection<SearchDirectoryResponseResult>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetWebhooksResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhooks")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ResponseWebhook> Webhooks { get; set; } = new System.Collections.ObjectModel.Collection<ResponseWebhook>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateWebhookResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseWebhook Webhook { get; set; } = new ResponseWebhook();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetWebhookResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseWebhook Webhook { get; set; } = new ResponseWebhook();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateWebhookResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseWebhook Webhook { get; set; } = new ResponseWebhook();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteWebhookResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetPlaygroundResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("playground")]
+        public PlaygroundResponsePlayground Playground { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreatePlaygroundResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("playground")]
+        public PlaygroundResponsePlayground Playground { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetSuppliersResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("suppliers")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ResponseSupplier> Suppliers { get; set; } = new System.Collections.ObjectModel.Collection<ResponseSupplier>();
+
+        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponsePagination Pagination { get; set; } = new ResponsePagination();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpsertSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("supplier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseSupplier Supplier { get; set; } = new ResponseSupplier();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("supplier")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseSupplier Supplier { get; set; } = new ResponseSupplier();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class AssignLabelToSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UnassignLabelFromSupplierResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCustomersResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customers")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ResponseCustomer> Customers { get; set; } = new System.Collections.ObjectModel.Collection<ResponseCustomer>();
+
+        [System.Text.Json.Serialization.JsonPropertyName("pagination")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponsePagination Pagination { get; set; } = new ResponsePagination();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpsertCustomerResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseCustomer Customer { get; set; } = new ResponseCustomer();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetCustomerResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseCustomer Customer { get; set; } = new ResponseCustomer();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteCustomerResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetLabelsResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("labels")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ResponseLabel> Labels { get; set; } = new System.Collections.ObjectModel.Collection<ResponseLabel>();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateLabelResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("label")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseLabel Label { get; set; } = new ResponseLabel();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetLabelResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("label")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseLabel Label { get; set; } = new ResponseLabel();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateLabelResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("label")]
+        [System.ComponentModel.DataAnnotations.Required]
+        public ResponseLabel Label { get; set; } = new ResponseLabel();
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class DeleteLabelResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class VerifyAuthResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+        public bool Success { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+            set { _additionalProperties = value; }
+        }
 
     }
 

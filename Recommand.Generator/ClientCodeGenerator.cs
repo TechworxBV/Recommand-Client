@@ -22,6 +22,7 @@ internal static class ClientCodeGenerator
                 Namespace = "Recommand.Client",
                 JsonLibrary = CSharpJsonLibrary.SystemTextJson,
                 GenerateNullableReferenceTypes = true,
+                EnumNameGenerator = new PascalCaseEnumNameGenerator(),
             },
         };
 
