@@ -5,6 +5,96 @@ All notable changes to `Recommand.Client` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] – 2026-05-10
+
+### Added
+
+- **Webhook delivery support — typed polymorphism, signature verification,
+  ASP.NET Core integration.** The spec now defines the full webhook
+  delivery contract under OpenAPI 3.1 `webhooks:`, with a `WebhookPayload`
+  parent and 5 variants (`document.received`, `document.sent`,
+  `document.label.assigned`, `document.label.unassigned`,
+  `company.verification`). The SDK exposes:
+  - **Generated polymorphism hierarchy** — `WebhookPayload` base class
+    with 5 typed subclasses, `JsonInheritanceConverter` dispatch on the
+    `eventType` discriminator. Pattern-match on the runtime type for
+    typed handling.
+  - **`WebhookPayload.Parse(string)` / `ParseAsync(Stream)`** —
+    forward-compatible: unknown event types arrive as the base
+    `WebhookPayload` rather than throwing, with all wire fields preserved
+    in `AdditionalProperties` (including the wire `eventType` accessible
+    via `WebhookPayload.EventType`). Known discriminator set is
+    auto-discovered via reflection on the generated
+    `JsonInheritanceAttribute`s.
+  - **`WebhookEventTypes`** — `const string` constants for the 5 known
+    event types, suitable for `switch` labels and string comparisons.
+  - **`WebhookSignature.Verify(byte[] body, string? header, string secret)`**
+    and **`WebhookSignature.Compute(byte[] body, string secret)`** —
+    HMAC-SHA256 with the `sha256=<hex>` GitHub-style format the spec
+    documents on the `X-Signature` header. Constant-time comparison via
+    `CryptographicOperations.FixedTimeEquals`.
+- **New companion package: `Recommand.Client.AspNetCore`.** Targets
+  `net6.0;net8.0`, framework-references `Microsoft.AspNetCore.App`.
+  Provides:
+  - **`MapRecommandWebhook(pattern, handler, options?)`** — endpoint
+    extension that, per delivery, reads the raw body (capped by
+    `MaxBodyBytes`, default 1 MiB), verifies the HMAC-SHA256 signature
+    when a secret is configured, deduplicates on `X-Idempotency-Key` via
+    an optional `IWebhookDeduplicator`, parses the body via the
+    forward-compatible `WebhookPayload.Parse`, and dispatches to a
+    strongly-typed handler delegate. Status codes: `401` for signature
+    mismatch, `400` for malformed JSON, `413` for oversize body, `200`
+    on handler success.
+  - **`AddRecommandWebhooks(o => …)`** — DI registration of options
+    (signing secret, body-size limit, strict-vs-lenient signature
+    requirement). Endpoints pick up options inline or from DI.
+  - **`IWebhookDeduplicator`** — atomic test-and-set interface for
+    short-circuiting replays. Implementations expected to be backed by
+    a durable, shared store (Redis, Postgres, …).
+  - **`InMemoryWebhookDeduplicator`** — bounded LRU implementation for
+    development and tests. Not for production multi-instance use.
+  - **`WebhookDelivery`** — record carrying the parsed payload, the
+    idempotency key, and the underlying `HttpContext` for advanced
+    scenarios (custom logging, scoped service resolution).
+
+### Changed
+
+- **Spec source switched to in-repo file.** The generator no longer
+  fetches `https://peppol.recommand.eu/openapi`; it reads
+  `spec/openapi.json` directly. This makes regeneration deterministic
+  (no live-network dependency) and lets the spec evolve in lockstep
+  with the SDK in version control.
+- **`OneOfDiscriminatorNormalizer`** — new generic rewriter for the
+  modern OpenAPI 3.1 polymorphism shape (`oneOf: [refs] + discriminator`).
+  Walks every definition; when found, computes the property
+  intersection across variants and rewrites to the `allOf` inheritance
+  form NSwag emits as `JsonInheritanceConverter` dispatch. Mirrors
+  `SiblingDiscriminatorPolymorphismNormalizer` for the other shape.
+  Handles the new `WebhookPayload` site automatically.
+- **`StructuralDeduplicator` const-aware fingerprint.** JSON Schema
+  2020-12 `const` values now participate in structural identity (read
+  from `ExtensionData["const"]` since NJsonSchema 11.6 doesn't surface
+  it as a first-class property). Without this fix, schemas differing
+  only by a discriminator's `const` value fingerprinted identically and
+  got incorrectly merged by the dedup pass.
+
+### Notes for consumers
+
+- The wire format is unchanged. All renames are C#-side only; JSON
+  serialization/deserialization round-trips identically.
+- Webhook subscription management endpoints (`IWebhooksClient`) and
+  webhook delivery types (`WebhookPayload` and subclasses) are now both
+  available out of the typed client.
+- Signature verification requires a shared secret. The
+  `POST /v1/webhooks` endpoint does not currently return a `signingSecret`
+  on creation — that's an open spec question upstream. Until resolved,
+  configure secrets out of band. Use the new `Recommand.Client.AspNetCore`
+  endpoint extension to verify signatures end-to-end once you have one.
+
+## [0.3.1] – not released
+
+Internal iteration; folded into 0.4.0.
+
 ## [0.3.0] – 2026-05-10
 
 ### Added
