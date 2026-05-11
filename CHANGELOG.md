@@ -5,6 +5,24 @@ All notable changes to `Recommand.Client` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.2] – 2026-05-11
+
+### Fixed
+
+- **Enum values that start with a digit now serialise correctly.** The
+  Peppol scheme codes (`"0208"`, `"0002"`, …), country codes, and similar
+  enum values were being emitted on the wire as `"_0208"` etc. — the C#
+  enum member name (which must be underscore-prefixed because C#
+  identifiers can't start with a digit) was leaking through because
+  `System.Text.Json.Serialization.JsonStringEnumConverter` does not
+  honour `[EnumMember(Value = "…")]`. The SDK now ships
+  `EnumMemberStringEnumConverter<TEnum>`, a drop-in replacement that
+  respects `EnumMember` on both serialise and deserialise. The generator
+  post-processes the NSwag output to swap the converter type on every
+  property attribute (25 sites in the current spec). Affected types
+  include `EnterpriseNumberScheme`, `ItemClassificationCodeScheme`, and
+  others.
+
 ## [0.4.1] – 2026-05-11
 
 ### Fixed

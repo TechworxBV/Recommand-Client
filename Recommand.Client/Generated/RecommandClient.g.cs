@@ -10220,7 +10220,7 @@ namespace Recommand.Client
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("when")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EmailWhen>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<EmailWhen>))]
         public EmailWhen When { get; set; } = default!;
 
         /// <summary>
@@ -10390,7 +10390,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Currency>))]
         public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
@@ -10412,7 +10412,7 @@ namespace Recommand.Client
         public string? VatNumber { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<EnterpriseNumberScheme>))]
         public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
@@ -10510,7 +10510,7 @@ namespace Recommand.Client
         public string? Name { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("paymentMethod")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<PaymentMeansPaymentMethod>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<PaymentMeansPaymentMethod>))]
         public PaymentMeansPaymentMethod PaymentMethod { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("reference")]
@@ -10669,7 +10669,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("scheme")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<ItemClassificationCodeScheme>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<ItemClassificationCodeScheme>))]
         public ItemClassificationCodeScheme Scheme { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("schemeVersion")]
@@ -10789,7 +10789,7 @@ namespace Recommand.Client
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("category")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Category>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Category>))]
         public Category Category { get; set; } = default!;
 
         /// <summary>
@@ -10994,7 +10994,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("category")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Category>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Category>))]
         public Category Category { get; set; } = default!;
 
         /// <summary>
@@ -11204,7 +11204,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Currency>))]
         public Currency Currency { get; set; } = default!;
 
         /// <summary>
@@ -11332,7 +11332,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Currency>))]
         public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
@@ -11449,7 +11449,7 @@ namespace Recommand.Client
         public System.Collections.Generic.ICollection<Attachment>? Attachments { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Currency>))]
         public Currency Currency { get; set; } = default!;
 
         /// <summary>
@@ -11492,7 +11492,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("responseCode")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<SendMessageLevelResponseResponseCode>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<SendMessageLevelResponseResponseCode>))]
         public SendMessageLevelResponseResponseCode ResponseCode { get; set; } = default!;
 
         /// <summary>
@@ -11608,7 +11608,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Currency>))]
         public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
@@ -11717,7 +11717,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("currency")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Currency>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Currency>))]
         public Currency Currency { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object>? _additionalProperties;
@@ -11818,7 +11818,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("status")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CompanyVerificationWebhookStatus>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<CompanyVerificationWebhookStatus>))]
         public CompanyVerificationWebhookStatus Status { get; set; } = default!;
 
         /// <summary>
@@ -13889,7 +13889,7 @@ namespace Recommand.Client
         public string? VatNumber { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<EnterpriseNumberScheme>))]
         public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
@@ -13953,7 +13953,7 @@ namespace Recommand.Client
         public string? VatNumber { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<EnterpriseNumberScheme>))]
         public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
@@ -14421,7 +14421,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("direction")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Direction>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Direction>))]
         public Direction Direction { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("senderId")]
@@ -14516,7 +14516,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("result")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<ResponseDocumentValidationResult>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<ResponseDocumentValidationResult>))]
         public ResponseDocumentValidationResult Result { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("errors")]
@@ -14707,7 +14707,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("direction")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Direction>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Direction>))]
         public Direction Direction { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("senderId")]
@@ -14805,7 +14805,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("direction")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<Direction>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<Direction>))]
         public Direction Direction { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("senderId")]
@@ -14829,7 +14829,7 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("type")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<DocumentType>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<DocumentType>))]
         public DocumentType Type { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("readAt")]
@@ -15494,11 +15494,11 @@ namespace Recommand.Client
 
         [System.Text.Json.Serialization.JsonPropertyName("country")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CompanyRequestCountry>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<CompanyRequestCountry>))]
         public CompanyRequestCountry Country { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<EnterpriseNumberScheme>))]
         public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
 
         /// <summary>
@@ -15553,11 +15553,11 @@ namespace Recommand.Client
         public string City { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("country")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<CompanyRequestCountry>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<CompanyRequestCountry>))]
         public CompanyRequestCountry Country { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumberScheme")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter<EnterpriseNumberScheme>))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Recommand.Client.EnumMemberStringEnumConverter<EnterpriseNumberScheme>))]
         public EnterpriseNumberScheme? EnterpriseNumberScheme { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]

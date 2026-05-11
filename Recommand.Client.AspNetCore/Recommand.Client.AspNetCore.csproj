@@ -10,7 +10,7 @@
 
     <PropertyGroup>
         <PackageId>Recommand.Client.AspNetCore</PackageId>
-        <Version>0.4.1</Version>
+        <Version>0.4.2</Version>
         <Authors>Techworx</Authors>
         <Company>Techworx</Company>
         <Description>ASP.NET Core integration for Recommand.Client: a one-line MapRecommandWebhook endpoint extension that reads the raw body, verifies the X-Signature HMAC, deduplicates on X-Idempotency-Key, parses the polymorphic payload, and dispatches to a strongly-typed handler delegate.</Description>
