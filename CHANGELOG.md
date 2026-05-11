@@ -5,6 +5,37 @@ All notable changes to `Recommand.Client` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] – 2026-05-11
+
+### Fixed
+
+- **Request bodies no longer emit `"foo": null` for nullable optional
+  properties the caller left unset.** Previously, every nullable property
+  on every DTO appeared on the wire as `"prop": null` regardless of
+  whether the caller had assigned it — a side-effect of NSwag generating
+  `JsonSerializerOptions` with stock defaults and `System.Text.Json`'s
+  default `DefaultIgnoreCondition` being `Never`. Some endpoints
+  distinguish present-and-null ("clear this field") from absent ("leave
+  default"), so the noisy serialization occasionally triggered subtle
+  server-side rejections in addition to bloating logs and payloads. Each
+  generated resource client now implements its
+  `UpdateJsonSerializerSettings` partial method via a shared
+  `RecommandJsonDefaults.ConfigureCommon`, which sets
+  `JsonIgnoreCondition.WhenWritingNull` once per client. Deserialization
+  is unchanged.
+
+### Notes for consumers
+
+- **`SendDocumentRequest.Recipient` is required-yet-nullable** in the spec
+  (typed `string?`, `required: [..., recipient, ...]`). `null` is a
+  meaningful value there — it means "send via email only, no Peppol
+  recipient." With the new ignore policy, callers must **explicitly**
+  assign `Recipient` on every request, either to a Peppol address or to
+  `null`. A `SendInvoiceRequest { ... }` that leaves `Recipient` at its
+  default `null` will now omit the field from the wire and be rejected
+  by the server. This is the one place the new policy can bite an
+  unsuspecting caller.
+
 ## [0.4.0] – 2026-05-10
 
 ### Added
