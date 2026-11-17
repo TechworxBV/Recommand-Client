@@ -69,7 +69,7 @@ using Recommand.Client;
 
 using var recommand = new RecommandClient(apiKey: "key_xxx", apiSecret: "secret_xxx");
 
-var documents = await recommand.Documents.GetDocumentsAsync(companyId);
+var documents = await recommand.Documents.GetDocumentsAsync(companyId: new[] { companyId });
 ```
 
 `RecommandClient` is `IDisposable` because, in this constructor, it owns the
