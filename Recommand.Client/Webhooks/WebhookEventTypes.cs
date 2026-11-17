@@ -30,6 +30,18 @@ public static class WebhookEventTypes
     public const string DocumentSent = "document.sent";
 
     /// <summary>
+    /// One delivery of a document (Peppol or email) changed status. Maps to
+    /// <see cref="DocumentDeliveryStatusChangedWebhook"/>.
+    /// </summary>
+    public const string DocumentDeliveryStatusChanged = "document.delivery_status_changed";
+
+    /// <summary>
+    /// A French e-reporting report changed status. Maps to
+    /// <see cref="DocumentReportingStatusChangedWebhook"/>.
+    /// </summary>
+    public const string DocumentReportingStatusChanged = "document.reporting_status_changed";
+
+    /// <summary>
     /// A label was attached to a document. Maps to
     /// <see cref="DocumentLabelAssignedWebhook"/>.
     /// </summary>

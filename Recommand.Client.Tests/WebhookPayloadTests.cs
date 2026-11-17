@@ -68,12 +68,10 @@ public class WebhookPayloadTests
     }
 
     [Fact]
-    public void Parse_UnknownEventType_ReturnsBasePayload_AndExposesEventType()
+    public void Parse_UnknownEventType_ReturnsUnknownPayload_AndExposesEventType()
     {
         // Forward-compat: a future API release adds an event type this SDK
-        // version doesn't have a typed subclass for. The base WebhookPayload
-        // is returned with TeamId/CompanyId populated and the wire eventType
-        // accessible via the EventType getter (sourced from AdditionalProperties).
+        // version doesn't have a typed subclass for.
         const string payload = """
             {
               "eventType": "document.delivered.future",
@@ -85,13 +83,83 @@ public class WebhookPayloadTests
 
         var evt = WebhookPayload.Parse(payload);
 
-        Assert.NotNull(evt);
-        Assert.Equal(typeof(WebhookPayload), evt!.GetType());
-        Assert.Equal("team_xxx", evt.TeamId);
-        Assert.Equal("c_xxx", evt.CompanyId);
-        Assert.Equal("document.delivered.future", evt.EventType);
-        // Additional unknown fields preserved for inspection.
-        Assert.True(evt.AdditionalProperties.ContainsKey("futureField"));
+        var unknown = Assert.IsType<UnknownWebhookPayload>(evt);
+        Assert.Equal("team_xxx", unknown.TeamId);
+        Assert.Equal("c_xxx", unknown.CompanyId);
+        Assert.Equal("document.delivered.future", unknown.EventType);
+        Assert.True(unknown.AdditionalProperties.ContainsKey("futureField"));
+    }
+
+    [Fact]
+    public void Parse_MissingEventType_ReturnsUnknownPayload()
+    {
+        var evt = WebhookPayload.Parse("""{"teamId":"t","companyId":"c"}""");
+
+        var unknown = Assert.IsType<UnknownWebhookPayload>(evt);
+        Assert.Null(unknown.EventType);
+    }
+
+    [Fact]
+    public void Parse_DeliveryStatusChanged_ReturnsTypedSubclass()
+    {
+        const string payload = """
+            {
+              "eventType": "document.delivery_status_changed",
+              "documentId": "doc_xxx",
+              "teamId": "team_xxx",
+              "companyId": "c_xxx",
+              "deliveryId": "del_xxx",
+              "channel": "peppol",
+              "address": "0208:987654321",
+              "status": "failed",
+              "previousStatus": "pending",
+              "failure": { "category": "recipient_not_found", "message": "Not registered", "providerCode": null }
+            }
+            """;
+
+        var typed = Assert.IsType<DocumentDeliveryStatusChangedWebhook>(WebhookPayload.Parse(payload));
+
+        Assert.Equal(DeliveryStatus.Failed, typed.Status);
+        Assert.Equal(DeliveryStatus.Pending, typed.PreviousStatus);
+        Assert.Equal(DeliveryFailureCategory.RecipientNotFound, typed.Failure!.Category);
+        Assert.Equal(WebhookEventTypes.DocumentDeliveryStatusChanged, typed.EventType);
+    }
+
+    [Fact]
+    public void Parse_ReportingStatusChanged_ReturnsTypedSubclass()
+    {
+        const string payload = """
+            {
+              "eventType": "document.reporting_status_changed",
+              "documentId": "doc_xxx",
+              "teamId": "team_xxx",
+              "companyId": "c_xxx",
+              "reportingStatus": "filed",
+              "previousReportingStatus": null,
+              "periodEnd": "2026-09-30",
+              "submissionId": null,
+              "outcomeCode": null,
+              "previousOutcomeCode": null,
+              "final": false
+            }
+            """;
+
+        var typed = Assert.IsType<DocumentReportingStatusChangedWebhook>(WebhookPayload.Parse(payload));
+
+        Assert.Equal("filed", typed.ReportingStatus);
+        Assert.Equal("2026-09-30", typed.PeriodEnd);
+    }
+
+    [Fact]
+    public void EventTypeConstants_CoverEveryGeneratedSubtype()
+    {
+        var constants = typeof(WebhookEventTypes).GetFields()
+            .Select(f => (string)f.GetRawConstantValue()!)
+            .OrderBy(v => v, StringComparer.Ordinal);
+
+        Assert.Equal(
+            JsonInheritanceConverter<WebhookPayload>.KnownDiscriminators.OrderBy(v => v, StringComparer.Ordinal),
+            constants);
     }
 
     [Fact]

@@ -1,3 +1,5 @@
+using System.Security;
+using System.Text;
 using NJsonSchema.CodeGeneration.CSharp;
 using NSwag;
 using NSwag.CodeGeneration.CSharp;
@@ -7,7 +9,7 @@ namespace Recommand.Generator;
 
 internal static class ClientCodeGenerator
 {
-    public static async Task GenerateAsync(OpenApiDocument document, string outputPath)
+    public static async Task GenerateAsync(OpenApiDocument document, string outputDirectory)
     {
         var settings = new CSharpClientGeneratorSettings
         {
@@ -16,6 +18,13 @@ internal static class ClientCodeGenerator
             GenerateClientClasses = true,
             GenerateClientInterfaces = true,
             InjectHttpClient = true,
+            // Requests are relative to HttpClient.BaseAddress, which
+            // RecommandClient and AddRecommandClient always set. No per-client
+            // BaseUrl to keep in sync, and no default taken from the spec.
+            UseBaseUrl = false,
+            // One method per operation with `CancellationToken = default`
+            // instead of two overloads.
+            GenerateOptionalParameters = true,
             ExceptionClass = "RecommandApiException",
             CSharpGeneratorSettings =
             {
@@ -23,46 +32,106 @@ internal static class ClientCodeGenerator
                 JsonLibrary = CSharpJsonLibrary.SystemTextJson,
                 GenerateNullableReferenceTypes = true,
                 EnumNameGenerator = new PascalCaseEnumNameGenerator(),
+                // Hand-written in Recommand.Client/Serialization/JsonInheritance.cs.
+                ExcludedTypeNames = ["JsonInheritanceAttribute", "JsonInheritanceConverterAttribute", "JsonInheritanceConverter"],
             },
         };
 
-        var generator = new CSharpClientGenerator(document, settings);
-        var code = generator.GenerateFile();
+        var code = new CSharpClientGenerator(document, settings).GenerateFile();
 
-        code = RewriteEnumConverter(code);
+        // System.Text.Json's string-enum converter ignores [EnumMember], so
+        // "0208" would go out as "_0208". The SDK's converter honours it.
+        const string stock = "System.Text.Json.Serialization.JsonStringEnumConverter<";
+        const string ours = "Recommand.Client.EnumMemberStringEnumConverter<";
+        Console.WriteLine($"Enum converter: replaced {code.Split(stock).Length - 1} references.");
+        code = code.Replace(stock, ours);
 
-        Directory.CreateDirectory(Path.GetDirectoryName(outputPath)!);
-        await File.WriteAllTextAsync(outputPath, code);
-        Console.WriteLine($"Wrote {code.Length:N0} chars to {outputPath}");
+        Directory.CreateDirectory(outputDirectory);
+        await WriteAsync(Path.Combine(outputDirectory, "RecommandClient.g.cs"), code);
+        await WriteAsync(Path.Combine(outputDirectory, "RecommandClient.Wiring.g.cs"), GenerateWiring(document));
     }
 
     /// <summary>
-    /// Replace every reference to <c>System.Text.Json.Serialization.JsonStringEnumConverter&lt;T&gt;</c>
-    /// with the SDK's <c>Recommand.Client.EnumMemberStringEnumConverter&lt;T&gt;</c>, which honours
-    /// <c>[EnumMember(Value = "…")]</c> in both serialization directions.
+    /// Everything that exists once per OpenAPI tag: the property on
+    /// <c>IRecommandClient</c>, its backing instance on
+    /// <c>RecommandClient</c>, the JSON settings hook, and the DI
+    /// registration. Generated so a new tag in the spec needs no hand edits.
     /// </summary>
-    /// <remarks>
-    /// NSwag emits the stock STJ converter as a per-property
-    /// <c>[JsonConverter]</c> attribute. STJ's converter doesn't honour
-    /// <c>EnumMember</c>, so values like Peppol scheme codes (<c>"0208"</c>)
-    /// get serialized using the underscore-prefixed C# member name
-    /// (<c>"_0208"</c>) because C# enum members can't start with a digit.
-    /// Replacing the converter type fixes both the serialize direction
-    /// (write <c>"0208"</c>) and the deserialize direction (parse <c>"0208"</c>
-    /// back to <c>_0208</c>).
-    /// </remarks>
-    private static string RewriteEnumConverter(string code)
+    private static string GenerateWiring(OpenApiDocument document)
     {
-        const string from = "System.Text.Json.Serialization.JsonStringEnumConverter<";
-        const string to = "Recommand.Client.EnumMemberStringEnumConverter<";
-        var rewrites = 0;
-        var idx = 0;
-        while ((idx = code.IndexOf(from, idx, StringComparison.Ordinal)) >= 0)
+        var descriptions = document.Tags.ToDictionary(t => t.Name, t => t.Description ?? t.Name);
+        var tags = document.Paths.Values
+            .SelectMany(p => p.ActualPathItem.Values)
+            .Select(o => o.Tags.FirstOrDefault() ?? "Default")
+            .Distinct()
+            .Select(tag => (Name: PascalCaseTagOperationNameGenerator.PascalCase(tag),
+                            Summary: SecurityElement.Escape(descriptions.GetValueOrDefault(tag, tag))))
+            .OrderBy(t => t.Name, StringComparer.Ordinal)
+            .ToList();
+
+        var sb = new StringBuilder();
+        sb.AppendLine("// <auto-generated>Generated by Recommand.Generator from the OpenAPI tags. Do not edit.</auto-generated>");
+        sb.AppendLine("#nullable enable");
+        sb.AppendLine();
+        sb.AppendLine("using Microsoft.Extensions.DependencyInjection;");
+        sb.AppendLine("using Microsoft.Extensions.DependencyInjection.Extensions;");
+        sb.AppendLine();
+        sb.AppendLine("namespace Recommand.Client");
+        sb.AppendLine("{");
+
+        sb.AppendLine("    public partial interface IRecommandClient");
+        sb.AppendLine("    {");
+        foreach (var (name, summary) in tags)
         {
-            rewrites++;
-            idx += from.Length;
+            sb.AppendLine($"        /// <summary>{summary}</summary>");
+            sb.AppendLine($"        I{name}Client {name} {{ get; }}");
+            sb.AppendLine();
         }
-        Console.WriteLine($"Enum-converter rewrite: replaced {rewrites} references to JsonStringEnumConverter with EnumMemberStringEnumConverter.");
-        return code.Replace(from, to);
+        sb.AppendLine("    }");
+        sb.AppendLine();
+
+        sb.AppendLine("    public sealed partial class RecommandClient");
+        sb.AppendLine("    {");
+        foreach (var (name, _) in tags)
+        {
+            sb.AppendLine("        /// <inheritdoc />");
+            sb.AppendLine($"        public I{name}Client {name} {{ get; private set; }} = null!;");
+            sb.AppendLine();
+        }
+        sb.AppendLine("        private void CreateResourceClients(System.Net.Http.HttpClient httpClient)");
+        sb.AppendLine("        {");
+        foreach (var (name, _) in tags) sb.AppendLine($"            {name} = new {name}Client(httpClient);");
+        sb.AppendLine("        }");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+
+        sb.AppendLine("    internal static class ResourceClientRegistration");
+        sb.AppendLine("    {");
+        sb.AppendLine("        /// <summary>Registers every resource client interface, resolved from the scoped root client.</summary>");
+        sb.AppendLine("        public static void AddResourceClients(IServiceCollection services)");
+        sb.AppendLine("        {");
+        foreach (var (name, _) in tags)
+            sb.AppendLine($"            services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().{name});");
+        sb.AppendLine("        }");
+        sb.AppendLine("    }");
+
+        foreach (var (name, _) in tags)
+        {
+            sb.AppendLine();
+            sb.AppendLine($"    public partial class {name}Client");
+            sb.AppendLine("    {");
+            sb.AppendLine("        static partial void UpdateJsonSerializerSettings(System.Text.Json.JsonSerializerOptions settings) =>");
+            sb.AppendLine("            RecommandJsonDefaults.ConfigureCommon(settings);");
+            sb.AppendLine("    }");
+        }
+
+        sb.AppendLine("}");
+        return sb.ToString();
+    }
+
+    private static async Task WriteAsync(string path, string content)
+    {
+        await File.WriteAllTextAsync(path, content);
+        Console.WriteLine($"Wrote {content.Length:N0} chars to {path}");
     }
 }

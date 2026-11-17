@@ -14,7 +14,10 @@ namespace Recommand.Generator.Normalizers;
 /// Collapse rules:
 ///   - All non-null branches must share a single primitive <c>type</c>.
 ///   - <c>format</c> is preserved when exactly one distinct format appears
-///     across the branches (multiple distinct formats → skip, too lossy).
+///     across the branches; with several (date-time | date) it is dropped.
+///
+/// Also collapses <c>anyOf [T, array of T]</c> query parameters ("one value
+/// or several") to the array form.
 ///   - Nullability is preserved if any branch was <c>type: null</c>.
 ///   - <c>const</c> sentinels are dropped (e.g. <c>const: ""</c> → just
 ///     "empty string allowed", which the underlying primitive already permits).
@@ -50,6 +53,18 @@ internal sealed class PrimitiveUnionNormalizer : ISpecNormalizer
                         && sc.Schema is { } respSchema)
                         Walk(respSchema, ref rewrites);
                 }
+
+                foreach (var parameter in op.Parameters)
+                {
+                    if (parameter.Schema is not { HasReference: false } schema) continue;
+                    var array = schema.AnyOf.Concat(schema.OneOf).FirstOrDefault(m => m.Type.HasFlag(JsonObjectType.Array));
+                    if (array is null) continue;
+                    schema.AnyOf.Clear();
+                    schema.OneOf.Clear();
+                    schema.Type = JsonObjectType.Array;
+                    schema.Item = array.Item;
+                    rewrites++;
+                }
             }
         }
 
@@ -70,7 +85,7 @@ internal sealed class PrimitiveUnionNormalizer : ISpecNormalizer
                 prop.AnyOf.Clear();
                 prop.OneOf.Clear();
                 prop.Type = primitiveType;
-                if (format is not null) prop.Format = format;
+                prop.Format = format;
                 if (nullable) prop.Type |= JsonObjectType.Null;
                 counter++;
                 continue;
@@ -99,6 +114,7 @@ internal sealed class PrimitiveUnionNormalizer : ISpecNormalizer
         string? seenFormat = null;
         var hasNull = false;
         var nonNullBranches = 0;
+        var conflictingFormats = false;
 
         foreach (var member in union)
         {
@@ -117,7 +133,7 @@ internal sealed class PrimitiveUnionNormalizer : ISpecNormalizer
             if (!string.IsNullOrEmpty(member.Format))
             {
                 if (seenFormat is null) seenFormat = member.Format;
-                else if (seenFormat != member.Format) return false;  // conflicting formats: skip
+                else if (seenFormat != member.Format) conflictingFormats = true;
             }
 
             nonNullBranches++;
@@ -126,7 +142,9 @@ internal sealed class PrimitiveUnionNormalizer : ISpecNormalizer
         if (seenPrimitive is null || nonNullBranches < 2) return false;
 
         primitiveType = seenPrimitive.Value;
-        format = seenFormat;
+        // e.g. date-time | date: no single .NET type round-trips both, so
+        // the property stays a plain string.
+        format = conflictingFormats ? null : seenFormat;
         nullable = hasNull;
         return true;
     }

@@ -25,22 +25,24 @@ public class DependencyInjectionTests
     }
 
     [Fact]
-    public void AddRecommandClient_AppliesCustomBaseUrl()
+    public async Task AddRecommandClient_AppliesCustomBaseUrl()
     {
-        const string expected = "https://staging.recommand.eu/";
-
+        var captured = new CapturingHandler();
         var services = new ServiceCollection();
         services.AddRecommandClient(o =>
         {
             o.ApiKey = "key_xxx";
             o.ApiSecret = "secret_xxx";
             o.BaseUrl = "https://staging.recommand.eu";
-        });
+        }).ConfigurePrimaryHttpMessageHandler(() => captured);
 
         using var sp = services.BuildServiceProvider();
         var client = sp.GetRequiredService<IRecommandClient>();
 
-        Assert.Equal(expected, ((DocumentsClient)client.Documents).BaseUrl);
+        try { await client.Authentication.VerifyAuthAsync(); }
+        catch (RecommandApiException) { /* CapturingHandler answers with an empty body */ }
+
+        Assert.Equal("https://staging.recommand.eu/api/core/auth/verify", captured.LastRequest!.RequestUri!.ToString());
     }
 
     [Fact]

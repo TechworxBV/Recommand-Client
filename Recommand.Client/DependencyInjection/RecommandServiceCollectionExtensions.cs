@@ -76,19 +76,7 @@ public static class RecommandServiceCollectionExtensions
             return new RecommandClient(factory.CreateClient(HttpClientName));
         });
 
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Authentication);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Companies);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().CompanyDocumentTypes);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().CompanyIdentifiers);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().CompanyNotificationEmailAddresses);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Customers);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Documents);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Labels);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Playgrounds);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Recipients);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Sending);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Suppliers);
-        services.TryAddScoped(sp => sp.GetRequiredService<IRecommandClient>().Webhooks);
+        ResourceClientRegistration.AddResourceClients(services);
 
         return builder;
     }

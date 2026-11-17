@@ -153,7 +153,7 @@ public class MapRecommandWebhookTests
     }
 
     [Fact]
-    public async Task UnknownEventType_DispatchesAsBasePayload()
+    public async Task UnknownEventType_DispatchesAsUnknownPayload()
     {
         WebhookPayload? captured = null;
 
@@ -165,9 +165,9 @@ public class MapRecommandWebhookTests
 
         Assert.Equal(HttpStatusCode.OK, resp.StatusCode);
         Assert.NotNull(captured);
-        // Forward-compat: lands as base type, not throws.
-        Assert.Equal(typeof(WebhookPayload), captured!.GetType());
-        Assert.Equal("document.delivered.future", captured.EventType);
+        // Forward-compat: lands as the Unknown subtype, not throws.
+        Assert.IsType<UnknownWebhookPayload>(captured);
+        Assert.Equal("document.delivered.future", captured!.EventType);
     }
 
     [Fact]

@@ -22,7 +22,10 @@ public sealed class RecommandClientOptions
     /// Base URL of the Recommand API. Defaults to the production endpoint.
     /// Override only when targeting a non-production environment.
     /// </summary>
-    public string BaseUrl { get; set; } = "https://app.recommand.eu";
+    public string BaseUrl { get; set; } = DefaultBaseUrl;
+
+    /// <summary>The production API endpoint.</summary>
+    public const string DefaultBaseUrl = "https://app.recommand.eu";
 
     /// <summary>
     /// Optional HTTP request timeout. When null, the underlying

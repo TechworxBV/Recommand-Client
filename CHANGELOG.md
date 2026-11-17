@@ -5,6 +5,101 @@ All notable changes to `Recommand.Client` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] – 2026-11-17
+
+Updated to the current Recommand OpenAPI spec and reworked how the client is
+generated. **Breaking**: most model type names changed, because the spec now
+names its schemas itself.
+
+### Added
+
+- **`Reporting` client** (French e-reporting): `GetFrenchReportingDeclarantAsync`,
+  `RegisterFrenchReportingDeclarantAsync`, `SubmitFrenchB2CReportAsync`,
+  `SubmitFrenchB2BiReportAsync`.
+- `Sending.GenerateAsync`: build a document's XML without sending it
+  (`GenerateInvoiceRequest`, `GenerateCreditNoteRequest`, …).
+- `Companies.VerifyCompanyByContractAsync`,
+  `CompanyIdentifiers.GetCompanyIdentifierSchemesAsync`,
+  `MigrateCompanyIdentifierAsync`, `GetCompanyIdentifierMigrationsAsync`.
+- `SendFrenchInvoicingCdarRequest` (French invoicing CDAR documents).
+- Delivery tracking on documents (`DeliveryStatus`, `Deliveries`) and French
+  reporting status (`Reporting`).
+- Webhook events `document.delivery_status_changed`
+  (`DocumentDeliveryStatusChangedWebhook`) and
+  `document.reporting_status_changed`
+  (`DocumentReportingStatusChangedWebhook`); `DocumentSentWebhook.DeliveryStatus`.
+- **`Unknown…` subtypes.** Every polymorphic hierarchy has a fallback subtype
+  (`UnknownTransmittedDocument`, `UnknownWebhookPayload`, …). A discriminator
+  value the SDK does not know deserialises to it instead of throwing, so a
+  document type added to the API no longer breaks `GetDocumentsAsync` on
+  older SDK versions.
+- `SendInvoice.Vat` (and the other send documents) is typed `Vat` and accepts
+  either `VatTotals` or `VatTotalsAutoCalculation`. Previously only
+  `VatTotals` could be assigned.
+- `JsonInheritanceConverter<T>.GetDiscriminator` / `KnownDiscriminators`.
+
+### Fixed
+
+- **`new RecommandClient(apiKey, apiSecret)` without a base URL sent requests
+  to `http://localhost:3001`** (the server URL in the old spec snapshot).
+  Requests are now relative to `HttpClient.BaseAddress`, which defaults to
+  `https://app.recommand.eu`.
+- `Documents.RenderDocumentAsync` returned the response as a `string`, which
+  corrupted PDF output. It now returns a `FileResponse` stream for both HTML
+  and PDF.
+
+### Changed (breaking)
+
+- **Two methods changed the order of same-typed positional parameters, which
+  compiles but does the wrong thing.** Check these call sites, or use named
+  arguments:
+  - `GetCustomersAsync` / `GetSuppliersAsync` / `GetDocumentsAsync`:
+    `(page, limit, …)` → `(limit, page, …)`, and both are `int?` (were `double?`).
+  - `GetCompanyIdentifierAsync(identifierId, companyId)` →
+    `(companyId, identifierId)`.
+- Model types are named after the spec's schemas: `ResponseCompany` →
+  `Company`, `ResponseCustomer` → `Customer`, `ResponseSupplier` → `Supplier`,
+  `ResponseLabel` → `Label`, `ResponseWebhook` → `Webhook`,
+  `ResponsePagination` → `Pagination`, `ResponseIdentifier` →
+  `CompanyIdentifier`, `ResponseDocumentType` → `CompanyDocumentType`,
+  `ResponseNotificationEmailAddress` → `CompanyNotificationEmailAddress`,
+  `ResponseDocumentValidation` → `DocumentValidation`,
+  `PlaygroundResponsePlayground` → `Playground`,
+  `SearchDirectoryResponseResult` → `DirectoryMatch`,
+  `GetInboxResponseDocument` → `InboxDocument`.
+- Documents: `GetDocumentResponseDocument` → `TransmittedDocument` and
+  `GetDocumentsResponseDocument` → `TransmittedDocumentSummary`, with subtypes
+  `TransmittedDocumentInvoice`, `TransmittedDocumentCreditNote`, … The
+  `…DocumentXml` subtype is gone; a document of type `unknown` is an
+  `UnknownTransmittedDocument`.
+- Parameter enums: `GetDocumentsDirection` → `DocumentDirection`,
+  `GetDocumentsType` → `DocumentType`, `DownloadPackageGeneratePdf` →
+  `PdfGenerationMode`, `RenderDocumentType` → `RenderFormat`.
+  `GetDocumentsAsync` takes `companyId` / `labelId` as `IEnumerable<string>`
+  and `isUnread` as `bool?`.
+- Each operation is one method with `CancellationToken cancellationToken = default`
+  instead of two overloads. Required request bodies are non-nullable.
+- The generated resource clients no longer have a `BaseUrl` property; set
+  `HttpClient.BaseAddress` (or `RecommandClientOptions.BaseUrl`).
+- `WebhookPayload.Parse` returns `UnknownWebhookPayload` for an unrecognised
+  event type (was a bare `WebhookPayload`). Serialising a polymorphic base
+  type itself (e.g. `new SendDocumentRequest()`) throws.
+- `JsonInheritanceConverter<T>` is hand-written and sealed;
+  `JsonInheritanceAttribute` and `JsonInheritanceConverterAttribute` are public.
+
+### Internal
+
+- `spec/openapi.json` is an unmodified upstream snapshot again;
+  `dotnet run --project Recommand.Generator -- --fetch` refreshes it and the
+  daily workflow opens a PR when upstream changes. Webhook payload schemas,
+  which upstream no longer publishes, live in `spec/webhooks.json`.
+- Generator pipeline reworked for the new spec shapes. `StructuralDeduplicator`
+  is gone (upstream names its schemas now). The per-tag boilerplate
+  (`IRecommandClient` properties, facade fields, JSON settings hooks, DI
+  registrations) is generated into `Generated/RecommandClient.Wiring.g.cs`,
+  so a new API tag needs no hand edits.
+- NSwag 14.7.1 → 14.8.0.
+
 ## [0.4.2] – 2026-05-11
 
 ### Fixed

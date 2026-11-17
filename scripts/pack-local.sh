@@ -4,7 +4,7 @@ set -euo pipefail
 REPO_ROOT=$(cd "$(dirname "$0")/.." && pwd)
 LOCAL_FEED="${RECOMMAND_LOCAL_FEED:-$REPO_ROOT/local-nuget}"
 
-VERSION_BASE="${1:-0.4.0}"
+VERSION_BASE="${1:-0.5.0}"
 VERSION_SUFFIX="local.$(date -u +%Y%m%d%H%M%S)"
 VERSION="${VERSION_BASE}-${VERSION_SUFFIX}"
 

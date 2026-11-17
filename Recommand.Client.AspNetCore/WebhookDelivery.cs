@@ -12,7 +12,7 @@ namespace Recommand.Client.AspNetCore;
 /// The parsed webhook event. Pattern-match on the runtime type
 /// (<see cref="DocumentReceivedWebhook"/>, <see cref="CompanyVerificationWebhook"/>,
 /// etc.) for typed handling. For event types this SDK version doesn't
-/// recognise, the runtime type is the base <see cref="WebhookPayload"/>;
+/// recognise, the runtime type is <see cref="UnknownWebhookPayload"/>;
 /// <see cref="WebhookPayload.EventType"/> still surfaces the wire identifier.
 /// </param>
 /// <param name="IdempotencyKey">

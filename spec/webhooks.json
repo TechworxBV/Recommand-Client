@@ -1,0 +1,364 @@
+{
+  "$comment": "Local supplement merged into spec/openapi.json by Recommand.Generator. The upstream OpenAPI document no longer describes webhook delivery payloads; these schemas are maintained by hand from https://docs.recommand.eu/docs/working-with-webhooks. spec/openapi.json itself is an unmodified upstream snapshot.",
+  "components": {
+    "schemas": {
+      "WebhookPayload": {
+        "title": "Webhook Payload",
+        "description": "Discriminated union of all webhook payload types, selected by `eventType`.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/DocumentReceivedWebhook"
+          },
+          {
+            "$ref": "#/components/schemas/DocumentSentWebhook"
+          },
+          {
+            "$ref": "#/components/schemas/DocumentDeliveryStatusChangedWebhook"
+          },
+          {
+            "$ref": "#/components/schemas/DocumentReportingStatusChangedWebhook"
+          },
+          {
+            "$ref": "#/components/schemas/DocumentLabelAssignedWebhook"
+          },
+          {
+            "$ref": "#/components/schemas/DocumentLabelUnassignedWebhook"
+          },
+          {
+            "$ref": "#/components/schemas/CompanyVerificationWebhook"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "eventType",
+          "mapping": {
+            "document.received": "#/components/schemas/DocumentReceivedWebhook",
+            "document.sent": "#/components/schemas/DocumentSentWebhook",
+            "document.delivery_status_changed": "#/components/schemas/DocumentDeliveryStatusChangedWebhook",
+            "document.reporting_status_changed": "#/components/schemas/DocumentReportingStatusChangedWebhook",
+            "document.label.assigned": "#/components/schemas/DocumentLabelAssignedWebhook",
+            "document.label.unassigned": "#/components/schemas/DocumentLabelUnassignedWebhook",
+            "company.verification": "#/components/schemas/CompanyVerificationWebhook"
+          }
+        }
+      },
+      "DocumentReceivedWebhook": {
+        "type": "object",
+        "title": "Document Received Webhook",
+        "description": "Sent when an inbound document is received and stored for a company.",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "const": "document.received"
+          },
+          "documentId": {
+            "type": "string",
+            "description": "ID of the transmitted document. Fetch it with GET /api/v1/documents/{documentId}."
+          },
+          "teamId": {
+            "type": "string",
+            "description": "ID of the team the event belongs to."
+          },
+          "companyId": {
+            "type": "string",
+            "description": "ID of the company the event belongs to."
+          }
+        },
+        "required": [
+          "eventType",
+          "documentId",
+          "teamId",
+          "companyId"
+        ]
+      },
+      "DocumentSentWebhook": {
+        "type": "object",
+        "title": "Document Sent Webhook",
+        "description": "Sent when a document is sent. Delivery can still be pending at this point.",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "const": "document.sent"
+          },
+          "documentId": {
+            "type": "string",
+            "description": "ID of the transmitted document. Fetch it with GET /api/v1/documents/{documentId}."
+          },
+          "teamId": {
+            "type": "string",
+            "description": "ID of the team the event belongs to."
+          },
+          "companyId": {
+            "type": "string",
+            "description": "ID of the company the event belongs to."
+          },
+          "deliveryStatus": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DeliveryStatus"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Delivery status at the time of the event. Null on older queued events."
+          }
+        },
+        "required": [
+          "eventType",
+          "documentId",
+          "teamId",
+          "companyId"
+        ]
+      },
+      "DocumentDeliveryStatusChangedWebhook": {
+        "type": "object",
+        "title": "Document Delivery Status Changed Webhook",
+        "description": "Sent when one delivery of a document changes status.",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "const": "document.delivery_status_changed"
+          },
+          "documentId": {
+            "type": "string",
+            "description": "ID of the transmitted document. Fetch it with GET /api/v1/documents/{documentId}."
+          },
+          "teamId": {
+            "type": "string",
+            "description": "ID of the team the event belongs to."
+          },
+          "companyId": {
+            "type": "string",
+            "description": "ID of the company the event belongs to."
+          },
+          "deliveryId": {
+            "type": "string",
+            "description": "ID of the delivery that changed."
+          },
+          "channel": {
+            "type": "string",
+            "description": "Delivery channel: `peppol` or `email`."
+          },
+          "address": {
+            "type": "string",
+            "description": "Address the delivery was made to, e.g. a Peppol address or an email address."
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeliveryStatus"
+          },
+          "previousStatus": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DeliveryStatus"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Status before the change. Null for a newly created deferred fallback attempt."
+          },
+          "failure": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DeliveryFailure"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Why the delivery failed. Null when no failure applies."
+          }
+        },
+        "required": [
+          "eventType",
+          "documentId",
+          "teamId",
+          "companyId",
+          "deliveryId",
+          "channel",
+          "address",
+          "status"
+        ]
+      },
+      "DocumentReportingStatusChangedWebhook": {
+        "type": "object",
+        "title": "Document Reporting Status Changed Webhook",
+        "description": "Sent when a French e-reporting report changes status with the tax administration.",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "const": "document.reporting_status_changed"
+          },
+          "documentId": {
+            "type": "string",
+            "description": "ID of the transmitted document. Fetch it with GET /api/v1/documents/{documentId}."
+          },
+          "teamId": {
+            "type": "string",
+            "description": "ID of the team the event belongs to."
+          },
+          "companyId": {
+            "type": "string",
+            "description": "ID of the company the event belongs to."
+          },
+          "reportingStatus": {
+            "type": "string",
+            "description": "New status: `accepted`, `pending_rectificative`, `filed`, `filed_rectificative`, `superseded` or `rejected`."
+          },
+          "previousReportingStatus": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Status before the change."
+          },
+          "periodEnd": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "End of the reporting period (date). Null until known."
+          },
+          "submissionId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Submission ID. Null until known."
+          },
+          "outcomeCode": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Outcome code from the tax administration. Null until known."
+          },
+          "previousOutcomeCode": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Outcome code before the change."
+          },
+          "final": {
+            "type": "boolean",
+            "description": "Whether this status is final."
+          }
+        },
+        "required": [
+          "eventType",
+          "documentId",
+          "teamId",
+          "companyId",
+          "reportingStatus"
+        ]
+      },
+      "DocumentLabelAssignedWebhook": {
+        "type": "object",
+        "title": "Document Label Assigned Webhook",
+        "description": "Sent when a label is added to a document.",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "const": "document.label.assigned"
+          },
+          "documentId": {
+            "type": "string",
+            "description": "ID of the transmitted document. Fetch it with GET /api/v1/documents/{documentId}."
+          },
+          "teamId": {
+            "type": "string",
+            "description": "ID of the team the event belongs to."
+          },
+          "companyId": {
+            "type": "string",
+            "description": "ID of the company the event belongs to."
+          },
+          "labelId": {
+            "type": "string",
+            "description": "ID of the label that was assigned."
+          }
+        },
+        "required": [
+          "eventType",
+          "documentId",
+          "teamId",
+          "companyId",
+          "labelId"
+        ]
+      },
+      "DocumentLabelUnassignedWebhook": {
+        "type": "object",
+        "title": "Document Label Unassigned Webhook",
+        "description": "Sent when a label is removed from a document.",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "const": "document.label.unassigned"
+          },
+          "documentId": {
+            "type": "string",
+            "description": "ID of the transmitted document. Fetch it with GET /api/v1/documents/{documentId}."
+          },
+          "teamId": {
+            "type": "string",
+            "description": "ID of the team the event belongs to."
+          },
+          "companyId": {
+            "type": "string",
+            "description": "ID of the company the event belongs to."
+          },
+          "labelId": {
+            "type": "string",
+            "description": "ID of the label that was removed."
+          }
+        },
+        "required": [
+          "eventType",
+          "documentId",
+          "teamId",
+          "companyId",
+          "labelId"
+        ]
+      },
+      "CompanyVerificationWebhook": {
+        "type": "object",
+        "title": "Company Verification Webhook",
+        "description": "Sent when a company verification finishes.",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "const": "company.verification"
+          },
+          "teamId": {
+            "type": "string",
+            "description": "ID of the team the event belongs to."
+          },
+          "companyId": {
+            "type": "string",
+            "description": "ID of the company the event belongs to."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "rejected",
+              "error"
+            ],
+            "description": "Final verification status."
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Failure reason. Always present when status is `error`; may be present when `rejected`."
+          }
+        },
+        "required": [
+          "eventType",
+          "teamId",
+          "companyId",
+          "status"
+        ]
+      }
+    }
+  }
+}

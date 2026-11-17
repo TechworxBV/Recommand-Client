@@ -103,7 +103,8 @@ this client. If you need them, file an issue or supply your own
 | `Labels` | `ILabelsClient` | Tagging |
 | `Playgrounds` | `IPlaygroundsClient` | Sandbox testing environments |
 | `Recipients` | `IRecipientsClient` | Peppol recipient lookups |
-| `Sending` | `ISendingClient` | Sending Peppol documents |
+| `Reporting` | `IReportingClient` | French e-reporting (declarant registration, B2C and cross-border reports) |
+| `Sending` | `ISendingClient` | Sending Peppol documents, and generating their XML without sending |
 | `Suppliers` | `ISuppliersClient` | Suppliers (parties that send to your companies) |
 | `Webhooks` | `IWebhooksClient` | Webhook subscriptions and delivery |
 
@@ -130,6 +131,37 @@ public sealed class RecommandClientOptions
 ```
 
 Override `BaseUrl` only when targeting a non-production Recommand environment.
+
+## Forward compatibility
+
+Polymorphic types (documents by `type`, webhook payloads by `eventType`,
+send requests by `documentType`) are class hierarchies. When the API returns
+a discriminator this SDK version has no subtype for, you get the hierarchy's
+`Unknown…` subtype (`UnknownTransmittedDocument`, `UnknownWebhookPayload`, …)
+instead of an exception; the unrecognised fields are in `AdditionalProperties`.
+
+```csharp
+switch ((await recommand.Documents.GetDocumentAsync(id)).Document)
+{
+    case TransmittedDocumentInvoice invoice:       Handle(invoice.Parsed); break;
+    case TransmittedDocumentCreditNote creditNote: Handle(creditNote.Parsed); break;
+    case UnknownTransmittedDocument other:         Log(other.Xml); break;
+}
+```
+
+## Keeping up with the API
+
+`spec/openapi.json` is an unmodified snapshot of
+<https://peppol.recommand.eu/openapi>. To update the client:
+
+```sh
+dotnet run --project Recommand.Generator -- --fetch
+```
+
+A daily workflow does the same and opens a pull request when anything
+changed. Webhook delivery payloads are not part of the upstream spec; they
+are described in `spec/webhooks.json`, maintained by hand from the
+[webhook docs](https://docs.recommand.eu/docs/working-with-webhooks).
 
 ## Versioning
 

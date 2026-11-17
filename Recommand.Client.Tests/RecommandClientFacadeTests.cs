@@ -19,23 +19,38 @@ public class RecommandClientFacadeTests
         Assert.NotNull(client.Labels);
         Assert.NotNull(client.Playgrounds);
         Assert.NotNull(client.Recipients);
+        Assert.NotNull(client.Reporting);
         Assert.NotNull(client.Sending);
         Assert.NotNull(client.Suppliers);
         Assert.NotNull(client.Webhooks);
     }
 
     [Fact]
-    public void Ctor_WithCustomBaseUrl_PropagatesToAllTypedClients()
+    public async Task Ctor_WithHttpClientBaseAddress_SendsRequestsThere()
     {
-        const string expected = "https://staging.recommand.eu/";
-
-        using var http = new HttpClient { BaseAddress = new Uri("https://staging.recommand.eu") };
+        var captured = new CapturingHandler();
+        using var http = new HttpClient(captured) { BaseAddress = new Uri("https://staging.recommand.eu") };
         using var client = new RecommandClient(http);
 
-        Assert.Equal(expected, ((CompaniesClient)client.Companies).BaseUrl);
-        Assert.Equal(expected, ((DocumentsClient)client.Documents).BaseUrl);
-        Assert.Equal(expected, ((WebhooksClient)client.Webhooks).BaseUrl);
-        Assert.Equal(expected, ((CompanyIdentifiersClient)client.CompanyIdentifiers).BaseUrl);
+        try { await client.Companies.GetCompanyAsync("c_xxx"); }
+        catch (RecommandApiException) { /* CapturingHandler answers with an empty body */ }
+
+        Assert.Equal("https://staging.recommand.eu/api/v1/companies/c_xxx", captured.LastRequest!.RequestUri!.ToString());
+    }
+
+    [Fact]
+    public async Task Ctor_WithHttpClientWithoutBaseAddress_DefaultsToProduction()
+    {
+        // Regression: the generated clients used to fall back to the spec's
+        // server URL, which was http://localhost:3001.
+        var captured = new CapturingHandler();
+        using var http = new HttpClient(captured);
+        using var client = new RecommandClient(http);
+
+        try { await client.Authentication.VerifyAuthAsync(); }
+        catch (RecommandApiException) { /* CapturingHandler answers with an empty body */ }
+
+        Assert.Equal("https://app.recommand.eu/api/core/auth/verify", captured.LastRequest!.RequestUri!.ToString());
     }
 
     [Fact]
