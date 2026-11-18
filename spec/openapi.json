@@ -7168,45 +7168,74 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the supplier. Use it, or the external ID, wherever an endpoint takes a supplierId.",
+            "examples": [
+              "sd_supp_01JQZ8X0M4T7RB6K9V2NDHW3PA"
+            ]
           },
           "teamId": {
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the team the supplier belongs to. Suppliers are team-wide, not per company.",
+            "examples": [
+              "team_01JQZ8X0M4T7RB6K9V2NDHW3PA"
+            ]
           },
           "externalId": {
             "type": [
               "string",
               "null"
+            ],
+            "description": "Your own identifier for the supplier, if you set one. It is unique within the team, so you can address a supplier by the ID your system already uses.",
+            "examples": [
+              "erp-supplier-2087"
             ]
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The supplier's name.",
+            "examples": [
+              "Example Supplier BV"
+            ]
           },
           "vatNumber": {
             "type": [
               "string",
               "null"
+            ],
+            "description": "The supplier's VAT number, if recorded. An incoming invoice or credit note whose seller has exactly this VAT number is matched to the supplier.",
+            "examples": [
+              "BE0428643097"
             ]
           },
           "peppolAddresses": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "The supplier's Peppol addresses, each as `scheme:identifier`. An incoming invoice or credit note sent from one of these addresses is matched to the supplier. Empty when none were recorded.",
+            "examples": [
+              [
+                "0208:0428643097"
+              ]
+            ]
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "When the supplier was created."
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "When the supplier was last changed."
           },
           "labels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LabelSummary"
-            }
+            },
+            "description": "The labels assigned to the supplier. An incoming invoice or credit note matched to the supplier gets these labels when it is received."
           }
         },
         "required": [
@@ -7224,69 +7253,125 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the customer. Use it, or the external ID, wherever an endpoint takes a customerId.",
+            "examples": [
+              "sd_cust_01JQZ8X0M4T7RB6K9V2NDHW3PA"
+            ]
           },
           "teamId": {
-            "type": "string"
+            "type": "string",
+            "description": "The ID of the team the customer belongs to. Customers are team-wide, not per company.",
+            "examples": [
+              "team_01JQZ8X0M4T7RB6K9V2NDHW3PA"
+            ]
           },
           "externalId": {
             "type": [
               "string",
               "null"
+            ],
+            "description": "Your own identifier for the customer, if you set one. It is unique within the team, so you can address a customer by the ID your system already uses.",
+            "examples": [
+              "erp-customer-1042"
             ]
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The customer's name.",
+            "examples": [
+              "Example Customer BV"
+            ]
           },
           "vatNumber": {
             "type": [
               "string",
               "null"
+            ],
+            "description": "The customer's VAT number, if recorded.",
+            "examples": [
+              "BE0428643097"
             ]
           },
           "enterpriseNumber": {
             "type": [
               "string",
               "null"
+            ],
+            "description": "The customer's registration number in its national business register, if recorded.",
+            "examples": [
+              "0428643097"
             ]
           },
           "peppolAddresses": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": "The Peppol addresses recorded for the customer, each as `scheme:identifier`. Empty when none were recorded.",
+            "examples": [
+              [
+                "0208:0428643097"
+              ]
+            ]
           },
           "address": {
-            "type": "string"
+            "type": "string",
+            "description": "Street name and number of the customer's address.",
+            "examples": [
+              "Kerkstraat 1"
+            ]
           },
           "city": {
-            "type": "string"
+            "type": "string",
+            "description": "City of the customer's address.",
+            "examples": [
+              "Brussel"
+            ]
           },
           "postalCode": {
-            "type": "string"
+            "type": "string",
+            "description": "Postal code of the customer's address.",
+            "examples": [
+              "1000"
+            ]
           },
           "country": {
-            "type": "string"
+            "type": "string",
+            "description": "The country of the customer's address, in ISO 3166-1 alpha-2 format.",
+            "examples": [
+              "BE"
+            ]
           },
           "email": {
             "type": [
               "string",
               "null"
+            ],
+            "description": "Contact email address recorded for the customer.",
+            "examples": [
+              "billing@example.com"
             ]
           },
           "phone": {
             "type": [
               "string",
               "null"
+            ],
+            "description": "Contact phone number recorded for the customer.",
+            "examples": [
+              "+32 2 123 45 67"
             ]
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "When the customer was created."
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "When the customer was last changed."
           }
         },
         "required": [
@@ -13034,25 +13119,25 @@
                 "properties": {
                   "id": {
                     "type": "string",
-                    "description": "The internal ID of the supplier to update. If provided, updates by id."
+                    "description": "The ID of the supplier to update. When it does not match one of the team's suppliers, the request fails with a 400."
                   },
                   "name": {
                     "type": "string",
-                    "description": "The name of the supplier"
+                    "description": "The supplier's name."
                   },
                   "externalId": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "The external ID of the supplier. If provided without id, finds by externalId and updates or creates if not found."
+                    "description": "Your own identifier for the supplier, unique within the team. Without an id, the supplier with this external ID is updated, or created when there is none. With an id, it replaces the supplier's external ID; null clears it, and leaving it out keeps it."
                   },
                   "vatNumber": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "The VAT number of the supplier"
+                    "description": "The supplier's VAT number. An incoming invoice or credit note whose seller has exactly this VAT number is matched to the supplier. Leaving it out on an update clears it."
                   },
                   "peppolAddresses": {
                     "type": "array",
@@ -13060,7 +13145,7 @@
                       "type": "string"
                     },
                     "default": [],
-                    "description": "The Peppol addresses of the supplier"
+                    "description": "The supplier's Peppol addresses, each as `scheme:identifier`. An incoming invoice or credit note sent from one of these addresses is matched to the supplier. Leaving them out on an update clears them."
                   }
                 },
                 "required": [
@@ -13564,32 +13649,32 @@
                 "properties": {
                   "id": {
                     "type": "string",
-                    "description": "The internal ID of the customer to update. If provided, updates by id."
+                    "description": "The ID of the customer to update. When it does not match one of the team's customers, the request fails with a 400."
                   },
                   "name": {
                     "type": "string",
-                    "description": "The name of the customer"
+                    "description": "The customer's name."
                   },
                   "externalId": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "The external ID of the customer. If provided without id, finds by externalId and updates or creates if not found."
+                    "description": "Your own identifier for the customer, unique within the team. Without an id, the customer with this external ID is updated, or created when there is none. With an id, it replaces the customer's external ID; null clears it, and leaving it out keeps it."
                   },
                   "vatNumber": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "The VAT number of the customer"
+                    "description": "The customer's VAT number. Leaving it out on an update clears it."
                   },
                   "enterpriseNumber": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "The enterprise number of the customer"
+                    "description": "The customer's registration number in its national business register. Leaving it out on an update clears it."
                   },
                   "peppolAddresses": {
                     "type": "array",
@@ -13597,23 +13682,23 @@
                       "type": "string"
                     },
                     "default": [],
-                    "description": "The Peppol addresses of the customer"
+                    "description": "The customer's Peppol addresses, each as `scheme:identifier`. Leaving them out on an update clears them."
                   },
                   "address": {
                     "type": "string",
-                    "description": "The street address of the customer"
+                    "description": "Street name and number of the customer's address."
                   },
                   "city": {
                     "type": "string",
-                    "description": "The city of the customer"
+                    "description": "City of the customer's address."
                   },
                   "postalCode": {
                     "type": "string",
-                    "description": "The postal code of the customer"
+                    "description": "Postal code of the customer's address."
                   },
                   "country": {
                     "type": "string",
-                    "description": "The country code (ISO 3166-1 alpha-2) of the customer",
+                    "description": "The country of the customer's address, in ISO 3166-1 alpha-2 format.",
                     "examples": [
                       "BE"
                     ]
@@ -13623,14 +13708,14 @@
                       "string",
                       "null"
                     ],
-                    "description": "The email address of the customer"
+                    "description": "Contact email address for the customer. Leaving it out on an update clears it."
                   },
                   "phone": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "The phone number of the customer"
+                    "description": "Contact phone number for the customer. Leaving it out on an update clears it."
                   }
                 },
                 "required": [

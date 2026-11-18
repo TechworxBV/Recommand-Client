@@ -18205,36 +18205,63 @@ namespace Recommand.Client
     public partial class Supplier
     {
 
+        /// <summary>
+        /// The ID of the supplier. Use it, or the external ID, wherever an endpoint takes a supplierId.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("id")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// The ID of the team the supplier belongs to. Suppliers are team-wide, not per company.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("teamId")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string TeamId { get; set; } = default!;
 
+        /// <summary>
+        /// Your own identifier for the supplier, if you set one. It is unique within the team, so you can address a supplier by the ID your system already uses.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("externalId")]
         public string? ExternalId { get; set; } = default!;
 
+        /// <summary>
+        /// The supplier's name.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("name")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// The supplier's VAT number, if recorded. An incoming invoice or credit note whose seller has exactly this VAT number is matched to the supplier.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
         public string? VatNumber { get; set; } = default!;
 
+        /// <summary>
+        /// The supplier's Peppol addresses, each as `scheme:identifier`. An incoming invoice or credit note sent from one of these addresses is matched to the supplier. Empty when none were recorded.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
         [System.ComponentModel.DataAnnotations.Required]
         public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = new System.Collections.ObjectModel.Collection<string>();
 
+        /// <summary>
+        /// When the supplier was created.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public System.DateTimeOffset CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the supplier was last changed.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public System.DateTimeOffset UpdatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// The labels assigned to the supplier. An incoming invoice or credit note matched to the supplier gets these labels when it is received.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("labels")]
         public System.Collections.Generic.ICollection<LabelSummary> Labels { get; set; } = default!;
 
@@ -18253,57 +18280,102 @@ namespace Recommand.Client
     public partial class Customer
     {
 
+        /// <summary>
+        /// The ID of the customer. Use it, or the external ID, wherever an endpoint takes a customerId.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("id")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// The ID of the team the customer belongs to. Customers are team-wide, not per company.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("teamId")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string TeamId { get; set; } = default!;
 
+        /// <summary>
+        /// Your own identifier for the customer, if you set one. It is unique within the team, so you can address a customer by the ID your system already uses.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("externalId")]
         public string? ExternalId { get; set; } = default!;
 
+        /// <summary>
+        /// The customer's name.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("name")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// The customer's VAT number, if recorded.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
         public string? VatNumber { get; set; } = default!;
 
+        /// <summary>
+        /// The customer's registration number in its national business register, if recorded.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
         public string? EnterpriseNumber { get; set; } = default!;
 
+        /// <summary>
+        /// The Peppol addresses recorded for the customer, each as `scheme:identifier`. Empty when none were recorded.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
         [System.ComponentModel.DataAnnotations.Required]
         public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = new System.Collections.ObjectModel.Collection<string>();
 
+        /// <summary>
+        /// Street name and number of the customer's address.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("address")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Address { get; set; } = default!;
 
+        /// <summary>
+        /// City of the customer's address.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("city")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string City { get; set; } = default!;
 
+        /// <summary>
+        /// Postal code of the customer's address.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string PostalCode { get; set; } = default!;
 
+        /// <summary>
+        /// The country of the customer's address, in ISO 3166-1 alpha-2 format.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("country")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Country { get; set; } = default!;
 
+        /// <summary>
+        /// Contact email address recorded for the customer.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("email")]
         public string? Email { get; set; } = default!;
 
+        /// <summary>
+        /// Contact phone number recorded for the customer.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("phone")]
         public string? Phone { get; set; } = default!;
 
+        /// <summary>
+        /// When the customer was created.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("createdAt")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public System.DateTimeOffset CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the customer was last changed.
+        /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("updatedAt")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public System.DateTimeOffset UpdatedAt { get; set; } = default!;
@@ -21030,32 +21102,32 @@ namespace Recommand.Client
     {
 
         /// <summary>
-        /// The internal ID of the supplier to update. If provided, updates by id.
+        /// The ID of the supplier to update. When it does not match one of the team's suppliers, the request fails with a 400.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("id")]
         public string Id { get; set; } = default!;
 
         /// <summary>
-        /// The name of the supplier
+        /// The supplier's name.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("name")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Name { get; set; } = default!;
 
         /// <summary>
-        /// The external ID of the supplier. If provided without id, finds by externalId and updates or creates if not found.
+        /// Your own identifier for the supplier, unique within the team. Without an id, the supplier with this external ID is updated, or created when there is none. With an id, it replaces the supplier's external ID; null clears it, and leaving it out keeps it.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("externalId")]
         public string? ExternalId { get; set; } = default!;
 
         /// <summary>
-        /// The VAT number of the supplier
+        /// The supplier's VAT number. An incoming invoice or credit note whose seller has exactly this VAT number is matched to the supplier. Leaving it out on an update clears it.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
         public string? VatNumber { get; set; } = default!;
 
         /// <summary>
-        /// The Peppol addresses of the supplier
+        /// The supplier's Peppol addresses, each as `scheme:identifier`. An incoming invoice or credit note sent from one of these addresses is matched to the supplier. Leaving them out on an update clears them.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
         public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = default!;
@@ -21076,78 +21148,78 @@ namespace Recommand.Client
     {
 
         /// <summary>
-        /// The internal ID of the customer to update. If provided, updates by id.
+        /// The ID of the customer to update. When it does not match one of the team's customers, the request fails with a 400.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("id")]
         public string Id { get; set; } = default!;
 
         /// <summary>
-        /// The name of the customer
+        /// The customer's name.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("name")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Name { get; set; } = default!;
 
         /// <summary>
-        /// The external ID of the customer. If provided without id, finds by externalId and updates or creates if not found.
+        /// Your own identifier for the customer, unique within the team. Without an id, the customer with this external ID is updated, or created when there is none. With an id, it replaces the customer's external ID; null clears it, and leaving it out keeps it.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("externalId")]
         public string? ExternalId { get; set; } = default!;
 
         /// <summary>
-        /// The VAT number of the customer
+        /// The customer's VAT number. Leaving it out on an update clears it.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("vatNumber")]
         public string? VatNumber { get; set; } = default!;
 
         /// <summary>
-        /// The enterprise number of the customer
+        /// The customer's registration number in its national business register. Leaving it out on an update clears it.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("enterpriseNumber")]
         public string? EnterpriseNumber { get; set; } = default!;
 
         /// <summary>
-        /// The Peppol addresses of the customer
+        /// The customer's Peppol addresses, each as `scheme:identifier`. Leaving them out on an update clears them.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("peppolAddresses")]
         public System.Collections.Generic.ICollection<string> PeppolAddresses { get; set; } = default!;
 
         /// <summary>
-        /// The street address of the customer
+        /// Street name and number of the customer's address.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("address")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Address { get; set; } = default!;
 
         /// <summary>
-        /// The city of the customer
+        /// City of the customer's address.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("city")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string City { get; set; } = default!;
 
         /// <summary>
-        /// The postal code of the customer
+        /// Postal code of the customer's address.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("postalCode")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string PostalCode { get; set; } = default!;
 
         /// <summary>
-        /// The country code (ISO 3166-1 alpha-2) of the customer
+        /// The country of the customer's address, in ISO 3166-1 alpha-2 format.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("country")]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Country { get; set; } = default!;
 
         /// <summary>
-        /// The email address of the customer
+        /// Contact email address for the customer. Leaving it out on an update clears it.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("email")]
         public string? Email { get; set; } = default!;
 
         /// <summary>
-        /// The phone number of the customer
+        /// Contact phone number for the customer. Leaving it out on an update clears it.
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("phone")]
         public string? Phone { get; set; } = default!;
